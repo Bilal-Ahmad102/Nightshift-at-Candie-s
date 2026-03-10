@@ -8,7 +8,22 @@
 [ext_resource type="Texture2D" uid="uid://bfepwth1m5e7x" path="res://addons/kenney_prototype_textures/purple/texture_09.png" id="6_bwjpn"]
 [ext_resource type="Texture2D" uid="uid://47tkcude7kh7" path="res://addons/kenney_prototype_textures/light/texture_07.png" id="7_ibmi3"]
 [ext_resource type="Texture2D" uid="uid://pf1uqrxla4yc" path="res://addons/kenney_prototype_textures/green/texture_08.png" id="8_4blnk"]
+[ext_resource type="Texture2D" uid="uid://d333e7ifo2i6v" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="9_bwjpn"]
 [ext_resource type="PackedScene" uid="uid://yeqkxhqvu1if" path="res://Scenes/Camera.tscn" id="9_d3awe"]
+[ext_resource type="Script" uid="uid://dk4vwhu8jvuy" path="res://Scipts/cams_controller.gd" id="9_yglu3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yglu3"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_bwjpn"]
+sky_material = SubResource("ProceduralSkyMaterial_yglu3")
+
+[sub_resource type="Environment" id="Environment_ibmi3"]
+background_mode = 2
+sky = SubResource("Sky_bwjpn")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5l72"]
 albedo_texture = ExtResource("1_3dogw")
@@ -58,7 +73,24 @@ uv1_triplanar = true
 albedo_texture = ExtResource("8_4blnk")
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibmi3"]
+albedo_texture = ExtResource("9_bwjpn")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwjpn"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4blnk"]
+albedo_color = Color(0, 1, 0, 1)
+
 [node name="Test_Scene" type="Node3D" unique_id=189080301]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=550632587]
+environment = SubResource("Environment_ibmi3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=577933908]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
 
 [node name="floor" type="CSGBox3D" parent="." unique_id=602377186]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11929321, 0, 0.19616699)
@@ -287,13 +319,95 @@ size = Vector3(19, 4, 12.120605)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1151028)
 operation = 2
 size = Vector3(18, 3, 9)
+material = SubResource("StandardMaterial3D_ibmi3")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Building/kids_cove" unique_id=515649434]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9789429, 0, -4.820175)
 operation = 2
 size = Vector3(5.5875072, 3, 3.592682)
 
-[node name="Cameras" type="Node3D" parent="." unique_id=1412569382]
+[node name="Cam_info" type="Label" parent="." unique_id=1221257279]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -80.0
+offset_right = -66.0
+offset_bottom = -57.0
+grow_horizontal = 0
+grow_vertical = 0
 
-[node name="Camera3D" parent="Cameras" unique_id=61797635 instance=ExtResource("9_d3awe")]
+[node name="Cameras" type="Node3D" parent="." unique_id=1412569382]
+script = ExtResource("9_yglu3")
+
+[node name="office_0" parent="Cameras" unique_id=61797635 instance=ExtResource("9_d3awe")]
 transform = Transform3D(0.69560504, -0.1628588, 0.69972193, 0.021839334, 0.9783106, 0.20598891, -0.7180925, -0.12800542, 0.68407446, -17.2308, 3.802247, 27.027903)
+room_name = "Office Cam 1"
+
+[node name="office_1" parent="Cameras" unique_id=1841209025 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.6652844, 0.16026713, -0.72918546, 0.021839336, 0.97209215, 0.23358092, 0.74627066, -0.17132263, 0.6432175, -35.658768, 3.802247, 27.027903)
+room_name = "Office Cam 2"
+cam_id = 1
+
+[node name="pr_0" parent="Cameras" unique_id=1661691540 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.23218934, 0, 0.97267073, 0, 1.0000004, 0, -0.97267085, 0, 0.23218931, -34.388897, 3.5784895, 16.872952)
+room_name = "Party Room 1"
+cam_id = 2
+
+[node name="pr_1" parent="Cameras" unique_id=881629500 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.58806765, 0, 0.8088119, 0, 1, 0, -0.8088118, 0, 0.5880677, -34.718, 3.832, 8.093)
+room_name = "Party Room 2"
+cam_id = 3
+
+[node name="pr_2" parent="Cameras" unique_id=582992796 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.64551103, 0, -0.7637511, 0, 1, 0, 0.763751, 0, 0.6455111, -17.569, 3.536, 7.863)
+room_name = "Party Room 3"
+cam_id = 4
+
+[node name="pr_3" parent="Cameras" unique_id=1538175268 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.71524155, 0, -0.6988774, 0, 1, 0, 0.69887733, 0, 0.7152416, -17.663073, 3.696, 18.05601)
+room_name = "Party Room 4"
+cam_id = 5
+
+[node name="pr_4" parent="Cameras" unique_id=1368202175 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.52539736, 0, 0.8508571, 0, 1, 0, -0.85085696, 0, 0.5253974, -36.158913, 3.696, -3.5976548)
+room_name = "Party Room 5"
+cam_id = 6
+
+[node name="parts_room" parent="Cameras" unique_id=1976710241 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.6297679, 0, 0.77678347, 0, 1, 0, -0.7767834, 0, 0.6297679, -17.557611, 3.696, -8.395458)
+room_name = "Parts Room"
+cam_id = 7
+
+[node name="service_room" parent="Cameras" unique_id=1667669850 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.6297679, 0, 0.77678347, 0, 1, 0, -0.7767834, 0, 0.6297679, -3.372778, 3.696, -8.395458)
+room_name = "Service Room"
+cam_id = 8
+
+[node name="hall" parent="Cameras" unique_id=777042941 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.69316286, -4.3998534e-09, 0.7207811, 2.8898006e-09, 1, 3.325214e-09, -0.7207811, -2.2200114e-10, 0.6931628, 1.2478485, 3.696, -1.1861076)
+room_name = "Kids Room"
+cam_id = 10
+
+[node name="Game_room" parent="Cameras" unique_id=2146172203 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.704758, -4.399854e-09, 0.70944786, 2.9433336e-09, 1, 3.2779242e-09, -0.70944774, -2.2200053e-10, 0.70475805, 37.208115, 3.696, 9.378586)
+room_name = "Game Room"
+cam_id = 9
+
+[node name="Game_room2" parent="Cameras" unique_id=1731388586 instance=ExtResource("9_d3awe")]
+transform = Transform3D(0.6931628, -4.399854e-09, 0.72078115, 2.8898004e-09, 1, 3.3252148e-09, -0.720781, -2.2200053e-10, 0.69316286, 32.284866, 3.696, 21.369862)
+room_name = "Kids Room"
+cam_id = 10
+
+[node name="Node3D" type="Node3D" parent="." unique_id=512692415]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Node3D" unique_id=627736812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.95549, 1.9074699, 14.334621)
+material = SubResource("StandardMaterial3D_bwjpn")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Node3D" unique_id=935283366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.07584, 1.9074699, 4.2666383)
+material = SubResource("StandardMaterial3D_4blnk")
