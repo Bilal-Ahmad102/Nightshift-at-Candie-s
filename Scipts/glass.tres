@@ -5,7 +5,7 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_qoy7y")
-shader_parameter/tint_color = Color(0.443137, 0.368627, 1, 0.611765)
+shader_parameter/tint_color = Color(0.61339027, 0.61339027, 0.61339027, 0.6117647)
 shader_parameter/backlight_color = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/noise_strenght = 0.005
 shader_parameter/roughness = 0.0

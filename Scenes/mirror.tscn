@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cky502wgprhxt"]
+
+[ext_resource type="Material" uid="uid://wuqo5bmyo0hy" path="res://Scipts/glass.tres" id="1_2mjjl"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_26yhd"]
+size = Vector2(10, 10)
+
+[node name="Node3D" type="Node3D" unique_id=1800276541]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=374783251]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_26yhd")
+surface_material_override/0 = ExtResource("1_2mjjl")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=138641830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5753415)

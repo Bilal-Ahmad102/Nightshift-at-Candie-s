@@ -1,12 +1,7 @@
 extends Node3D
 
-@onready var office_0: Camera3D = $office_0
-@onready var office_1: Camera3D = $office_1
-@onready var pr_0: Camera3D = $pr_0
-@onready var pr_1: Camera3D = $pr_1
-@onready var pr_2: Camera3D = $pr_2
-@onready var pr_3: Camera3D = $pr_3
-@onready var cam_info: Label = %Cam_info
+
+@onready var cam_info: Label = $"../../Cameras_info"
 
 var cameras: Array = []
 var current_index: int = 0

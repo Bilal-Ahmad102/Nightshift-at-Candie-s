@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="NightShift at Candie's"
-run/main_scene="uid://b8exb00ms3tnd"
+run/main_scene="uid://b3nasgldnbp32"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=810
+window/size/viewport_height=610
 
 [physics]
 

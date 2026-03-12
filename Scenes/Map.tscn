@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://b3nasgldnbp32"]
+
+[ext_resource type="PackedScene" uid="uid://ce25wbijyulmu" path="res://Assets/MAP/FNaC Semi-Accurate Map By DiscoHead.blend" id="1_5qjmu"]
+[ext_resource type="Material" uid="uid://wuqo5bmyo0hy" path="res://Scipts/glass.tres" id="2_0mc10"]
+[ext_resource type="Script" uid="uid://dk4vwhu8jvuy" path="res://Scipts/cams_controller.gd" id="2_nkcil"]
+[ext_resource type="Script" uid="uid://dxsy1lx8oncy2" path="res://Scipts/camera.gd" id="3_rthtq"]
+[ext_resource type="PackedScene" uid="uid://cglrghu41toss" path="res://Scenes/camera_interface.tscn" id="5_r08cw"]
+
+[node name="Map" type="Node3D" unique_id=687069439]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=77281540]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2121986785]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+sky_mode = 2
+
+[node name="FNaC Semi-Accurate Map By DiscoHead" parent="." unique_id=128171394 instance=ExtResource("1_5qjmu")]
+
+[node name="Cams" parent="FNaC Semi-Accurate Map By DiscoHead" index="7" unique_id=626164668]
+script = ExtResource("2_nkcil")
+
+[node name="Cam_1" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="0" unique_id=232088698]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_10" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="1" unique_id=841140905]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_11" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="2" unique_id=891862345]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_12" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="3" unique_id=695086692]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_13" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="4" unique_id=873200748]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_2" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="5" unique_id=99764080]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_3" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="6" unique_id=1139358319]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_4" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="7" unique_id=617776898]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_5" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="8" unique_id=913795482]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_6" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="9" unique_id=406382132]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_7" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="10" unique_id=758143588]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_8" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="11" unique_id=1733634160]
+script = ExtResource("3_rthtq")
+
+[node name="Cam_9" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="12" unique_id=1253095839]
+script = ExtResource("3_rthtq")
+
+[node name="Blind" parent="FNaC Semi-Accurate Map By DiscoHead" index="15" unique_id=954467968]
+visible = false
+
+[node name="GlassShattered" parent="FNaC Semi-Accurate Map By DiscoHead" index="16" unique_id=730627819]
+visible = false
+
+[node name="Glass" parent="FNaC Semi-Accurate Map By DiscoHead" index="17" unique_id=552609925]
+surface_material_override/0 = ExtResource("2_0mc10")
+
+[node name="Cameras_info" type="Label" parent="." unique_id=1796681216]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -80.0
+offset_right = -66.0
+offset_bottom = -57.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="camera_interface" parent="." unique_id=41413486 instance=ExtResource("5_r08cw")]
+
+[editable path="FNaC Semi-Accurate Map By DiscoHead"]
