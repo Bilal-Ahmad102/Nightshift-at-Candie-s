@@ -9,8 +9,6 @@ var current_index: int = 0
 func _ready() -> void:
 	cameras = get_children()
 	switch_to(0)
-	for i in range(cameras.size()):
-		cameras[i].cam_id = i
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_right"):
@@ -25,6 +23,7 @@ func prev_camera() -> void:
 	switch_to((current_index - 1 + cameras.size()) % cameras.size())
 	
 func switch_to(index: int) -> void:
+	CamGlobal.cam_switched.emit(cameras[current_index].cam_id,cameras[index].cam_id)
 	current_index = index
 	for i in cameras.size():
 		cameras[i].current = (i == current_index)

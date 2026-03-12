@@ -22,42 +22,55 @@ script = ExtResource("2_nkcil")
 
 [node name="Cam_1" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="0" unique_id=232088698]
 script = ExtResource("3_rthtq")
+cam_id = 1
 
 [node name="Cam_10" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="1" unique_id=841140905]
 script = ExtResource("3_rthtq")
+cam_id = 10
 
 [node name="Cam_11" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="2" unique_id=891862345]
 script = ExtResource("3_rthtq")
+cam_id = 11
 
 [node name="Cam_12" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="3" unique_id=695086692]
 script = ExtResource("3_rthtq")
+cam_id = 12
 
 [node name="Cam_13" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="4" unique_id=873200748]
 script = ExtResource("3_rthtq")
+cam_id = 13
 
 [node name="Cam_2" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="5" unique_id=99764080]
 script = ExtResource("3_rthtq")
+cam_id = 2
 
 [node name="Cam_3" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="6" unique_id=1139358319]
 script = ExtResource("3_rthtq")
+cam_id = 3
 
 [node name="Cam_4" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="7" unique_id=617776898]
 script = ExtResource("3_rthtq")
+cam_id = 4
 
 [node name="Cam_5" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="8" unique_id=913795482]
 script = ExtResource("3_rthtq")
+cam_id = 5
 
 [node name="Cam_6" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="9" unique_id=406382132]
 script = ExtResource("3_rthtq")
+cam_id = 6
 
 [node name="Cam_7" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="10" unique_id=758143588]
 script = ExtResource("3_rthtq")
+cam_id = 7
 
 [node name="Cam_8" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="11" unique_id=1733634160]
 script = ExtResource("3_rthtq")
+cam_id = 8
 
 [node name="Cam_9" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" index="12" unique_id=1253095839]
 script = ExtResource("3_rthtq")
+cam_id = 9
 
 [node name="Blind" parent="FNaC Semi-Accurate Map By DiscoHead" index="15" unique_id=954467968]
 visible = false

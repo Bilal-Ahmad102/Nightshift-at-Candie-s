@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://27k1va82jaq7" path="res://Assets/MAP/textures/265.png" id="12_p7yxi"]
 [ext_resource type="Texture2D" uid="uid://ca5ii7i4ycsm2" path="res://Assets/MAP/textures/267.png" id="13_3d5ti"]
 [ext_resource type="Texture2D" uid="uid://cxahot04fqqrd" path="res://Assets/MAP/textures/282.png" id="14_bfgxv"]
+[ext_resource type="Texture2D" uid="uid://dxwobw3k4rpve" path="res://Screenshot from 2026-03-12 11-07-55.png" id="16_8rb4c"]
 
 [node name="camera_interface" type="Control" unique_id=41413486]
 layout_mode = 3
@@ -80,6 +81,14 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("3_1h00l")
 
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_1" unique_id=75711046]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
 [node name="cam_2" type="TextureRect" parent="cam_btns" unique_id=1964234566]
 layout_mode = 1
 anchors_preset = 6
@@ -94,6 +103,14 @@ offset_bottom = 49.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("4_8rb4c")
+
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_2" unique_id=1232159151]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
 [node name="cam_3" type="TextureRect" parent="cam_btns" unique_id=2116820403]
 layout_mode = 1
@@ -110,6 +127,14 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("5_ucfoc")
 
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_3" unique_id=1462862902]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
 [node name="cam_4" type="TextureRect" parent="cam_btns" unique_id=465691041]
 layout_mode = 1
 anchors_preset = 6
@@ -124,6 +149,14 @@ offset_bottom = 150.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("6_t64xc")
+
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_4" unique_id=52973822]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
 [node name="cam_5" type="TextureRect" parent="cam_btns" unique_id=1211998426]
 layout_mode = 1
@@ -140,6 +173,14 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("7_3bq65")
 
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_5" unique_id=1198307069]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
 [node name="cam_6" type="TextureRect" parent="cam_btns" unique_id=485312261]
 layout_mode = 1
 anchors_preset = 6
@@ -154,6 +195,14 @@ offset_bottom = 182.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("8_u6hkn")
+
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_6" unique_id=2125595967]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
 [node name="cam_7" type="TextureRect" parent="cam_btns" unique_id=2070976234]
 layout_mode = 1
@@ -170,6 +219,14 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("9_hd5x0")
 
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_7" unique_id=1462012242]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
 [node name="cam_8" type="TextureRect" parent="cam_btns" unique_id=457035436]
 layout_mode = 1
 anchors_preset = 6
@@ -184,6 +241,14 @@ offset_bottom = 84.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("10_ulreo")
+
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_8" unique_id=633726460]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
 [node name="cam_9" type="TextureRect" parent="cam_btns" unique_id=1426861714]
 layout_mode = 1
@@ -200,6 +265,14 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("11_wb3h1")
 
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_9" unique_id=1789075401]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
 [node name="cam_10" type="TextureRect" parent="cam_btns" unique_id=1379882135]
 layout_mode = 1
 anchors_preset = 6
@@ -214,6 +287,14 @@ offset_bottom = -54.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("14_bfgxv")
+
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_10" unique_id=379178941]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
 [node name="cam_11" type="TextureRect" parent="cam_btns" unique_id=739738629]
 layout_mode = 1
@@ -230,6 +311,14 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("12_p7yxi")
 
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_11" unique_id=1003640055]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
 [node name="cam_12" type="TextureRect" parent="cam_btns" unique_id=896336972]
 layout_mode = 1
 anchors_preset = 6
@@ -244,3 +333,15 @@ offset_bottom = -51.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("13_3d5ti")
+
+[node name="ColorRect" type="ColorRect" parent="cam_btns/cam_12" unique_id=1068572963]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 30.0
+color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
+[node name="ScreenshotFrom20260312110755" type="Sprite2D" parent="." unique_id=1587255781]
+position = Vector2(893, 271)
+texture = ExtResource("16_8rb4c")
