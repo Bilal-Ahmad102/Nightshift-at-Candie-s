@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cj3vur7bs4f3g"]
+
+[ext_resource type="Shader" uid="uid://bgr5fvmkebget" path="res://Scipts/Shader_materials/shaders/chairs.gdshader" id="1_c3aoo"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_c3aoo")
+shader_parameter/fabric_color = Color(0.9189134, 0.30049723, 0.2317001, 1)
+shader_parameter/voronoi_scale = 0.20000000624012
+shader_parameter/noise1_scale = 10.0
+shader_parameter/noise1_detail = 8.0
+shader_parameter/noise2_scale = 10.0
+shader_parameter/noise2_detail = 8.0
+shader_parameter/roughness_min = 0.75600003591
+shader_parameter/roughness_max = 1.0
+shader_parameter/bump_strength = 0.02000000095

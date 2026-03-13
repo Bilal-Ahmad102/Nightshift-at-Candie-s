@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cq1jsd3371icr"]
+
+[ext_resource type="Shader" uid="uid://c423lkuwekpcu" path="res://Scipts/Shader_materials/shaders/floor.gdshader" id="1_k7kpv"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_k7kpv")
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/color2 = Color(0.05, 0.05, 0.05, 1)
+shader_parameter/checker_scale = 12.266000581936481
+shader_parameter/brick_scale = 0.025
+shader_parameter/brick_width = 0.25
+shader_parameter/row_height = 0.25
+shader_parameter/bump_strength = 0.0
+shader_parameter/roughness = 0.1

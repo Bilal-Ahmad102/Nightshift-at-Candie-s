@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ylyvuiuqyaie"]
+
+[ext_resource type="Texture2D" uid="uid://bf3mpydxwjgkk" path="res://Scipts/Shader_materials/textures/grey_wall.png" id="1_07scn"]
+
+[resource]
+albedo_texture = ExtResource("1_07scn")
+uv1_scale = Vector3(0.015, 0.015, 0.015)
+uv1_offset = Vector3(-0.8, 0, 0.145)
+uv1_triplanar = true
+uv2_offset = Vector3(0, 0, 0.165)

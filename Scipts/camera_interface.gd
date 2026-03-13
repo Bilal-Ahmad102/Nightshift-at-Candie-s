@@ -7,7 +7,9 @@ var _blink_tween: Tween
 
 func _ready() -> void:
 	for cam_btn in cam_btns.get_children():
+		cam_btn.get_child(0).color.a = 0.0
 		light_blips.append(cam_btn.get_child(0))
+	_start_blip(0)
 	CamGlobal.cam_switched.connect(_on_cam_switched)
 
 func _on_cam_switched(prev_cam: int, next_cam: int) -> void:

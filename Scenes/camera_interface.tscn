@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cglrghu41toss"]
 
 [ext_resource type="Script" uid="uid://bm18g684jru6d" path="res://Scipts/camera_interface.gd" id="1_1h00l"]
-[ext_resource type="Texture2D" uid="uid://8lkfqkagay7w" path="res://Assets/MAP/textures/248.png" id="1_2tl3r"]
 [ext_resource type="Texture2D" uid="uid://dupuu5g2ajrak" path="res://Assets/camera_interface_ref.png" id="1_d58tn"]
 [ext_resource type="Texture2D" uid="uid://cl0gxjyx6fmvj" path="res://Assets/MAP/textures/193.png" id="3_1h00l"]
+[ext_resource type="Texture2D" uid="uid://cp3oogy72v18c" path="res://Assets/MAP/textures/248 (copy).png" id="3_8rb4c"]
 [ext_resource type="Texture2D" uid="uid://ctw06co54ci1f" path="res://Assets/MAP/textures/226.png" id="4_8rb4c"]
 [ext_resource type="Texture2D" uid="uid://bnuyy3ty6mikb" path="res://Assets/MAP/textures/228.png" id="5_ucfoc"]
 [ext_resource type="Texture2D" uid="uid://doi0d8p530p4s" path="res://Assets/MAP/textures/230.png" id="6_t64xc"]
@@ -16,6 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://ca5ii7i4ycsm2" path="res://Assets/MAP/textures/267.png" id="13_3d5ti"]
 [ext_resource type="Texture2D" uid="uid://cxahot04fqqrd" path="res://Assets/MAP/textures/282.png" id="14_bfgxv"]
 [ext_resource type="Texture2D" uid="uid://dxwobw3k4rpve" path="res://Screenshot from 2026-03-12 11-07-55.png" id="16_8rb4c"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ucfoc"]
+load_path = "res://.godot/imported/248.png-f074ef89f71fd3e34900e371c9ca7456.s3tc.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t64xc"]
+texture = SubResource("CompressedTexture2D_ucfoc")
+region_rect = Rect2(40.083984, 56.0318, 762.55994, 531.4305)
 
 [node name="camera_interface" type="Control" unique_id=41413486]
 layout_mode = 3
@@ -35,36 +42,40 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1056.0
-offset_top = -454.0
-offset_right = 79.0
-offset_bottom = 375.0
+offset_left = -527.0
+offset_top = -291.0
+offset_right = 608.0
+offset_bottom = 538.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_d58tn")
 
 [node name="map_outline" type="TextureRect" parent="." unique_id=851360109]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -405.0
-offset_top = -305.0
-offset_right = 405.0
-offset_bottom = 305.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_2tl3r")
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -810.0
+offset_top = -610.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_8rb4c")
 
 [node name="cam_btns" type="Control" parent="." unique_id=949307719]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 6.0
+offset_top = -300.0
+offset_right = 6.0
+offset_bottom = -300.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="cam_1" type="TextureRect" parent="cam_btns" unique_id=1127847660]
 layout_mode = 1
@@ -343,5 +354,16 @@ offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
 [node name="ScreenshotFrom20260312110755" type="Sprite2D" parent="." unique_id=1587255781]
+visible = false
 position = Vector2(893, 271)
 texture = ExtResource("16_8rb4c")
+
+[node name="Panel" type="Panel" parent="." unique_id=561288166]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_t64xc")

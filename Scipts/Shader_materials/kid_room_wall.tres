@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://2c8tq7v1h5ux"]
+
+[ext_resource type="Texture2D" uid="uid://b4pthubmvt2bc" path="res://Scipts/Shader_materials/textures/kids_room_wall.png" id="1_4h8wn"]
+
+[resource]
+albedo_texture = ExtResource("1_4h8wn")
+uv1_scale = Vector3(-0.006, 0.014, 0.009)
+uv1_offset = Vector3(-0.91, 0, -0.095)
+uv1_triplanar = true
+uv2_offset = Vector3(0, 0, 0.165)

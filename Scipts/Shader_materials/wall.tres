@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b34iv45xx4kry"]
+
+[ext_resource type="Texture2D" uid="uid://dwci836orfk58" path="res://Scipts/Shader_materials/textures/Gemini_Generated_Image_lgzxdilgzxdilgzx.png" id="1_vl5v1"]
+
+[resource]
+albedo_texture = ExtResource("1_vl5v1")
+uv1_scale = Vector3(0.009, 0.009, 0.009)
+uv1_offset = Vector3(-0.8, 0, 0.145)
+uv1_triplanar = true
+uv2_offset = Vector3(0, 0, 0.165)

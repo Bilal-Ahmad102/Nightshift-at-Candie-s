@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://choay8fbdd7e7"]
+
+[ext_resource type="Texture2D" uid="uid://cf6q8unh1ph0i" path="res://Scipts/Shader_materials/textures/drawing_board.png" id="1_q0q14"]
+
+[resource]
+albedo_texture = ExtResource("1_q0q14")
+uv1_scale = Vector3(-0.046, -0.046, -0.046)
+uv1_offset = Vector3(-0.8, 0, 0.145)
+uv1_triplanar = true
+uv2_offset = Vector3(0, 0, 0.165)

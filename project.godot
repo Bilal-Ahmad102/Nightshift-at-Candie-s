@@ -21,8 +21,9 @@ CamGlobal="*uid://cig2no8ece7ux"
 
 [display]
 
-window/size/viewport_width=810
-window/size/viewport_height=610
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [physics]
 
