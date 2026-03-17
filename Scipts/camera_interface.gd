@@ -6,11 +6,13 @@ var current_cam: int = 0
 var _blink_tween: Tween
 
 func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	for cam_btn in cam_btns.get_children():
 		cam_btn.get_child(0).color.a = 0.0
 		light_blips.append(cam_btn.get_child(0))
 	_start_blip(0)
 	CamGlobal.cam_switched.connect(_on_cam_switched)
+
 
 func _on_cam_switched(prev_cam: int, next_cam: int) -> void:
 	#print(prev_cam," ",next_cam)
