@@ -52,9 +52,10 @@
 [ext_resource type="Texture2D" uid="uid://cxahot04fqqrd" path="res://Assets/MAP/textures/282.png" id="46_6iqhf"]
 [ext_resource type="Texture2D" uid="uid://27k1va82jaq7" path="res://Assets/MAP/textures/265.png" id="47_3h273"]
 [ext_resource type="Texture2D" uid="uid://ca5ii7i4ycsm2" path="res://Assets/MAP/textures/267.png" id="48_w6kg5"]
-[ext_resource type="Script" uid="uid://bdlthm4cpxbyu" path="res://Camera_TV.gd" id="49_nr4qj"]
+[ext_resource type="Script" uid="uid://bdlthm4cpxbyu" path="res://Scipts/Camera_TV.gd" id="49_nr4qj"]
 [ext_resource type="Texture2D" uid="uid://dy34lw038h1b2" path="res://Assets/MAP/textures/Eyes.png" id="50_eny3s"]
 [ext_resource type="Texture2D" uid="uid://cl5hd1ivp220c" path="res://Assets/MAP/textures/Eyes3.png" id="51_b0dg3"]
+[ext_resource type="PackedScene" uid="uid://c3klcjogk3khl" path="res://Scenes/anime_girl.tscn" id="56_l6pei"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2cta"]
 resource_name = "Door1"
@@ -4385,6 +4386,8 @@ shadow_mesh = SubResource("ArrayMesh_85a3m")
 [sub_resource type="PlaneMesh" id="PlaneMesh_x5akl"]
 size = Vector2(14.905, 10.84)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5mar"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_x5akl"]
 size = Vector3(15.74, 1.9891357, 10.94)
 
@@ -5237,17 +5240,6 @@ metadata/extras = {
 transform = Transform3D(0.81915206, 0, -0.5735764, 0, 1, 0, 0.5735764, 0, 0.81915206, -292, 37.5, 198)
 mesh = SubResource("ArrayMesh_seyc2")
 
-[node name="Cams_001" type="Node3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=1047059604]
-
-[node name="Cam_13_001" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams_001" unique_id=1391722147]
-transform = Transform3D(-3.0070672, 4.768578, -8.259434, -4.470348e-07, 8.660258, 4.9999957, 9.537167, 1.5035325, -2.604198, 56, 65, -29.000004)
-fov = 58.715508
-near = 0.1
-far = 1000.0
-metadata/extras = {
-"vs": {}
-}
-
 [node name="Cams" type="Node3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=886957085]
 unique_name_in_owner = true
 script = ExtResource("2_nkcil")
@@ -5264,39 +5256,6 @@ near = 0.1
 far = 1000.0
 script = ExtResource("3_rthtq")
 cam_id = 1
-metadata/extras = {
-"vs": {}
-}
-
-[node name="Cam_10" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=1502559655]
-transform = Transform3D(-6.7559147, 2.8214228, -6.8115478, 1.4901161e-07, 9.2388, 3.8268197, 7.3727617, 2.5853662, -6.241655, 56, 65, 20.999996)
-fov = 51.978462
-near = 0.1
-far = 1000.0
-script = ExtResource("3_rthtq")
-cam_id = 10
-metadata/extras = {
-"vs": {}
-}
-
-[node name="Cam_11" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=1100469260]
-transform = Transform3D(8.09017, 1.913642, -5.55762, 2.2351746e-07, 9.455187, 3.255681, 5.877855, -2.6339016, 7.649405, 61, 65, 204)
-fov = 44.83229
-near = 0.1
-far = 1000.0
-script = ExtResource("3_rthtq")
-cam_id = 11
-metadata/extras = {
-"vs": {}
-}
-
-[node name="Cam_12" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=361328400]
-transform = Transform3D(10, 0, 0, 0, 9.612616, 2.756372, 0, -2.756372, 9.612616, 145, 65, 429)
-fov = 41.112087
-near = 0.1
-far = 1000.0
-script = ExtResource("3_rthtq")
-cam_id = 12
 metadata/extras = {
 "vs": {}
 }
@@ -5388,6 +5347,48 @@ cam_id = 9
 metadata/extras = {
 "vs": {}
 }
+
+[node name="Cam_10" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=1502559655]
+transform = Transform3D(-0.67559147, 0.28214234, -0.68115485, 1.4901161e-08, 0.92388016, 0.382682, 0.7372762, 0.25853667, -0.62416553, 56, 65, 20.999996)
+fov = 51.978462
+near = 0.1
+far = 1000.0
+script = ExtResource("3_rthtq")
+cam_id = 10
+metadata/extras = {
+"vs": {}
+}
+
+[node name="Cam_11" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=1100469260]
+transform = Transform3D(0.8090168, 0.19136417, -0.555762, 2.2351742e-08, 0.9455186, 0.3255681, 0.58778536, -0.26339012, 0.7649405, 61, 65, 204)
+fov = 44.83229
+near = 0.1
+far = 1000.0
+script = ExtResource("3_rthtq")
+cam_id = 11
+metadata/extras = {
+"vs": {}
+}
+
+[node name="Cam_12" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=361328400]
+transform = Transform3D(1, 0, 0, 0, 0.96126175, 0.27563724, 0, -0.27563724, 0.96126175, 145, 65, 429)
+fov = 41.112087
+near = 0.1
+far = 1000.0
+script = ExtResource("3_rthtq")
+cam_id = 12
+metadata/extras = {
+"vs": {}
+}
+
+[node name="Label" type="Label" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=128969409]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1089.0
+offset_right = -1049.0
+offset_bottom = 23.0
+grow_horizontal = 0
 
 [node name="Lighting" type="Node3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=196035697]
 
@@ -5561,9 +5562,9 @@ omni_attenuation = 2.0
 
 [node name="Point_024" type="OmniLight3D" parent="FNaC Semi-Accurate Map By DiscoHead/Lighting" unique_id=211089356]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -299, 55, 165)
+light_color = Color(0.4561873, 0.58456355, 0.58456355, 1)
 light_energy = 16.0
-omni_range = 50.0
-omni_attenuation = 2.0
+omni_range = 91.758
 
 [node name="Point_025" type="OmniLight3D" parent="FNaC Semi-Accurate Map By DiscoHead/Lighting" unique_id=808752321]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -315, 50, 135)
@@ -5574,6 +5575,7 @@ omni_attenuation = 2.0
 
 [node name="Point_026" type="OmniLight3D" parent="FNaC Semi-Accurate Map By DiscoHead/Lighting" unique_id=556384174]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -335, 65, 195)
+visible = false
 light_color = Color(0.5, 0.5499972, 1, 1)
 light_energy = 3978.8735
 omni_range = 90.0
@@ -5581,6 +5583,7 @@ omni_attenuation = 2.0
 
 [node name="Point_027" type="OmniLight3D" parent="FNaC Semi-Accurate Map By DiscoHead/Lighting" unique_id=1560539422]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -335, 65, 135)
+visible = false
 light_color = Color(0.5, 0.5499972, 1, 1)
 light_energy = 3978.8735
 omni_range = 90.0
@@ -5765,7 +5768,9 @@ viewport = NodePath("../../Cams/SubViewport")
 
 [node name="CamLayout" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D" unique_id=1717615325]
 transform = Transform3D(1, 0, -4.440892e-16, 0, 1, -7.771561e-16, 0, -7.771561e-16, 1, 0, 0, 0)
+visible = false
 mesh = SubResource("PlaneMesh_x5akl")
+surface_material_override/0 = SubResource("StandardMaterial3D_t5mar")
 
 [node name="Area3D" type="Area3D" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D" unique_id=1162107337]
 transform = Transform3D(1, 0, -4.440892e-16, 0, 1, -7.771561e-16, 0, -7.771561e-16, 1, 0, 0, 0)
@@ -6345,3 +6350,6 @@ grow_vertical = 0
 [node name="camera_interface" parent="." unique_id=41413486 instance=ExtResource("5_r08cw")]
 unique_name_in_owner = true
 visible = false
+
+[node name="anime_girl" parent="." unique_id=420387025 instance=ExtResource("56_l6pei")]
+transform = Transform3D(0.4513116, 0.47514024, -3.9094899, 0.010968334, 3.9260023, 0.47796857, 4.889202, -0.05266667, 0.35980424, -287.97836, 36.47217, 150.05045)

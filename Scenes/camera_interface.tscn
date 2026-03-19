@@ -15,14 +15,17 @@
 [ext_resource type="Texture2D" uid="uid://27k1va82jaq7" path="res://Assets/MAP/textures/265.png" id="12_p7yxi"]
 [ext_resource type="Texture2D" uid="uid://ca5ii7i4ycsm2" path="res://Assets/MAP/textures/267.png" id="13_3d5ti"]
 [ext_resource type="Texture2D" uid="uid://cxahot04fqqrd" path="res://Assets/MAP/textures/282.png" id="14_bfgxv"]
-[ext_resource type="Texture2D" uid="uid://dxwobw3k4rpve" path="res://Screenshot from 2026-03-12 11-07-55.png" id="16_8rb4c"]
+[ext_resource type="Texture2D" uid="uid://dxwobw3k4rpve" path="res://Assets/Screenshot from 2026-03-12 11-07-55.png" id="16_8rb4c"]
+[ext_resource type="Texture2D" uid="uid://bv8c2kp2q5vyt" path="res://Assets/File1.png" id="17_ucfoc"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ucfoc"]
-load_path = "res://.godot/imported/248.png-f074ef89f71fd3e34900e371c9ca7456.s3tc.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t64xc"]
-texture = SubResource("CompressedTexture2D_ucfoc")
-region_rect = Rect2(40.083984, 56.0318, 762.55994, 531.4305)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t64xc"]
+bg_color = Color(0.6, 0.6, 0.6, 0.050980393)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.5251013, 0.52510136, 0.52510107, 1)
+corner_detail = 1
 
 [node name="camera_interface" type="Control" unique_id=41413486]
 layout_mode = 3
@@ -358,12 +361,76 @@ visible = false
 position = Vector2(893, 271)
 texture = ExtResource("16_8rb4c")
 
-[node name="Panel" type="Panel" parent="." unique_id=561288166]
-visible = false
+[node name="Panel2" type="Panel" parent="." unique_id=1256353642]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -650.0
+offset_top = -87.0
+offset_right = 650.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_t64xc")
+
+[node name="Label" type="Label" parent="Panel2" unique_id=1786873215]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_t64xc")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="TextureRect" type="TextureRect" parent="Panel2" unique_id=1598620042]
+modulate = Color(0.5411765, 0.5411765, 0.5411765, 0.5764706)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_right = 86.0
+offset_bottom = 33.0
+grow_vertical = 2
+texture = ExtResource("17_ucfoc")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Panel2" unique_id=1115334386]
+modulate = Color(0.5411765, 0.5411765, 0.5411765, 0.5764706)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("17_ucfoc")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=1411072343]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+
+[connection signal="mouse_entered" from="Panel2" to="." method="_on_panel_2_mouse_entered"]
