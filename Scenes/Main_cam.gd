@@ -4,11 +4,12 @@ extends Camera3D
 @export var smoothing: float = 5.0
 
 var origin_rotation: Vector3
-
+var cam_movement: bool =  false
 func _ready() -> void:
 	origin_rotation = rotation_degrees
 
 func _process(delta: float) -> void:
+	if !cam_movement:return
 	var viewport_size = get_viewport().get_visible_rect().size
 	var mouse_pos = get_viewport().get_mouse_position()
 	
@@ -20,3 +21,6 @@ func _process(delta: float) -> void:
 	
 	var target_y = origin_rotation.y - (normalized_x * tilt_amount)
 	rotation_degrees.y = lerp(rotation_degrees.y, target_y, delta * smoothing)
+
+func cam_mov(mov_toggle:bool):
+	cam_movement = mov_toggle

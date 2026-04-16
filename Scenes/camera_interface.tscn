@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://27k1va82jaq7" path="res://Assets/MAP/textures/265.png" id="12_p7yxi"]
 [ext_resource type="Texture2D" uid="uid://ca5ii7i4ycsm2" path="res://Assets/MAP/textures/267.png" id="13_3d5ti"]
 [ext_resource type="Texture2D" uid="uid://cxahot04fqqrd" path="res://Assets/MAP/textures/282.png" id="14_bfgxv"]
-[ext_resource type="Texture2D" uid="uid://dxwobw3k4rpve" path="res://Assets/Screenshot from 2026-03-12 11-07-55.png" id="16_8rb4c"]
 [ext_resource type="Texture2D" uid="uid://bv8c2kp2q5vyt" path="res://Assets/File1.png" id="17_ucfoc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t64xc"]
@@ -355,11 +354,6 @@ offset_top = 2.0
 offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
-
-[node name="ScreenshotFrom20260312110755" type="Sprite2D" parent="." unique_id=1587255781]
-visible = false
-position = Vector2(893, 271)
-texture = ExtResource("16_8rb4c")
 
 [node name="Panel2" type="Panel" parent="." unique_id=1256353642]
 layout_mode = 1

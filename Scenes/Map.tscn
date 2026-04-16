@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://b3nasgldnbp32"]
 
+[ext_resource type="Script" uid="uid://cp2l5a1wu3ls2" path="res://Scipts/main.gd" id="1_mq7vl"]
 [ext_resource type="Texture2D" uid="uid://dl52g4e0db4kc" path="res://Assets/MAP/textures/Poster1.png" id="1_nr4qj"]
 [ext_resource type="Script" uid="uid://bvf74y6aqionl" path="res://Scenes/Main_cam.gd" id="1_x5akl"]
 [ext_resource type="Material" uid="uid://wuqo5bmyo0hy" path="res://Scipts/glass.tres" id="2_0mc10"]
@@ -56,6 +57,17 @@
 [ext_resource type="Texture2D" uid="uid://dy34lw038h1b2" path="res://Assets/MAP/textures/Eyes.png" id="50_eny3s"]
 [ext_resource type="Texture2D" uid="uid://cl5hd1ivp220c" path="res://Assets/MAP/textures/Eyes3.png" id="51_b0dg3"]
 [ext_resource type="PackedScene" uid="uid://c3klcjogk3khl" path="res://Scenes/anime_girl.tscn" id="56_l6pei"]
+[ext_resource type="PackedScene" uid="uid://bfdx6spgjrvqr" path="res://Scenes/Animatronics/dave.tscn" id="58_0hvk1"]
+[ext_resource type="PackedScene" uid="uid://cktu8tc8mrunw" path="res://Scenes/Animatronics/freddy.tscn" id="58_8a25g"]
+[ext_resource type="Script" uid="uid://daeq0x8el53hc" path="res://Scipts/clock.gd" id="58_b58ie"]
+[ext_resource type="Texture2D" uid="uid://dxw8f0btk30aw" path="res://Assets/digital_clock/FNaC Semi-Accurate Map By DiscoHead_Clock12.png" id="59_b58ie"]
+[ext_resource type="FontFile" uid="uid://chtg2sjwoh3mk" path="res://Assets/bloodcrowc.ttf" id="59_earqg"]
+[ext_resource type="Material" uid="uid://cwwn8k45htjoi" path="res://Assets/digital_clock/Screen.tres" id="60_8a25g"]
+[ext_resource type="FontFile" uid="uid://bdkitcedm3aqw" path="res://Assets/Digital Dismay.otf" id="60_348ac"]
+[ext_resource type="AudioStream" uid="uid://b5h6hyu5mb046" path="res://Assets/Audio/Monologues/nigh_1_monologue.mp3" id="61_wh5hq"]
+[ext_resource type="AudioStream" uid="uid://cwlo8smxqk0v" path="res://Assets/Audio/soundtracks/hotel2.mp3" id="62_r3cnf"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_earqg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2cta"]
 resource_name = "Door1"
@@ -2566,6 +2578,18 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4o56j")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6pei"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkbmt"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hvk1"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to2f7"]
+albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwlo6"]
 resource_name = "Fabric"
@@ -5126,7 +5150,106 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="Map" type="Node3D" unique_id=687069439]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjplq"]
+resource_name = "DarkGrey"
+cull_mode = 2
+albedo_color = Color(0.3, 0.3, 0.3, 1)
+metallic = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heg6j"]
+resource_name = "Screen"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urctg"]
+resource_name = "Clock"
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 3.0
+emission_operator = 1
+emission_texture = ExtResource("59_b58ie")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pne24"]
+_surfaces = [{
+"aabb": AABB(-1.8477587, -1.6000004, -5.087575, 4.790619, 3.2000008, 9.982056),
+"format": 34359742465,
+"index_count": 198,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEAAgADAAUABQADAAYABwAGAAQABQAGAAcABwAEAAAACAACAAUACQAFAAcACAAFAAkACgAHAAAACQAHAAoACwAAAAIACwACAAgACgAAAAsACQAMAAgACgANAAkACQANAAwACwAOAAoACgAOAA0ACAAPAAsACAAMAA8ACwAPAA4AEAANAA4AEQAPAAwAEgANABAAEwAMAA0AEwANABIADAATABQAEQAMABQAEwASABUAEgAQABYAEgAWABUAEwAVABcAFwAUABMAFQAWABgAFQAZABcAFQAYABkAFwAZABoAFwAaABQAFgAQABsAEAAOABsAHAAYABYAFgAbABwAGQAYAB0AHAAdABgAHgAaABkAGQAdAB4AFAAaAB8AHgAfABoAFAAfABEAIAAeAB0AIAAfAB4AIQAdABwAIAAdACEAIQAcABsAIgARAB8AIgAfACAAIgAPABEAIAAhACMAIAAjACIAIQAbACMAIwAPACIAGwAOACMAIwAOAA8A"),
+"name": "DarkGrey",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("W9/ev4AUrj+qWIrAW4m2v4AUrr/qH4zAW9/ev4AUrr+qWIrALWUhPoAUrr8WSJNAW4m2v4AUrj/qH4zA00ohvoAUrr9WD5VALWUhPoAUrj8WSJNA00ohvoAUrj9WD5VAW7zqv+BRuL9KbIzA08JjvuBRuL92BphA08JjvuBRuD92BphAW7zqv+BRuD9KbIzAW4Psv2CPwr+q8Y7A04pVvmCPwr/2i5pA04pVvmCPwj/2i5pAW4Psv2CPwj+q8Y7ApkXtvWCPwr+Wn5xAWzXkv2CPwj/q6JHA09oEvtDMzL82GppAW23iv9DMzL+KY4/AWzXkv2CPwr/q6JHAU003QNDMzL+2NYlA0zA4QGCPwr8Wu4tApcecP9DMzL8KSKDA01c8QGCPwr/Ww4hApd2mP2CPwr/KuaDApQCbP2CPwr9qzaLApkXtvWCPwj+Wn5xA0zA4QGCPwj8Wu4tA01c8QGCPwj/Ww4hApd2mP2CPwj/KuaDApQCbP2CPwj9qzaLApcecP9DMzD8KSKDAU003QNDMzD+2NYlAW23iv9DMzD+KY4/A09oEvtDMzD82GppA")
+}, {
+"aabb": AABB(-1.4260668, -1.3600006, -4.3788958, 1.5836793, 2.7200012, 8.981445),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "Screen",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAP//AAAAAP//AAAAAP///////wAAAAAAAAAAAAA=")
+}, {
+"aabb": AABB(-1.4654344, -1.3600006, -4.371953, 1.5836793, 2.7200012, 8.981445),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "Clock",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAP//AAAAAP//AAAAAP///////wAAAAAAAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_reuvj"]
+resource_name = "FNaC Semi-Accurate Map By DiscoHead_Plane_015"
+_surfaces = [{
+"aabb": AABB(-1.8477587, -1.6000004, -5.087575, 4.790619, 3.2000008, 9.982056),
+"attribute_data": PackedByteArray("NDMbP5qZQT+amck+mplBP5qZyT6amUE/NDMbP5qZQT8zM8M+nJl5PmZmHj8Azcw7ZmYeP5iZeT4zM8M+gM3MO5mZIT/u7v4+ZmZePxIRgT5mZl4/7u7+PpmZIT8SEYE+MzPDPu7u/j5mZh4/EhGBPmZmHj/u7v4+MzPDPhIRgT4zM8M+Z2Y+P2ZmHj+amQE/ZmYeP2ZmPj8zM8M+mpkBP5qZyT5mZn4/NDMbP2Zmfj80Mxs/ZmZ+P5qZyT5mZn4/zswcPxERQT9nZh4/d3d/P87MHD/v7n4/Z2YeP4iIQD9nZsY+ERFBPzQzwz6IiEA/Z2bGPu/ufj80M8M+d3d/PzQzGz9mZn4/NDMbP5qZQT80Mxs/mplBPzQzGz9mZn4/Z2YGPu7u/j7NzLw+EhGBPs3MvD7u7v4+ZmYGPhIRgT7OzBw/7+5+PzQzwz53d38/Z2bGPu/ufj9nZh4/d3d/P83MvD4SEYE+zsy8PgAAgD4AAMA+EhGBPgAAID+YmXk+ZmYePwAAgD4AACA/mJl5Ps3MvD7u7v4+AADAPu7u/j7OzLw+AAAAPwAAID/w7v4+ZmYePwAAAD9mZh4/AAAAPzQzwz4AAEA/AADAPmZmPj8AAMA+ZmY+P2ZmBj4SEYE+AAAAPhIRgT5mZgY+AACAPmZmHj8Azcw7ZmYePwAAAAAAACA/AM3MO2ZmXj/u7v4+AABgP+7u/j5nZl4/AAAAP2dmBj7u7v4+AAAAPhIRgT5mZgY+EhGBPgAAAD7u7v4+MzPDPoDNzDtmZh4/AAAAAGZmHj8Azcw7NDPDPgAAAABmZl4/EhGBPgAAYD/u7v4+ZmZeP+7u/j4AAGA/EhGBPmZmHj9mZj4/NDPDPoiIQD8zM8M+Z2Y+P2dmHj+IiEA/zcy8Pu7u/j5mZgY+AAAAP2dmBj7u7v4+zsy8PgAAAD8AACA/ZmY+P2ZmHj+amQE/AAAgP5qZAT9mZh4/ZmY+P2ZmHj/u7v4+MzPDPpqZAT8zM8M+7u7+PmZmHj+amQE/zcy8PhIRgT4zM8M+7u7+Ps3MvD7u7v4+MzPDPhIRgT6ZmSE/7u7+PmZmHj8SEYE+mZkhPxIRgT5mZh4/7u7+PmZmHj+YmXk+MzPDPhIRgT4zM8M+nJl5PmZmHj8SEYE+ZmYGPhIRgT7OzLw+AACAPs3MvD4SEYE+ZmYGPgAAgD4AACA/mJl5PmZmHj8Azcw7AAAgPwDNzDtmZh4/mJl5Pmdmxj4REUE/mpnJPmZmfj9nZsY+7+5+P5qZyT6amUE/Z2bGPu/ufj80Mxs/ZmZ+P87MHD/v7n4/mpnJPmZmfj/OzBw/7+5+PzQzGz+amUE/zswcPxERQT80Mxs/ZmZ+P87MHD8REUE/mpnJPpqZQT9nZsY+ERFBPzQzGz+amUE/mpnJPpqZQT+amck+ZmZ+P5qZyT5mZn4/mpnJPpqZQT8="),
+"format": 34359742487,
+"index_count": 198,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAbABgAHAAdABsAHgAdABwAHgAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALwAwADEAMgAzADQANQA2ADcAOAA5ADoAOwA8AD0APgA/AEAAQQBCAEMARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfAB/AH0AgACBAIIAgACDAIEAhACFAIYAhACHAIUA"),
+"material": SubResource("StandardMaterial3D_fjplq"),
+"name": "DarkGrey",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 136,
+"vertex_data": PackedByteArray("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AADN7P///78AAM3s////vwAAzez///+/LhP/f/9//v8uE/9/AID8/y4T/38AgPz/LhP/f/9//v8uE/9//n/+/y4T/3/+f/7/LhP/f/l//v8uE/9/+X/+//9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP//l8n/fwAA//+Xyf9/AAD//5fJ/38AAP//l8ksE/9//3///ywT/3//f///LBP/f/9///8sE/9//3///++x5lSxxMzi77HmVLHEzOLvseZUscTM4u+xGKv///8/77EYq////z/vsRir////P+PU9iKzxMri49T2IrPEyuLj1PYis8TK4uPUCN3///+/49QI3f///7/j1Ajd////vxsr7jH///+/GyvuMf///78bK+4x////vwld5FSzxDOdCV3kVLPEM50JXeRUs8QznQldGqtNO9n6CV0aq0072foJXRqrTTvZ+hsrEM6YRVmiGysQzphFWaIbKxDOmEVZoppFsES0xDOdmkWwRLPEM52aRbBEs8QznZpFsES0xDOdSEv/f/9///9IS/9//3/+/0hL/3//f/7/SEv/f/9///+aRU67lkVZoppFTruYRVmimkVOu5hFWaKaRU67lkVZogAAtLT/f///AAC0tP9//v8AALS0/3/+/wAAtLT/f///TDtMCv7/Z7ZMO0wK/v9ntkw7TAr+/2e2TDtMCv7/Z7ZMO7L1T4ql3Uw7svVKiqbdTDuy9UqKpt1MO7L1T4ql3f//SMv/f/////9Iy/9//////0jL/3//////SMv/f///ssRmOrLEzOKyxGY6sMTL4rLEZjqwxMvissRmOrLEzOKyxJjFmEWm3bLEmMWaRaXdssSYxZpFpd2yxJjFmEWm3UnL/3//f///Scv/f/9//v9Jy/9//3/+/0nL/3//f///S4qzRP7/l8lLirNE/v+XyUuKs0T+/5fJS4qzRP7/l8lLiku7TTvZ+kuKS7tNO9n6S4pLu0072fpLiku7TTvZ+ppFTruzxMrimkVOu7LEyuKaRU67ssTK4ppFTruzxMriAAC5tP9///8AALm0/3///wAAubT/f///AAC5tP9///+aRbBElkWl3ZpFsESXRaTdmkWwRJdFpN2aRbBElkWl3UhL/3//f///SEv/f/9///9IS/9//3///0hL/3//f////3///////7//f///////v/9///////+//3///////78=")
+}, {
+"aabb": AABB(-1.4260668, -1.3600006, -4.3788958, 1.5836793, 2.7200012, 8.981445),
+"attribute_data": PackedByteArray("zGRl/jKbmMEym2X+zGSYwQ=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_heg6j"),
+"name": "Screen",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAP//WtEAAP//AABa0f///////1rRAAAAAAAAWtHk1+TX5Nfk1+TX5Nfk1+TX")
+}, {
+"aabb": AABB(-1.4654344, -1.3600006, -4.371953, 1.5836793, 2.7200012, 8.981445),
+"attribute_data": PackedByteArray("+P/38gYA9g34//YNBgD38g=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_urctg"),
+"name": "Clock",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAP//47gAAP//AADjuP///////+O4AAAAAAAA47j/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_pne24")
+
+[node name="Main" type="Node3D" unique_id=687069439]
+script = ExtResource("1_mq7vl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1249790741]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -5134,6 +5257,11 @@ shadow_enabled = true
 sky_mode = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=77281540]
+
+[node name="floor" type="StaticBody3D" parent="." unique_id=70321566]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor" unique_id=1089357139]
+shape = SubResource("WorldBoundaryShape3D_earqg")
 
 [node name="Main_camera" type="Camera3D" parent="." unique_id=1494111771]
 unique_name_in_owner = true
@@ -5212,6 +5340,10 @@ surface_material_override/5 = ExtResource("5_bjq7f")
 surface_material_override/8 = ExtResource("6_46meq")
 surface_material_override/10 = ExtResource("5_xicox")
 surface_material_override/11 = ExtResource("5_xicox")
+surface_material_override/41 = SubResource("StandardMaterial3D_l6pei")
+surface_material_override/42 = SubResource("StandardMaterial3D_kkbmt")
+surface_material_override/43 = SubResource("StandardMaterial3D_0hvk1")
+surface_material_override/44 = SubResource("StandardMaterial3D_to2f7")
 metadata/extras = {
 "vs": {}
 }
@@ -5248,17 +5380,6 @@ script = ExtResource("2_nkcil")
 
 [node name="Camera3D" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams/SubViewport" unique_id=792479287]
 current = true
-
-[node name="Cam_1" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=127782139]
-transform = Transform3D(-6.427877, 1.0661272, -7.585893, 2.6077032e-07, 9.902677, 1.3917307, 7.6604443, 0.8945868, -6.3653207, -57, 65, 340)
-fov = 21.239311
-near = 0.1
-far = 1000.0
-script = ExtResource("3_rthtq")
-cam_id = 1
-metadata/extras = {
-"vs": {}
-}
 
 [node name="Cam_2" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=1569829460]
 transform = Transform3D(-3.3380673, 3.5311918, -8.740022, 0, 9.271839, 3.7460606, 9.426414, 1.2504601, -3.0950031, -91, 65, 137)
@@ -5300,6 +5421,17 @@ near = 0.1
 far = 1000.0
 script = ExtResource("3_rthtq")
 cam_id = 5
+metadata/extras = {
+"vs": {}
+}
+
+[node name="Cam_1" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=127782139]
+transform = Transform3D(-0.6427877, 0.10661276, -0.7585893, 2.6077032e-08, 0.99026805, 0.13917306, 0.76604444, 0.08945871, -0.63653207, -57, 65, 340)
+fov = 21.239311
+near = 0.1
+far = 1000.0
+script = ExtResource("3_rthtq")
+cam_id = 1
 metadata/extras = {
 "vs": {}
 }
@@ -5442,7 +5574,7 @@ omni_range = 100.0
 omni_attenuation = 2.0
 
 [node name="Point_007" type="OmniLight3D" parent="FNaC Semi-Accurate Map By DiscoHead/Lighting" unique_id=88743477]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 60, 40, 415)
+transform = Transform3D(0.9999787, -0.0023689708, 0.006072658, -0.006084252, -0.004915047, 0.9999694, -0.0023390334, -0.9999851, -0.004929364, 60, 40, 415)
 light_color = Color(0.5, 0.5499972, 1, 1)
 light_energy = 5570.423
 omni_range = 100.0
@@ -5458,7 +5590,7 @@ omni_attenuation = 2.0
 [node name="Point_009" type="OmniLight3D" parent="FNaC Semi-Accurate Map By DiscoHead/Lighting" unique_id=1769502229]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 100, 40, 175)
 light_color = Color(0.5, 0.5499972, 1, 1)
-light_energy = 3978.8735
+light_energy = 16.0
 omni_range = 80.0
 omni_attenuation = 2.0
 
@@ -5778,12 +5910,6 @@ transform = Transform3D(1, 0, -4.440892e-16, 0, 1, -7.771561e-16, 0, -7.771561e-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D/Area3D" unique_id=1085960826]
 transform = Transform3D(1, 0, 0, 0, 1, -7.771561e-16, 0, -7.771561e-16, 1, -1.5258789e-05, 1.4196777, 0)
 shape = SubResource("BoxShape3D_x5akl")
-
-[node name="Label" type="Label" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D" unique_id=1590643923]
-offset_right = 249.0
-offset_bottom = 88.0
-theme_override_font_sizes/font_size = 64
-text = "Nothing"
 
 [node name="Armature" type="Node3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=2014087118]
 transform = Transform3D(-0.2847009, 0, -1.0625184, 0, 1.1, 0, 1.0625184, 0, -0.2847009, -298, 27.9, 194)
@@ -6335,6 +6461,7 @@ metadata/extras = {
 
 [node name="Cameras_info" type="Label" parent="." unique_id=1796681216]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -6353,3 +6480,211 @@ visible = false
 
 [node name="anime_girl" parent="." unique_id=420387025 instance=ExtResource("56_l6pei")]
 transform = Transform3D(0.4513116, 0.47514024, -3.9094899, 0.010968334, 3.9260023, 0.47796857, 4.889202, -0.05266667, 0.35980424, -287.97836, 36.47217, 150.05045)
+
+[node name="animatronics" type="Node" parent="." unique_id=326544323]
+
+[node name="Dave" parent="animatronics" unique_id=1725311437 node_paths=PackedStringArray("left_door_route_1", "left_door_route_2", "right_door_route") instance=ExtResource("58_0hvk1")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 65.49152, 9.322042, 449.0996)
+left_door_route_1 = NodePath("../animatronic_positions/dave_position/path_1")
+left_door_route_2 = NodePath("../animatronic_positions/dave_position/path_2")
+right_door_route = NodePath("../animatronic_positions/dave_position/path_3")
+
+[node name="Shamrock Freddy AR" parent="animatronics/Dave" index="0" unique_id=1527026033]
+transform = Transform3D(2.15, 0, 0, 0, 2.15, 0, 0, 0, 2.15, 0, -0.8750706, 0)
+
+[node name="head_lookat" parent="animatronics/Dave/targets" parent_id_path=PackedInt32Array(1725311437, 963197038) index="1" unique_id=1630858876]
+transform = Transform3D(0.9999993, 0, -2.1316282e-14, 0, 0.9999993, 0, 2.1316282e-14, 0, 0.9999993, 7.0122766, 40.49397, 13.452656)
+
+[node name="t_l_lower_leg" parent="animatronics/Dave/targets/left_leg" parent_id_path=PackedInt32Array(1725311437, 732834530) index="0" unique_id=1409398771]
+transform = Transform3D(2.45499, -0.0066666706, 0.0018450984, 0.0064921672, 2.4466596, 0.20208941, -0.0023876016, -0.20208375, 2.4466672, -0.5922962, -15.37259, -8.532038)
+
+[node name="Freddy" parent="animatronics" unique_id=165911997 node_paths=PackedStringArray("cam_markers_root") instance=ExtResource("58_8a25g")]
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 126.37204, 0.12593842, 159.69717)
+cam_markers_root = NodePath("../animatronic_positions/freddy_position")
+
+[node name="animatronic_positions" type="Node" parent="animatronics" unique_id=1221736323]
+
+[node name="dave_position" type="Node" parent="animatronics/animatronic_positions" unique_id=1042529195]
+
+[node name="path_1" type="Node" parent="animatronics/animatronic_positions/dave_position" unique_id=1543344523]
+
+[node name="cam_1" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_1" unique_id=464531145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.49152, 9.322042, 449.0996)
+
+[node name="cam_2" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_1" unique_id=1009118635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.832092, -4.9454994, 218.55048)
+
+[node name="cam_9" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_1" unique_id=2053966220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0254517, 10.41647, -40.12684)
+
+[node name="cam_8" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_1" unique_id=1485239620]
+transform = Transform3D(-0.28804588, 0, -0.9576166, 0, 1, 0, 0.9576166, 0, -0.28804588, -109.28439, -1.4934921, -6.9660225)
+
+[node name="cam_7" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_1" unique_id=24454362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -191.11731, 6.7581253, 46.200787)
+
+[node name="cam_6" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_1" unique_id=1465411507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -305.0928, -0.87390137, 72.34389)
+
+[node name="path_2" type="Node" parent="animatronics/animatronic_positions/dave_position" unique_id=1082256156]
+
+[node name="cam_1" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_2" unique_id=1795161269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.49152, 9.322042, 449.0996)
+
+[node name="cam_2" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_2" unique_id=428862287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.832092, -4.9454994, 218.55048)
+
+[node name="cam_5" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_2" unique_id=1002447056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169.39093, 0.17014313, 148.91)
+
+[node name="cam_8" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_2" unique_id=1527276538]
+transform = Transform3D(-0.28804588, 0, -0.9576166, 0, 1, 0, 0.9576166, 0, -0.28804588, -109.28439, -1.4934921, -6.9660225)
+
+[node name="cam_7" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_2" unique_id=456752621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -191.11731, 6.7581253, 46.200787)
+
+[node name="cam_6" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_2" unique_id=651620518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -305.0928, -0.87390137, 72.34389)
+
+[node name="path_3" type="Node" parent="animatronics/animatronic_positions/dave_position" unique_id=904553472]
+
+[node name="cam_1" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_3" unique_id=569028181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.49152, 9.322042, 449.0996)
+
+[node name="cam_2" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_3" unique_id=2028145037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.832092, -4.9454994, 218.55048)
+
+[node name="cam_5" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_3" unique_id=1122549020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169.39093, 0.17014313, 148.91)
+
+[node name="cam_3" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_3" unique_id=1188994020]
+transform = Transform3D(-0.061187927, 0, -0.99812627, 0, 1, 0, 0.99812627, 0, -0.061187927, -148.97475, -0.67178154, 266.01465)
+
+[node name="cam_4" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_3" unique_id=528423097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.031, 0.1701355, 257.37488)
+
+[node name="freddy_position" type="Node" parent="animatronics/animatronic_positions" unique_id=296478077]
+
+[node name="cam_9" type="Marker3D" parent="animatronics/animatronic_positions/freddy_position" unique_id=1142773921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0254517, 10.41647, -40.12684)
+
+[node name="cam_7" type="Marker3D" parent="animatronics/animatronic_positions/freddy_position" unique_id=5111897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -191.11731, 6.7581253, 46.200787)
+
+[node name="cam_1" type="Marker3D" parent="animatronics/animatronic_positions/freddy_position" unique_id=1954721854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.49152, 9.322042, 449.0996)
+
+[node name="cam_8" type="Marker3D" parent="animatronics/animatronic_positions/freddy_position" unique_id=1995930268]
+transform = Transform3D(-0.28804588, 0, -0.9576166, 0, 1, 0, 0.9576166, 0, -0.28804588, -109.28439, -1.4934921, -6.9660225)
+
+[node name="cam_2" type="Marker3D" parent="animatronics/animatronic_positions/freddy_position" unique_id=415856272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.832092, -4.9454994, 218.55048)
+
+[node name="cam_6" type="Marker3D" parent="animatronics/animatronic_positions/freddy_position" unique_id=1947096909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -305.0928, -0.87390137, 72.34389)
+
+[node name="night_board" type="Node" parent="." unique_id=1551676200]
+
+[node name="Night" type="ColorRect" parent="night_board" unique_id=1810257315]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="night_label" type="Label" parent="night_board/Night" unique_id=1583930485]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("59_earqg")
+theme_override_font_sizes/font_size = 128
+text = "Night 1"
+
+[node name="Audios" type="Node" parent="." unique_id=71275039]
+
+[node name="Nigh1Monologue" type="AudioStreamPlayer" parent="Audios" unique_id=557134533]
+unique_name_in_owner = true
+stream = ExtResource("61_wh5hq")
+
+[node name="Hotel2" type="AudioStreamPlayer" parent="Audios" unique_id=1757742397]
+unique_name_in_owner = true
+stream = ExtResource("62_r3cnf")
+volume_db = -10.0
+parameters/looping = true
+
+[node name="Control" type="Control" parent="Audios" unique_id=1297776830]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="skip_monologue_btn" type="Button" parent="Audios/Control" unique_id=417597429]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -158.22498
+offset_top = -70.0
+offset_right = -26.224731
+offset_bottom = -39.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Skip Monologue
+"
+
+[node name="clock" type="Node3D" parent="." unique_id=2014145785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -286.04346, 29.914406, 168.48552)
+script = ExtResource("58_b58ie")
+
+[node name="MapBase_FlatMesh_002" type="MeshInstance3D" parent="clock" unique_id=1873566864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.295227, -0.4203987, 2.737854)
+mesh = SubResource("ArrayMesh_reuvj")
+surface_material_override/2 = ExtResource("60_8a25g")
+
+[node name="time" type="Label3D" parent="clock/MapBase_FlatMesh_002" unique_id=1181480279]
+transform = Transform3D(0.14650601, -0.00096905173, -0.98920935, 0.018191934, 0.999833, 0.0017148418, 0.9890425, -0.018246867, 0.14649919, -0.9170227, 0.31412506, 0.5144348)
+modulate = Color(1, 0, 0, 1)
+text = "12:00"
+font = ExtResource("60_348ac")
+font_size = 535
+
+[node name="am" type="Label3D" parent="clock/MapBase_FlatMesh_002" unique_id=154609786]
+transform = Transform3D(0.14650601, -0.00096905173, -0.98920935, 0.018191934, 0.999833, 0.0017148418, 0.9890425, -0.018246867, 0.14649919, -1.4321423, 0.7897247, -2.969383)
+modulate = Color(1, 0, 0, 1)
+text = "AM"
+font = ExtResource("60_348ac")
+font_size = 237
+
+[node name="pm" type="Label3D" parent="clock/MapBase_FlatMesh_002" unique_id=1963021387]
+transform = Transform3D(0.14650601, -0.00096905173, -0.98920935, 0.018191934, 0.999833, 0.0017148418, 0.9890425, -0.018246867, 0.14649919, -1.4310426, -0.344854, -2.948677)
+modulate = Color(1, 0, 0, 0.07058824)
+text = "PM"
+font = ExtResource("60_348ac")
+font_size = 237
+
+[node name="Label" type="Label" parent="." unique_id=1504954611]
+offset_left = 74.0
+offset_top = 61.0
+offset_right = 257.0
+offset_bottom = 149.0
+theme_override_font_sizes/font_size = 64
+
+[editable path="animatronics/Dave"]

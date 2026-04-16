@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://o0a07ei2mr3i"]
+
+[resource]
+resource_name = "DarkGrey"
+cull_mode = 2
+albedo_color = Color(0.3, 0.3, 0.3, 1)
+metallic = 0.5

@@ -23,13 +23,12 @@ func connect_signals() -> void:
 		cam_texture.gui_input.connect(_on_cam_texture_click.bind(cam_texture.name))
 		cam_texture.mouse_entered.connect(_on_mouse_entered.bind(cam_texture.name))
 func _on_mouse_entered(cam_name):
-	$Label.text = str(cam_name)
-
+	pass
 func _on_cam_texture_click(event: InputEvent, cam_name: String) -> void:
 
 	#if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 	CamGlobal.cam_texture_clicked.emit((int(cam_name.split("_")[-1]))-1)
-	print("Click, ",(int(cam_name.split("_")[-1]))-1)
+	#print("Click, ",(int(cam_name.split("_")[-1]))-1)
 	#$Label.text = str("Click, ",(int(cam_name.split("_")[-1]))-1)
 		
 func _on_cam_switched(prev_cam: int, next_cam: int) -> void:

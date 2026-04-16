@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bkfss8sg82asg"]
+
+[ext_resource type="Texture2D" uid="uid://dii5f7dg6x1tq" path="res://Assets/animatronics/Shamrock Freddy/diffuse.png" id="1_qikpv"]
+
+[resource]
+resource_name = "mat1"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_qikpv")
+emission_enabled = true

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://lcbxg5oesrqo"]
 
-[ext_resource type="Script" uid="uid://bdlthm4cpxbyu" path="res://Scipts/Camera_TV.gd" id="1_37kl0"]
+[ext_resource type="PackedScene" uid="uid://dbosolh4b0cd7" path="res://Assets/animatronics/freddy/Male Locomotion Pose.fbx" id="1_6uqi0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_37kl0"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,7 +15,47 @@ sky = SubResource("Sky_8uh7m")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_8uh7m"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ly67u"]
+load_path = "res://.godot/imported/fnaf_1_freddy_fazbear_rigged_0.png-e36ed61d794158ca22bc8cae11ceb790.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7de7l"]
+load_path = "res://.godot/imported/fnaf_1_freddy_fazbear_rigged_1.png-639d1e2619288a317ebaebba02e4b674.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rl0lq"]
+load_path = "res://.godot/imported/fnaf_1_freddy_fazbear_rigged_2.png-a386114919e9fe43e8491ba958b6385d.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37kl0"]
+resource_name = "FF_SuitTXT"
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_ly67u")
+metallic = 1.0
+metallic_texture = SubResource("CompressedTexture2D_7de7l")
+metallic_texture_channel = 2
+roughness_texture = SubResource("CompressedTexture2D_7de7l")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_rl0lq")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_13e6b"]
+load_path = "res://.godot/imported/fnaf_1_freddy_fazbear_rigged_3.png-4e8cd46f720dea456503d75601158f29.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_epnsm"]
+load_path = "res://.godot/imported/fnaf_1_freddy_fazbear_rigged_4.png-d253abf2933287e292754a0290e204b3.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q0jjn"]
+load_path = "res://.godot/imported/fnaf_1_freddy_fazbear_rigged_5.png-4d992ff439dc5f2151f390e2580640f1.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uh7m"]
+resource_name = "MicAndHat"
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_13e6b")
+metallic = 1.0
+metallic_texture = SubResource("CompressedTexture2D_epnsm")
+metallic_texture_channel = 2
+roughness_texture = SubResource("CompressedTexture2D_epnsm")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_q0jjn")
 
 [node name="Node3D" type="Node3D" unique_id=431224653]
 
@@ -26,20 +66,42 @@ environment = SubResource("Environment_6uqi0")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=107056644]
+[node name="Freddy" type="Node3D" parent="." unique_id=165911997]
+transform = Transform3D(0.055, 0, 0, 0, 0.055, 0, 0, 0, 0.055, 0, 0, 0)
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=1366146869]
-render_target_update_mode = 4
+[node name="Male Locomotion Pose2" parent="Freddy" unique_id=1672416089 instance=ExtResource("1_6uqi0")]
+transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=53568481]
-transform = Transform3D(1, 0, 0, 0, 0.8980506, 0.43989214, 0, -0.43989214, 0.8980506, 0, 1.0460234, 2.2467904)
+[node name="Skeleton3D" parent="Freddy/Male Locomotion Pose2" index="0" unique_id=1369240355]
+bones/0/position = Vector3(-0.10629157, 7.6096673, -0.32118097)
+bones/0/rotation = Quaternion(0.020742055, 0.049956866, 0.009676093, 0.9984891)
+bones/1/rotation = Quaternion(-0.0056342073, 0.039619934, -0.01328991, 0.9991106)
+bones/2/rotation = Quaternion(0.07252546, 0.062736586, -0.011006476, 0.99533063)
+bones/3/rotation = Quaternion(0.0725256, 0.0627366, -0.011006478, 0.99533063)
+bones/4/rotation = Quaternion(-0.009612013, -0.07558226, 0.06214259, 0.9951549)
+bones/5/rotation = Quaternion(-0.05207369, -0.13514939, -0.03726553, 0.9887539)
+bones/7/rotation = Quaternion(-0.49880126, -0.5208676, 0.46566495, -0.51288456)
+bones/8/rotation = Quaternion(0.5170604, 0.18506218, -0.100806385, 0.8296015)
+bones/9/rotation = Quaternion(-0.033762697, 0.13409959, 0.64528364, 0.7513231)
+bones/11/rotation = Quaternion(0.5395288, -0.47833845, 0.40943727, 0.5589831)
+bones/12/rotation = Quaternion(0.58882385, -0.17170262, 0.0391863, 0.7888404)
+bones/13/rotation = Quaternion(-0.20413321, 0.015513757, -0.7508532, 0.6279399)
+bones/15/rotation = Quaternion(-0.037536226, 0.3671267, 0.92775553, 0.055487353)
+bones/16/rotation = Quaternion(-0.3225072, -0.024619667, -0.040363256, 0.9453855)
+bones/17/rotation = Quaternion(0.5200792, -0.11193035, 0.1594733, 0.83159935)
+bones/18/rotation = Quaternion(0.30325377, -0.1851394, 0.040022302, 0.9338944)
+bones/20/rotation = Quaternion(-0.047727503, -0.08192669, 0.99278885, 0.07335289)
+bones/21/rotation = Quaternion(-0.7594244, 0.016531464, 0.042655494, 0.6489852)
+bones/22/rotation = Quaternion(0.4948816, 0.17237474, -0.055853188, 0.8498585)
+bones/23/rotation = Quaternion(0.40809542, 0.22437538, -0.00934368, 0.8848879)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=95168182 node_paths=PackedStringArray("viewport")]
-transform = Transform3D(0.057564087, -0.9983418, 0, -4.3638906e-08, -2.5162061e-09, -1, 0.9983418, 0.057564087, -4.371139e-08, -5.421, 0.07, 0.545)
-mesh = SubResource("PlaneMesh_8uh7m")
-script = ExtResource("1_37kl0")
-viewport = NodePath("../SubViewport")
+[node name="Object_5" parent="Freddy/Male Locomotion Pose2/Skeleton3D" index="0" unique_id=643811426]
+surface_material_override/0 = SubResource("StandardMaterial3D_37kl0")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1465951173]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7555623, 0, 1.9502499)
-current = true
+[node name="Object_6" parent="Freddy/Male Locomotion Pose2/Skeleton3D" index="1" unique_id=341257126]
+surface_material_override/0 = SubResource("StandardMaterial3D_8uh7m")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1317314938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+
+[editable path="Freddy/Male Locomotion Pose2"]

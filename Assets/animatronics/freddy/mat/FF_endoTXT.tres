@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bpajr0nwyaaf1"]
+
+[ext_resource type="Texture2D" uid="uid://4jqancgjoiq1" path="res://Assets/animatronics/freddy/fnaf_1_freddy_fazbear_rigged_6.png" id="1_7qsdo"]
+[ext_resource type="Texture2D" uid="uid://cm44gacrpnbvc" path="res://Assets/animatronics/freddy/fnaf_1_freddy_fazbear_rigged_8.png" id="2_j1d5s"]
+[ext_resource type="Texture2D" uid="uid://c2o78ab2wy7ei" path="res://Assets/animatronics/freddy/fnaf_1_freddy_fazbear_rigged_7.png" id="3_j8bts"]
+
+[resource]
+resource_name = "FF_endoTXT"
+cull_mode = 2
+albedo_texture = ExtResource("1_7qsdo")
+metallic = 1.0
+metallic_texture = ExtResource("3_j8bts")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("3_j8bts")
+roughness_texture_channel = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 10.0
+emission_operator = 1
+emission_texture = ExtResource("2_j1d5s")

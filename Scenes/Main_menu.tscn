@@ -1,0 +1,173 @@
+[gd_scene format=3 uid="uid://de25mrcyffxxc"]
+
+[ext_resource type="VideoStream" uid="uid://upw0k2y8ipjr" path="res://Assets/Main_menu_background/main_menu_background.ogv" id="1_7sp8y"]
+[ext_resource type="Script" uid="uid://ekio52blom7s" path="res://Scipts/main_menu.gd" id="1_pc006"]
+[ext_resource type="AudioStream" uid="uid://m5vcn2vel2dg" path="res://Assets/Audio/soundtracks/flipside1.mp3" id="3_f7j37"]
+
+[sub_resource type="Animation" id="Animation_pc006"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["L"]
+}
+
+[sub_resource type="Animation" id="Animation_f7j37"]
+resource_name = "loading"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["L", "Lo", "Loa", "Load", "Loadi", "Loadin", "Loading", "Loading .", "Loading ..", "Loading ...", ""]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_787fc"]
+_data = {
+&"RESET": SubResource("Animation_pc006"),
+&"loading": SubResource("Animation_f7j37")
+}
+
+[node name="Menu" type="Control" unique_id=1312595927]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pc006")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1594582848]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_7sp8y")
+autoplay = true
+expand = true
+loop = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=65257561]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4392157)
+
+[node name="main_menu" type="VBoxContainer" parent="." unique_id=1931034860]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -198.0
+offset_right = 120.0
+offset_bottom = -97.0
+grow_vertical = 0
+
+[node name="play" type="Button" parent="main_menu" unique_id=1604896250]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play"
+flat = true
+
+[node name="options" type="Button" parent="main_menu" unique_id=398301019]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Options"
+flat = true
+
+[node name="quit" type="Button" parent="main_menu" unique_id=526339754]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+flat = true
+
+[node name="options_menu" type="VBoxContainer" parent="." unique_id=193363749]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -198.0
+offset_right = 120.0
+offset_bottom = -97.0
+grow_vertical = 0
+
+[node name="play" type="Button" parent="options_menu" unique_id=1203513034]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "sound"
+flat = true
+
+[node name="options" type="Button" parent="options_menu" unique_id=843681251]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "music"
+flat = true
+
+[node name="back" type="Button" parent="options_menu" unique_id=1152769442]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "back"
+flat = true
+
+[node name="Label" type="Label" parent="." unique_id=515092371]
+visible = false
+layout_mode = 0
+offset_left = 170.0
+offset_top = 80.0
+offset_right = 210.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 64
+
+[node name="loading" type="VBoxContainer" parent="." unique_id=1559506340]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="loading" unique_id=421070712]
+layout_mode = 2
+text = "L"
+
+[node name="loading_bar" type="ProgressBar" parent="loading" unique_id=1448635212]
+layout_mode = 2
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="loading" unique_id=1806420707]
+libraries/ = SubResource("AnimationLibrary_787fc")
+
+[node name="Flipside1" type="AudioStreamPlayer" parent="." unique_id=1772805005]
+stream = ExtResource("3_f7j37")
+autoplay = true

@@ -11,20 +11,26 @@ config_version=5
 [application]
 
 config/name="NightShift at Candie's"
-run/main_scene="uid://b3nasgldnbp32"
+run/main_scene="uid://de25mrcyffxxc"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 CamGlobal="*uid://cig2no8ece7ux"
+GameClock="*uid://djd7qbgyv7gfg"
+NightManager="*uid://behwiy3scf07o"
+DoorManager="*uid://doobjbr5uq2xu"
+SaveManager="*uid://bxv2cundlryki"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_3d_cursor/plugin.cfg")
 
 [physics]
 

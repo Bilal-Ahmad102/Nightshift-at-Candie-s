@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://4hx64xcm2tpc"]
+
+[ext_resource type="Texture2D" uid="uid://bvxopdqby361l" path="res://Assets/animatronics/freddy/fnaf_1_freddy_fazbear_rigged_0.png" id="1_onxcb"]
+[ext_resource type="Texture2D" uid="uid://dv1un0ngu6g1v" path="res://Assets/animatronics/freddy/fnaf_1_freddy_fazbear_rigged_1.png" id="2_q2akt"]
+[ext_resource type="Texture2D" uid="uid://dgn7j7mdtdl7a" path="res://Assets/animatronics/freddy/fnaf_1_freddy_fazbear_rigged_2.png" id="3_c7yl3"]
+
+[resource]
+resource_name = "FF_SuitTXT"
+cull_mode = 2
+albedo_texture = ExtResource("1_onxcb")
+metallic = 1.0
+metallic_texture = ExtResource("2_q2akt")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_q2akt")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_c7yl3")
