@@ -56,7 +56,8 @@ func move_to_cam(cam_id: String) -> void:
 		global_position = marker.global_position
 		global_rotation = marker.global_rotation
 		current_cam = cam_id
-		#$Label.text = str(cam_id)
+
+
 
 func get_move_interval() -> float:
 	# faster on higher nights / higher hours
@@ -84,8 +85,8 @@ func begin_route() -> void:
 	route_index = 0
 	current_state = State.MOVING
 	_move_timer.start(get_move_interval())
-	
-	
+
+
 func _on_move_timer() -> void:
 	match current_state:
 		State.IDLE:

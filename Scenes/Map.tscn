@@ -5778,6 +5778,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -354.5, 30, 101)
 mesh = SubResource("ArrayMesh_m0lc3")
 script = ExtResource("36_f3mid")
 door = NodePath("../OfficeDoorLeft")
+door_id = "left"
 
 [node name="Area3D" type="Area3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorLeft" unique_id=1170178877]
 
@@ -5789,6 +5790,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -354.5, 30, 229)
 mesh = SubResource("ArrayMesh_3ysnj")
 script = ExtResource("36_f3mid")
 door = NodePath("../OfficeDoorRight")
+door_id = "right"
 
 [node name="Area3D" type="Area3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorRight" unique_id=1476581770]
 

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b4481hv45ftwm"]
+
+[ext_resource type="Shader" uid="uid://26wkvmefhe8" path="res://Scenes/cam_noise.gdshader" id="1_sg4ad"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aaqu3"]
+shader = ExtResource("1_sg4ad")
+shader_parameter/intensity = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/scanline_strength = 0.0
+
+[node name="Cam_Noise" type="Control" unique_id=797525376]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1637746254]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1025432859]
+size = Vector2i(1152, 648)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport" unique_id=2027308085]
+material = SubResource("ShaderMaterial_aaqu3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
