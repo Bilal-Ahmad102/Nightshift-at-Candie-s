@@ -3537,9 +3537,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_uir1k")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_t5mar"]
-size = Vector3(5, 8, 1)
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_grff2"]
 _surfaces = [{
 "aabb": AABB(-2.5000002, -3.5, -0.5000009, 5.0000005, 7, 1.0000019),
@@ -5774,28 +5771,34 @@ metadata/extras = {
 }
 
 [node name="ButtonDoorLeft" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=796242617 node_paths=PackedStringArray("door")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -354.5, 30, 101)
 mesh = SubResource("ArrayMesh_m0lc3")
 script = ExtResource("36_f3mid")
 door = NodePath("../OfficeDoorLeft")
 door_id = "left"
 
-[node name="Area3D" type="Area3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorLeft" unique_id=1170178877]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorLeft/Area3D" unique_id=811568312]
-shape = SubResource("BoxShape3D_t5mar")
+[node name="hint_label" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorLeft" unique_id=237096437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.893463, 0.9813614)
+billboard = 1
+text = "Press E to open"
+font_size = 164
+outline_size = 80
 
 [node name="ButtonDoorRight" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=403537269 node_paths=PackedStringArray("door")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -354.5, 30, 229)
 mesh = SubResource("ArrayMesh_3ysnj")
 script = ExtResource("36_f3mid")
 door = NodePath("../OfficeDoorRight")
 door_id = "right"
 
-[node name="Area3D" type="Area3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorRight" unique_id=1476581770]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorRight/Area3D" unique_id=1756362354]
-shape = SubResource("BoxShape3D_t5mar")
+[node name="hint_label" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorRight" unique_id=1288612272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.893463, -1.0320892)
+billboard = 1
+text = "Press E to open"
+font_size = 164
+outline_size = 80
 
 [node name="ButtonWindowDoor" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=1906918744]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -301.5, 23.5, 165)
@@ -5912,6 +5915,12 @@ transform = Transform3D(1, 0, -4.440892e-16, 0, 1, -7.771561e-16, 0, -7.771561e-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D/Area3D" unique_id=1085960826]
 transform = Transform3D(1, 0, 0, 0, 1, -7.771561e-16, 0, -7.771561e-16, 1, -1.5258789e-05, 1.4196777, 0)
 shape = SubResource("BoxShape3D_x5akl")
+
+[node name="Label3D" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D" unique_id=1383121766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3544721e-14, -7.0407047)
+billboard = 1
+text = "Press TAB to open Monitor"
+font_size = 256
 
 [node name="Armature" type="Node3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=2014087118]
 transform = Transform3D(-0.2847009, 0, -1.0625184, 0, 1.1, 0, 1.0625184, 0, -0.2847009, -298, 27.9, 194)
@@ -6635,8 +6644,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="skip_monologue_btn" type="Button" parent="Audios/Control" unique_id=417597429]
-visible = false
+[node name="skip_label" type="Label" parent="Audios/Control" unique_id=2005243137]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -6644,13 +6652,24 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -158.22498
-offset_top = -70.0
+offset_top = -88.0
 offset_right = -26.224731
 offset_bottom = -39.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Skip Monologue
-"
+text = "hold X to skip"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skip_bar" type="ProgressBar" parent="Audios/Control/skip_label" unique_id=650321683]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+show_percentage = false
 
 [node name="clock" type="Node3D" parent="." unique_id=2014145785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -286.04346, 29.914406, 168.48552)
@@ -6681,12 +6700,5 @@ modulate = Color(1, 0, 0, 0.07058824)
 text = "PM"
 font = ExtResource("60_348ac")
 font_size = 237
-
-[node name="Label" type="Label" parent="." unique_id=1504954611]
-offset_left = 74.0
-offset_top = 61.0
-offset_right = 257.0
-offset_bottom = 149.0
-theme_override_font_sizes/font_size = 64
 
 [editable path="animatronics/Dave"]

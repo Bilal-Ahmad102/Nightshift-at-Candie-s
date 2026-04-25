@@ -1,7 +1,6 @@
 extends Node3D
 
 @onready var time: Label3D = $MapBase_FlatMesh_002/time
-@onready var label: Label = $"../Label"
 
 func _ready() -> void:
 	GameClock.time_changed.connect(_on_time_changed)
@@ -19,4 +18,4 @@ func _on_night_complete() -> void:
 	pass
 
 func _night_started(night:int):
-	label.text = "night: "+str(night)
+	pass

@@ -3,19 +3,32 @@ extends Control
 @onready var cam_btns: Control = $cam_btns
 @onready var cam_noise: Control = $Cam_Noise
 
-var cam_error_delay_min : int = 1
-var cam_error_delay_max : int = 5
+var cam_error_delay_min: int = 1
+var cam_error_delay_max: int = 5
+var spread_time: float = 8.0
 
 var light_blips: Array[ColorRect] = []
 var current_cam: int = 0
 var _blink_tween: Tween
+var _error_loop_running: bool = false
 
-# error tracking
-var error_cams: Array[int] = []  # which cams have errors active
+var error_cams: Array[int] = []
+var error_timers: Dictionary = {}
+
+const CAM_NEIGHBORS: Dictionary = {
+	1: [2],
+	2: [1, 3, 5],
+	3: [2, 4],
+	4: [3],
+	5: [2, 6, 9],
+	6: [5, 7],
+	7: [6, 8],
+	8: [7, 9],
+	9: [5, 8],
+}
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	connect_signals()
 	for cam_btn in cam_btns.get_children():
 		var blip: ColorRect = cam_btn.get_child(0)
 		blip.color.a = 0.0
@@ -23,17 +36,6 @@ func _ready() -> void:
 	_start_blip(0)
 	CamGlobal.cam_switched.connect(_on_cam_switched)
 	cam_noise.visible = false
-
-func connect_signals() -> void:
-	for cam_texture: TextureRect in cam_btns.get_children():
-		cam_texture.gui_input.connect(_on_cam_texture_click.bind(cam_texture.name))
-		cam_texture.mouse_entered.connect(_on_mouse_entered.bind(cam_texture.name))
-
-func _on_mouse_entered(cam_name):
-	pass
-
-func _on_cam_texture_click(event: InputEvent, cam_name: String) -> void:
-	CamGlobal.cam_texture_clicked.emit((int(cam_name.split("_")[-1])) - 1)
 
 func _on_cam_switched(prev_cam: int, next_cam: int) -> void:
 	if prev_cam > 0 and prev_cam - 1 < light_blips.size():
@@ -56,72 +58,116 @@ func _start_blip(idx: int) -> void:
 	_blink_tween.tween_interval(0.35)
 
 func _update_noise_visibility() -> void:
-	# show static only if the camera you're currently watching has an error
 	cam_noise.visible = current_cam in error_cams
-	
 
 func _process(delta: float) -> void:
-	start_cam_error()
-	
-func solve_cam_error() -> void:
-	if current_cam not in error_cams:
-		return
-	
-	var progress_bar: ProgressBar = get_node("cam_btns/cam_" + str(current_cam) + "/ColorRect/error_anim/ProgressBar2")
-	
-	if Input.is_action_pressed("solve_error"):
-		progress_bar.value += 50.0 * get_process_delta_time()
-		if progress_bar.value >= progress_bar.max_value:
-			progress_bar.value = 0.0
-			_clear_error(current_cam)
-	else:
-		# drain back down when not holding
-		progress_bar.value -= 30.0 * get_process_delta_time()
-		progress_bar.value = max(0.0, progress_bar.value)
-
-func start_cam_error():
+	# gate everything behind Dave active + visible
 	if not NightManager.is_animatronic_active("Dave") or not self.visible:
 		return
-	solve_cam_error()
 
+	solve_cam_error(delta)
+	
 	if !GameManger.can_dave_cam_error:
 		return
 
-	GameManger.can_dave_cam_error  = false
-	var error_delay = randi_range(cam_error_delay_min,cam_error_delay_max)
-	await  get_tree().create_timer(error_delay).timeout
+	# spread only if there are active errors
+	if not error_cams.is_empty():
+		_tick_error_spread(delta)
 
+	if not _error_loop_running and GameManger.can_dave_cam_error:
+		print("_error_loop_running : ",_error_loop_running,"  : can_dave_cam_error : ",GameManger.can_dave_cam_error)
+		_try_start_error_loop()
+
+# --- spread ---
+func _tick_error_spread(delta: float) -> void:
+	# stop spreading if all errors are cleared
+	if error_cams.is_empty():
+		return
+
+	var cams_snapshot := error_cams.duplicate()
+	for cam in cams_snapshot:
+		error_timers[cam] = error_timers.get(cam, 0.0) + delta
+		if error_timers[cam] >= spread_time:
+			error_timers[cam] = 0.0
+			_spread_error(cam)
+
+func _spread_error(from_cam: int) -> void:
+	# stop spreading if all errors somehow cleared mid-frame
+	if error_cams.is_empty():
+		return
+	if from_cam not in CAM_NEIGHBORS:
+		return
+	var neighbors: Array = CAM_NEIGHBORS[from_cam]
+	var available := neighbors.filter(func(n): return n not in error_cams)
+	if available.is_empty():
+		return
+	available.shuffle()
+	_add_error(available[0])
+
+# --- error loop ---
+func _try_start_error_loop() -> void:
+	if not NightManager.is_animatronic_active("Dave") or not self.visible:
+		return
+	if not GameManger.can_dave_cam_error:
+		return
+	_error_loop_running = true
+	_error_loop()
+
+func _error_loop() -> void:
+	var delay := randi_range(cam_error_delay_min, cam_error_delay_max)
+	await get_tree().create_timer(delay).timeout
+
+	# re-check all conditions after await
+	if not NightManager.is_animatronic_active("Dave") or not self.visible or not GameManger.can_dave_cam_error:
+		_error_loop_running = false
+		return
+
+	GameManger.can_dave_cam_error = false
 	make_random_error()
-	# $cam_btns/cam_1/error_anim
-	if !error_cams.is_empty():
-		for cam in error_cams:
-			get_node("cam_btns/cam_"+str(cam)+"/ColorRect/error_anim").show()
 
+	# wait for ALL errors to be solved before looping again
+	while not error_cams.is_empty():
+		await get_tree().process_frame
+
+	_error_loop_running = false  # reset so _process can restart the loop naturally
+
+# --- error management ---
 func make_random_error() -> void:
-	
-
-	# pick 1–3 random cameras that don't already have an error
 	var available: Array[int] = []
 	for i in range(1, light_blips.size() + 1):
 		if i not in error_cams:
 			available.append(i)
-
 	if available.is_empty():
 		return
-
 	available.shuffle()
 	var count: int = randi_range(1, min(3, available.size()))
-
 	for i in range(count):
-		var cam_idx: int = available[i]
-		error_cams.append(cam_idx)
+		_add_error(available[i])
 
+func _add_error(cam_idx: int) -> void:
+	if cam_idx in error_cams:
+		return
+	error_cams.append(cam_idx)
+	error_timers[cam_idx] = 0.0
+	get_node("cam_btns/cam_" + str(cam_idx) + "/ColorRect/error_anim").show()
 	_update_noise_visibility()
 
 func _clear_error(cam_idx: int) -> void:
 	get_node("cam_btns/cam_" + str(cam_idx) + "/ColorRect/error_anim").hide()
 	error_cams.erase(cam_idx)
+	error_timers.erase(cam_idx)
+	# if last error cleared, stop all spreading naturally
 	_update_noise_visibility()
 
-func _on_panel_2_mouse_entered() -> void:
-	CamGlobal.cam_interface_back.emit()
+func solve_cam_error(delta: float) -> void:
+	if current_cam not in error_cams:
+		return
+	var progress_bar: ProgressBar = get_node("cam_btns/cam_" + str(current_cam) + "/ColorRect/error_anim/ProgressBar2")
+	if Input.is_action_pressed("solve_error"):
+		error_timers[current_cam] = 0.0  # reset spread timer while fixing
+		progress_bar.value += 50.0 * delta
+		if progress_bar.value >= progress_bar.max_value:
+			progress_bar.value = 0.0
+			_clear_error(current_cam)
+	else:
+		progress_bar.value = max(0.0, progress_bar.value - 30.0 * delta)

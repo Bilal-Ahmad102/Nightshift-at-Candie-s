@@ -54,6 +54,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_d58tn")
 
+[node name="Cam_Noise" parent="." unique_id=797525376 instance=ExtResource("4_ucfoc")]
+visible = false
+layout_mode = 1
+
 [node name="map_outline" type="TextureRect" parent="." unique_id=851360109]
 layout_mode = 1
 anchors_preset = 3
@@ -66,10 +70,6 @@ offset_top = -610.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("3_8rb4c")
-
-[node name="Cam_Noise" parent="." unique_id=797525376 instance=ExtResource("4_ucfoc")]
-visible = false
-layout_mode = 1
 
 [node name="cam_btns" type="Control" parent="." unique_id=949307719]
 layout_mode = 1
@@ -547,7 +547,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
-text = "Back"
+text = "Press TAB to close"
 
 [node name="TextureRect" type="TextureRect" parent="Panel2" unique_id=1598620042]
 modulate = Color(0.5411765, 0.5411765, 0.5411765, 0.5764706)
@@ -577,12 +577,5 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("17_ucfoc")
 expand_mode = 1
-
-[node name="Label2" type="Label" parent="." unique_id=1921639598]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[connection signal="mouse_entered" from="Panel2" to="." method="_on_panel_2_mouse_entered"]
 
 [editable path="cam_btns/cam_1/ColorRect/error_anim"]
