@@ -3,6 +3,9 @@ extends Node
 signal game_over
 signal night_won(night: int)
 signal skip_monologue
+
+var can_dave_cam_error : bool = true
+
 func _ready() -> void:
 	SaveManager.load_save()
 	_apply_saved_settings()

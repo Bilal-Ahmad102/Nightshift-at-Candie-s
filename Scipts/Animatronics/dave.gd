@@ -1,23 +1,23 @@
 extends Node3D
 
-enum State { IDLE, MOVING, ATTACKING, RETURNING }
 @export var left_door_route_1 : Node 
 @export var left_door_route_2 : Node 
 @export var right_door_route : Node 
 
+@onready var _move_timer: Timer = %move_timer
+
+enum State { IDLE, MOVING, ATTACKING, RETURNING }
 const ROUTE_LEFT_DOOR = ["CAM_01", "CAM_02", "CAM_05", "CAM_08", "CAM_07", "CAM_06"]
 const ROUTE_LEFT_DOOR_ALT = ["CAM_01", "CAM_02", "CAM_09", "CAM_08", "CAM_07", "CAM_06"]
 const ROUTE_RIGHT_DOOR = ["CAM_01", "CAM_02", "CAM_05", "CAM_03", "CAM_04"]
 
 var cam_positions: Dictionary = {}
 
-@onready var _move_timer: Timer = %move_timer
 
 var current_state: State = State.IDLE
 var current_cam: String = "CAM_01"
 var current_route: Array = []
 var route_index: int = 0
-var _took_cam09: bool = false
 
 
 func _ready() -> void:
@@ -122,7 +122,8 @@ func _return_to_start() -> void:
 	move_to_cam("CAM_01")
 	current_state = State.IDLE
 	_move_timer.start(get_move_interval())
-
+	GameManger.can_dave_cam_error = true
+	
 func _trigger_jumpscare() -> void:
 	print("Dave jumpscare!")
 	# TODO: signal to GameManager

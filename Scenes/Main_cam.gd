@@ -4,23 +4,22 @@ extends Camera3D
 @export var smoothing: float = 5.0
 
 var origin_rotation: Vector3
-var cam_movement: bool =  false
+var cam_movement: bool = false
+var _target_y: float = 0.0
+
 func _ready() -> void:
 	origin_rotation = rotation_degrees
+	_target_y = origin_rotation.y
 
 func _process(delta: float) -> void:
-	if !cam_movement:return
-	var viewport_size = get_viewport().get_visible_rect().size
-	var mouse_pos = get_viewport().get_mouse_position()
+	if !cam_movement:
+		return
 	
-	# Distance from center, normalized by half-width
-	# center=0.0, right edge=1.0, left edge=-1.0
-	var half_width = viewport_size.x / 2.0
-	var offset_from_center = mouse_pos.x - half_width
-	var normalized_x = offset_from_center / half_width  # -1.0 to 1.0
-	
-	var target_y = origin_rotation.y - (normalized_x * tilt_amount)
-	rotation_degrees.y = lerp(rotation_degrees.y, target_y, delta * smoothing)
+	var input_x := Input.get_axis("ui_right", "ui_left")  # -1 left, 1 right
+	_target_y = origin_rotation.y + (input_x * tilt_amount)
+	rotation_degrees.y = lerp(rotation_degrees.y, _target_y, delta * smoothing)
 
-func cam_mov(mov_toggle:bool):
+func cam_mov(mov_toggle: bool) -> void:
 	cam_movement = mov_toggle
+	if not mov_toggle:
+		_target_y = origin_rotation.y  # snap back to center when disabled

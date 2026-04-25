@@ -5381,6 +5381,17 @@ script = ExtResource("2_nkcil")
 [node name="Camera3D" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams/SubViewport" unique_id=792479287]
 current = true
 
+[node name="Cam_1" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=127782139]
+transform = Transform3D(-0.6427877, 0.10661276, -0.7585894, 2.6077032e-08, 0.99026805, 0.13917308, 0.76604444, 0.08945871, -0.6365321, -57, 65, 340)
+fov = 21.239311
+near = 0.1
+far = 1000.0
+script = ExtResource("3_rthtq")
+cam_id = 1
+metadata/extras = {
+"vs": {}
+}
+
 [node name="Cam_2" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=1569829460]
 transform = Transform3D(-3.3380673, 3.5311918, -8.740022, 0, 9.271839, 3.7460606, 9.426414, 1.2504601, -3.0950031, -91, 65, 137)
 fov = 48.45549
@@ -5421,17 +5432,6 @@ near = 0.1
 far = 1000.0
 script = ExtResource("3_rthtq")
 cam_id = 5
-metadata/extras = {
-"vs": {}
-}
-
-[node name="Cam_1" type="Camera3D" parent="FNaC Semi-Accurate Map By DiscoHead/Cams" unique_id=127782139]
-transform = Transform3D(-0.6427877, 0.10661276, -0.7585893, 2.6077032e-08, 0.99026805, 0.13917306, 0.76604444, 0.08945871, -0.63653207, -57, 65, 340)
-fov = 21.239311
-near = 0.1
-far = 1000.0
-script = ExtResource("3_rthtq")
-cam_id = 1
 metadata/extras = {
 "vs": {}
 }

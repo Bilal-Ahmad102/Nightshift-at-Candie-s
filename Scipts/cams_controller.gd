@@ -53,7 +53,7 @@ func switch_to(index: int) -> void:
 		_apply_in_monitor_switch(target_cam)
 	else:
 		_apply_cam_switch(target_cam)
-
+	
 	cam_info.text = "CAM %d - %s" % [target_cam.cam_id, target_cam.room_name]
 
 

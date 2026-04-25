@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://cl0gxjyx6fmvj" path="res://Assets/MAP/textures/193.png" id="3_1h00l"]
 [ext_resource type="Texture2D" uid="uid://cp3oogy72v18c" path="res://Assets/MAP/textures/248 (copy).png" id="3_8rb4c"]
 [ext_resource type="Texture2D" uid="uid://ctw06co54ci1f" path="res://Assets/MAP/textures/226.png" id="4_8rb4c"]
+[ext_resource type="PackedScene" uid="uid://b4481hv45ftwm" path="res://Scenes/cam_noise.tscn" id="4_ucfoc"]
 [ext_resource type="Texture2D" uid="uid://bnuyy3ty6mikb" path="res://Assets/MAP/textures/228.png" id="5_ucfoc"]
+[ext_resource type="PackedScene" uid="uid://d2q63paxg42u4" path="res://Scenes/error_animation.tscn" id="6_3bq65"]
 [ext_resource type="Texture2D" uid="uid://doi0d8p530p4s" path="res://Assets/MAP/textures/230.png" id="6_t64xc"]
 [ext_resource type="Texture2D" uid="uid://b08b6qrnpeux5" path="res://Assets/MAP/textures/232.png" id="7_3bq65"]
 [ext_resource type="Texture2D" uid="uid://biehbybwmdmk" path="res://Assets/MAP/textures/234.png" id="8_u6hkn"]
@@ -65,6 +67,10 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("3_8rb4c")
 
+[node name="Cam_Noise" parent="." unique_id=797525376 instance=ExtResource("4_ucfoc")]
+visible = false
+layout_mode = 1
+
 [node name="cam_btns" type="Control" parent="." unique_id=949307719]
 layout_mode = 1
 anchors_preset = 3
@@ -102,6 +108,20 @@ offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
+[node name="error_anim" parent="cam_btns/cam_1/ColorRect" unique_id=449469996 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 15.0
+offset_right = 24.0
+offset_bottom = 15.0
+
+[node name="ProgressBar2" parent="cam_btns/cam_1/ColorRect/error_anim" index="1" unique_id=1646677804]
+offset_left = -24.0
+offset_top = -14.0
+offset_right = 20.0
+offset_bottom = 13.0
+
 [node name="cam_2" type="TextureRect" parent="cam_btns" unique_id=1964234566]
 layout_mode = 1
 anchors_preset = 6
@@ -124,6 +144,19 @@ offset_top = 2.0
 offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
+[node name="error_anim" parent="cam_btns/cam_2/ColorRect" unique_id=222945681 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="cam_3" type="TextureRect" parent="cam_btns" unique_id=2116820403]
 layout_mode = 1
@@ -148,6 +181,19 @@ offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
+[node name="error_anim" parent="cam_btns/cam_3/ColorRect" unique_id=806758956 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="cam_4" type="TextureRect" parent="cam_btns" unique_id=465691041]
 layout_mode = 1
 anchors_preset = 6
@@ -170,6 +216,19 @@ offset_top = 2.0
 offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
+[node name="error_anim" parent="cam_btns/cam_4/ColorRect" unique_id=1845523770 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="cam_5" type="TextureRect" parent="cam_btns" unique_id=1211998426]
 layout_mode = 1
@@ -194,6 +253,19 @@ offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
+[node name="error_anim" parent="cam_btns/cam_5/ColorRect" unique_id=741900045 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="cam_6" type="TextureRect" parent="cam_btns" unique_id=485312261]
 layout_mode = 1
 anchors_preset = 6
@@ -216,6 +288,19 @@ offset_top = 2.0
 offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
+[node name="error_anim" parent="cam_btns/cam_6/ColorRect" unique_id=1035203553 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="cam_7" type="TextureRect" parent="cam_btns" unique_id=2070976234]
 layout_mode = 1
@@ -240,6 +325,19 @@ offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
+[node name="error_anim" parent="cam_btns/cam_7/ColorRect" unique_id=1142660183 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="cam_8" type="TextureRect" parent="cam_btns" unique_id=457035436]
 layout_mode = 1
 anchors_preset = 6
@@ -262,6 +360,19 @@ offset_top = 2.0
 offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
+[node name="error_anim" parent="cam_btns/cam_8/ColorRect" unique_id=1846749792 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="cam_9" type="TextureRect" parent="cam_btns" unique_id=1426861714]
 layout_mode = 1
@@ -286,6 +397,19 @@ offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
+[node name="error_anim" parent="cam_btns/cam_9/ColorRect" unique_id=1468137956 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="cam_10" type="TextureRect" parent="cam_btns" unique_id=1379882135]
 layout_mode = 1
 anchors_preset = 6
@@ -308,6 +432,19 @@ offset_top = 2.0
 offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
+
+[node name="error_anim" parent="cam_btns/cam_10/ColorRect" unique_id=282092702 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="cam_11" type="TextureRect" parent="cam_btns" unique_id=739738629]
 layout_mode = 1
@@ -332,6 +469,19 @@ offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
+[node name="error_anim" parent="cam_btns/cam_11/ColorRect" unique_id=1433418974 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="cam_12" type="TextureRect" parent="cam_btns" unique_id=896336972]
 layout_mode = 1
 anchors_preset = 6
@@ -355,17 +505,29 @@ offset_right = 46.0
 offset_bottom = 30.0
 color = Color(0.67058825, 0.7490196, 0.15294118, 0.45490196)
 
+[node name="error_anim" parent="cam_btns/cam_12/ColorRect" unique_id=458638808 instance=ExtResource("6_3bq65")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Panel2" type="Panel" parent="." unique_id=1256353642]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -650.0
-offset_top = -87.0
-offset_right = 650.0
-offset_bottom = -17.0
+offset_left = 30.0
+offset_top = -65.0
+offset_right = -22.0
+offset_bottom = -14.744995
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -416,15 +578,11 @@ grow_vertical = 2
 texture = ExtResource("17_ucfoc")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="." unique_id=1411072343]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
+[node name="Label2" type="Label" parent="." unique_id=1921639598]
+layout_mode = 0
+offset_right = 40.0
 offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 64
 
 [connection signal="mouse_entered" from="Panel2" to="." method="_on_panel_2_mouse_entered"]
+
+[editable path="cam_btns/cam_1/ColorRect/error_anim"]
