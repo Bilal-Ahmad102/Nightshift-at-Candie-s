@@ -4,6 +4,7 @@ extends Camera3D
 @export var smoothing: float = 5.0
 @onready var button_door_left: MeshInstance3D = %ButtonDoorLeft
 @onready var button_door_right: MeshInstance3D = %ButtonDoorRight
+@onready var window_door: MeshInstance3D = $"../FNaC Semi-Accurate Map By DiscoHead/WindowDoor"
 
 var origin_rotation: Vector3
 var cam_movement: bool = false
@@ -23,8 +24,10 @@ func _process(delta: float) -> void:
 	rotation_degrees.y = lerp(rotation_degrees.y, _target_y, delta * smoothing)
 	
 	# use threshold instead of exact == 1/-1
+	window_door.looking(input_x < 0.5 and input_x > -0.5)
 	button_door_left.looking(input_x > 0.5)
 	button_door_right.looking(input_x < -0.5)
+	
 
 func cam_mov(mov_toggle: bool) -> void:
 	cam_movement = mov_toggle

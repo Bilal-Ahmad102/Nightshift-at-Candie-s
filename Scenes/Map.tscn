@@ -56,6 +56,7 @@
 [ext_resource type="Script" uid="uid://bdlthm4cpxbyu" path="res://Scipts/Camera_TV.gd" id="49_nr4qj"]
 [ext_resource type="Texture2D" uid="uid://dy34lw038h1b2" path="res://Assets/MAP/textures/Eyes.png" id="50_eny3s"]
 [ext_resource type="Texture2D" uid="uid://cl5hd1ivp220c" path="res://Assets/MAP/textures/Eyes3.png" id="51_b0dg3"]
+[ext_resource type="Texture2D" uid="uid://blu502wodrlg8" path="res://addons/kenney_input_prompts/Keyboard & Mouse/Vector/keyboard_tab_outline.svg" id="54_ririk"]
 [ext_resource type="PackedScene" uid="uid://c3klcjogk3khl" path="res://Scenes/anime_girl.tscn" id="56_l6pei"]
 [ext_resource type="PackedScene" uid="uid://bfdx6spgjrvqr" path="res://Scenes/Animatronics/dave.tscn" id="58_0hvk1"]
 [ext_resource type="PackedScene" uid="uid://cktu8tc8mrunw" path="res://Scenes/Animatronics/freddy.tscn" id="58_8a25g"]
@@ -64,8 +65,10 @@
 [ext_resource type="FontFile" uid="uid://chtg2sjwoh3mk" path="res://Assets/bloodcrowc.ttf" id="59_earqg"]
 [ext_resource type="Material" uid="uid://cwwn8k45htjoi" path="res://Assets/digital_clock/Screen.tres" id="60_8a25g"]
 [ext_resource type="FontFile" uid="uid://bdkitcedm3aqw" path="res://Assets/Digital Dismay.otf" id="60_348ac"]
-[ext_resource type="AudioStream" uid="uid://b5h6hyu5mb046" path="res://Assets/Audio/Monologues/nigh_1_monologue.mp3" id="61_wh5hq"]
+[ext_resource type="PackedScene" uid="uid://ir5e7ldp02vr" path="res://Scenes/Animatronics/rena.tscn" id="61_u5e0s"]
+[ext_resource type="AudioStream" uid="uid://b5h6hyu5mb046" path="res://Assets/Audio/Monologues/night_1_monologue.mp3" id="61_wh5hq"]
 [ext_resource type="AudioStream" uid="uid://cwlo8smxqk0v" path="res://Assets/Audio/soundtracks/hotel2.mp3" id="62_r3cnf"]
+[ext_resource type="AudioStream" uid="uid://2gecosghd6fv" path="res://Assets/Audio/Monologues/night_2_monologue.mp3" id="63_0almc"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_earqg"]
 
@@ -5757,11 +5760,21 @@ metadata/extras = {
 }
 
 [node name="WindowDoor" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=413477516]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -272.5, 58.5, 165)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -272.5, 60, 165)
 mesh = SubResource("ArrayMesh_1oam2")
+script = ExtResource("36_f3mid")
+is_window = true
+door_id = "window"
 metadata/extras = {
 "vs": {}
 }
+
+[node name="hint_label" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/WindowDoor" unique_id=1416963844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6638489, 5.384388, 0)
+billboard = 1
+text = "Press E to open"
+font_size = 164
+outline_size = 80
 
 [node name="OfficeDoorLeft" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=899409987]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -335, 50, 97.5)
@@ -5811,13 +5824,12 @@ script = ExtResource("37_t5mar")
 shape = SubResource("BoxShape3D_l6pei")
 
 [node name="Blind" type="Node3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=2123083583]
-visible = false
 
 [node name="BlindCams" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead/Blind" unique_id=870727587]
-visible = false
 mesh = SubResource("ArrayMesh_pichx")
 
 [node name="BlindPlanes_Doors" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead/Blind" unique_id=1867764548]
+visible = false
 mesh = SubResource("ArrayMesh_rxjkj")
 metadata/extras = {
 "vs": {}
@@ -5919,8 +5931,13 @@ shape = SubResource("BoxShape3D_x5akl")
 [node name="Label3D" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D" unique_id=1383121766]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3544721e-14, -7.0407047)
 billboard = 1
-text = "Press TAB to open Monitor"
+text = "Press            to open Monitor"
 font_size = 256
+
+[node name="Sprite3D" type="Sprite3D" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D/Label3D" unique_id=1536160552]
+transform = Transform3D(7.47, 0, 0, 0, 7.47, 0, 0, 0, 7.47, -3.2226613, 0, 8.293366e-16)
+billboard = 1
+texture = ExtResource("54_ririk")
 
 [node name="Armature" type="Node3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=2014087118]
 transform = Transform3D(-0.2847009, 0, -1.0625184, 0, 1.1, 0, 1.0625184, 0, -0.2847009, -298, 27.9, 194)
@@ -6513,6 +6530,11 @@ transform = Transform3D(2.45499, -0.0066666706, 0.0018450984, 0.0064921672, 2.44
 transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 126.37204, 0.12593842, 159.69717)
 cam_markers_root = NodePath("../animatronic_positions/freddy_position")
 
+[node name="Rena" parent="animatronics" unique_id=833359854 node_paths=PackedStringArray("cam11_route", "window_route", "right_door_route") instance=ExtResource("61_u5e0s")]
+cam11_route = NodePath("../animatronic_positions/rena_position/cam_11_poses")
+window_route = NodePath("../animatronic_positions/rena_position/window_path")
+right_door_route = NodePath("../animatronic_positions/rena_position/right_door_path")
+
 [node name="animatronic_positions" type="Node" parent="animatronics" unique_id=1221736323]
 
 [node name="dave_position" type="Node" parent="animatronics/animatronic_positions" unique_id=1042529195]
@@ -6574,6 +6596,44 @@ transform = Transform3D(-0.061187927, 0, -0.99812627, 0, 1, 0, 0.99812627, 0, -0
 [node name="cam_4" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_3" unique_id=528423097]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.031, 0.1701355, 257.37488)
 
+[node name="rena_position" type="Node" parent="animatronics/animatronic_positions" unique_id=1795131940]
+
+[node name="window_path" type="Node" parent="animatronics/animatronic_positions/rena_position" unique_id=1586561259]
+
+[node name="cam_5" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/window_path" unique_id=71551926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169.39093, 0.17014313, 148.91)
+
+[node name="cam_11" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/window_path" unique_id=15727263]
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 126.37204, 0.12593842, 159.69717)
+
+[node name="window" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/window_path" unique_id=238997693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -245.339, 0, 169.337)
+
+[node name="cam_11_poses" type="Node" parent="animatronics/animatronic_positions/rena_position" unique_id=357381922]
+
+[node name="cam_11" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/cam_11_poses" unique_id=5141206]
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 126.37204, 0.12593842, 159.69717)
+
+[node name="cam_12" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/cam_11_poses" unique_id=1691452201]
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 64.62189, 0.12593842, 189.1893)
+
+[node name="cam_13" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/cam_11_poses" unique_id=250427492]
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 101.405624, 0.12593842, 164.52747)
+
+[node name="right_door_path" type="Node" parent="animatronics/animatronic_positions/rena_position" unique_id=1610853815]
+
+[node name="cam_11" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/right_door_path" unique_id=98790144]
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 126.37204, 0.12593842, 159.69717)
+
+[node name="cam_2" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/right_door_path" unique_id=1477658858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.832092, -4.9454994, 218.55048)
+
+[node name="cam_3" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/right_door_path" unique_id=1512843836]
+transform = Transform3D(-0.061187927, 0, -0.99812627, 0, 1, 0, 0.99812627, 0, -0.061187927, -148.97475, -0.67178154, 266.01465)
+
+[node name="cam_4" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/right_door_path" unique_id=858335785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.031, 0.1701355, 257.37488)
+
 [node name="freddy_position" type="Node" parent="animatronics/animatronic_positions" unique_id=296478077]
 
 [node name="cam_9" type="Marker3D" parent="animatronics/animatronic_positions/freddy_position" unique_id=1142773921]
@@ -6629,6 +6689,10 @@ text = "Night 1"
 unique_name_in_owner = true
 stream = ExtResource("61_wh5hq")
 
+[node name="Night2Monologue" type="AudioStreamPlayer" parent="Audios" unique_id=1157702945]
+unique_name_in_owner = true
+stream = ExtResource("63_0almc")
+
 [node name="Hotel2" type="AudioStreamPlayer" parent="Audios" unique_id=1757742397]
 unique_name_in_owner = true
 stream = ExtResource("62_r3cnf")
@@ -6672,6 +6736,7 @@ value = 50.0
 show_percentage = false
 
 [node name="clock" type="Node3D" parent="." unique_id=2014145785]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -286.04346, 29.914406, 168.48552)
 script = ExtResource("58_b58ie")
 
@@ -6700,5 +6765,7 @@ modulate = Color(1, 0, 0, 0.07058824)
 text = "PM"
 font = ExtResource("60_348ac")
 font_size = 237
+
+[node name="clock_timer" type="Timer" parent="clock" unique_id=670197237]
 
 [editable path="animatronics/Dave"]

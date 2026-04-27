@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://ngw6aucl2tll"]
+
+[ext_resource type="Script" uid="uid://c7vu7heqbg5av" path="res://Scipts/power_usage.gd" id="1_fksx4"]
+
+[node name="Power_UI" type="Control" unique_id=826671391]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fksx4")
+
+[node name="usage_bars" type="Control" parent="." unique_id=1538860375]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="usage_bars" unique_id=1797948209]
+layout_mode = 0
+offset_right = 23.0
+offset_bottom = 45.0
+color = Color(0.29803923, 0.6862745, 0.3137255, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="usage_bars" unique_id=967422714]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 48.0
+offset_bottom = 45.0
+color = Color(0.21960784, 0.5568628, 0.23529412, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="usage_bars" unique_id=949545746]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 73.0
+offset_bottom = 45.0
+color = Color(1, 0.92156863, 0.23137255, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="usage_bars" unique_id=1290940611]
+layout_mode = 0
+offset_left = 75.0
+offset_right = 98.0
+offset_bottom = 45.0
+color = Color(1, 0.59607846, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="usage_bars" unique_id=1695548879]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 123.0
+offset_bottom = 45.0
+color = Color(0.95686275, 0.2627451, 0.21176471, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="usage_bars" unique_id=826289153]
+layout_mode = 0
+offset_left = 125.0
+offset_right = 148.0
+offset_bottom = 45.0
+color = Color(0.7176471, 0.10980392, 0.10980392, 1)

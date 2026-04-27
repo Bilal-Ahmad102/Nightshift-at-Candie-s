@@ -1130,7 +1130,7 @@ libraries/ = SubResource("AnimationLibrary_cq1qg")
 
 [node name="move_timer" type="Timer" parent="." unique_id=978252978]
 unique_name_in_owner = true
-wait_time = 2.0
+wait_time = 10.0
 
 [node name="Label" type="Label" parent="." unique_id=332618473]
 offset_right = 40.0

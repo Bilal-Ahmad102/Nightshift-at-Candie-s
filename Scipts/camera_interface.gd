@@ -75,7 +75,6 @@ func _process(delta: float) -> void:
 		_tick_error_spread(delta)
 
 	if not _error_loop_running and GameManger.can_dave_cam_error:
-		print("_error_loop_running : ",_error_loop_running,"  : can_dave_cam_error : ",GameManger.can_dave_cam_error)
 		_try_start_error_loop()
 
 # --- spread ---

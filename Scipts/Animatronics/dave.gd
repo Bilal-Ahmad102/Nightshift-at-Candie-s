@@ -24,7 +24,11 @@ func _ready() -> void:
 	_move_timer.timeout.connect(_on_move_timer)
 
 	NightManager.night_started.connect(_on_night_started)
+	NightManager.night_ended.connect(_on_night_ended)
 	# do NOT start the timer here anymore
+
+func _on_night_ended(night: int , success: bool):
+	_reset_position()
 
 func _on_night_started(night: int) -> void:
 	if NightManager.is_animatronic_active("Dave"):
@@ -118,12 +122,16 @@ func _attempt_attack() -> void:
 		# attack!
 		_trigger_jumpscare()
 
+func _reset_position():
+	move_to_cam("CAM_01")
+	current_state = State.IDLE
+
 func _return_to_start() -> void:
 	move_to_cam("CAM_01")
 	current_state = State.IDLE
 	_move_timer.start(get_move_interval())
 	GameManger.can_dave_cam_error = true
-	
+
 func _trigger_jumpscare() -> void:
 	print("Dave jumpscare!")
 	# TODO: signal to GameManager

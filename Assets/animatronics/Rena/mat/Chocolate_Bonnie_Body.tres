@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cnjror4iisgug"]
+
+[ext_resource type="Texture2D" uid="uid://cqfc3o83v0ert" path="res://Assets/animatronics/Rena/Chocolate Bonnie/diffuse.jpg" id="1_ln1tw"]
+
+[resource]
+resource_name = "Chocolate_Bonnie_Body"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ln1tw")
+emission_enabled = true

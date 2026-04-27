@@ -8,6 +8,7 @@ signal door_state_changed(door_id: String, is_closed: bool)
 var _doors: Dictionary = {
 	"left": false,   # false = open
 	"right": false,
+	"window":false
 }
 
 # ------------------------------------
@@ -45,3 +46,7 @@ func is_door_open(door_id: String) -> bool:
 
 func get_all_states() -> Dictionary:
 	return _doors.duplicate()
+
+
+func is_window_open() -> bool:
+	return _doors.get("window", false)

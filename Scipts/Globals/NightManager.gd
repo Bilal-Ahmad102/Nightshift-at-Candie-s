@@ -47,6 +47,7 @@ func start_night(night: int) -> void:
 func end_night(success: bool) -> void:
 	if not is_night_active:
 		return
+
 	is_night_active = false
 	emit_signal("night_ended", current_night, success)
 	if success:

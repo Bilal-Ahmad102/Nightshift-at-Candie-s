@@ -2,6 +2,11 @@ extends Node3D
 
 signal jumpscare_triggered
 
+@export var cam_markers_root: Node   # parent node holding Marker3D children keyed by cam name
+
+@onready var _roam_timer: Timer = %RoamTimer
+@onready var watch_meter: ProgressBar = %watch_meter
+
 enum State { IDLE, IN_OFFICE, JUMPSCARING }
 
 # ── Gaze meter ──────────────────────────────────────────────
@@ -21,12 +26,11 @@ var current_state: State = State.IDLE
 var all_cams: Array[String] = [
 	"cam_2","cam_1","cam_6","cam_7","cam_8","cam_9"
 ]
+
 var current_cam: String = "cam_11"
 var cam_positions: Dictionary = {}
 var cam_watching: String 
-@export var cam_markers_root: Node   # parent node holding Marker3D children keyed by cam name
-@onready var _roam_timer: Timer = %RoamTimer
-@onready var watch_meter: ProgressBar = %watch_meter
+
 
 # ── Mask ─────────────────────────────────────────────────────
 var mask_on: bool = false
@@ -35,21 +39,44 @@ var mask_on: bool = false
 
 func _ready() -> void:
 	_build_cam_dict()
+	connect_signals()
+	create_meter()
+	set_process(false)
+
+func create_meter():
 	_style_watch_meter()
 	watch_meter.min_value = 0.0
 	watch_meter.max_value = 100.0
 	watch_meter.value     = 50.0
 	hide_meter()
 
-	_roam_timer.timeout.connect(_on_roam_timer)
+	watch_meter.hide()
+
+func connect_signals():
 	CamGlobal.cam_switched.connect(notify_watched)
 	NightManager.night_started.connect(_on_night_started)
-	watch_meter.hide()
-	set_process(false)
+	NightManager.night_ended.connect(_on_night_ended)
+	_roam_timer.timeout.connect(_on_roam_timer)
+
+
+
+func _on_night_ended(night: int, success: bool) -> void:
+	set_process(false)  # add this
+	reset_position()
 	
 func _on_night_started(night: int) -> void:
 	if NightManager.is_animatronic_active("Frednic"):
+		print("Frednic Active")
+		set_process(true)  # add this
 		_roam_timer.start(_roam_interval())
+
+func reset_position():
+	var start_cam = cam_positions[all_cams[0]]
+	if start_cam:
+		global_position = start_cam.global_position
+		global_rotation = start_cam.global_rotation
+	else:
+		push_error("NO start cam for freddy")
 
 func _build_cam_dict() -> void:
 	if not cam_markers_root:
@@ -122,7 +149,7 @@ func _move_to_random_cam() -> void:
 	print("Frednic moved to: ", current_cam)
 
 func _roam_interval() -> float:
-	return 5.0
+	return 10.0
 	# var ai_level = NightManager.get_ai_level("Frednic")
 	# return max(2.0, 8.0 - ai_level * 1.0)
 

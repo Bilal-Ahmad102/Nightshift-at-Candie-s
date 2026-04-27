@@ -19,12 +19,20 @@ var current_minute: int = 0
 var _timer: Timer
 var _seconds_per_minute: float = 0.0
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("end_night"):
+		current_hour = 5
+		_advance_hour()
+
 func _ready() -> void:
+	_create_timer()
+	NightManager.night_started.connect(start_night)
+
+func _create_timer():
 	_timer = Timer.new()
 	_timer.one_shot = false
 	_timer.timeout.connect(_on_minute_passed)
 	add_child(_timer)
-	NightManager.night_started.connect(start_night)
 
 func start_night(night: int) -> void:
 	current_night = night
@@ -53,9 +61,10 @@ func _advance_hour() -> void:
 		current_hour += 1
 
 	emit_signal("hour_changed", current_hour)
-
+	print("Current_hour: ",current_hour)
 	if current_hour == 6:
 		_timer.stop()
+		NightManager.end_night(true)
 		emit_signal("night_complete")
 
 func get_display_time() -> String:
