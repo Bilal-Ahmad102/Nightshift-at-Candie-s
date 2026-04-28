@@ -69,6 +69,7 @@
 [ext_resource type="AudioStream" uid="uid://b5h6hyu5mb046" path="res://Assets/Audio/Monologues/night_1_monologue.mp3" id="61_wh5hq"]
 [ext_resource type="AudioStream" uid="uid://cwlo8smxqk0v" path="res://Assets/Audio/soundtracks/hotel2.mp3" id="62_r3cnf"]
 [ext_resource type="AudioStream" uid="uid://2gecosghd6fv" path="res://Assets/Audio/Monologues/night_2_monologue.mp3" id="63_0almc"]
+[ext_resource type="Script" uid="uid://flkpuugwodo0" path="res://Scipts/debugger.gd" id="70_7shje"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_earqg"]
 
@@ -5356,6 +5357,7 @@ metadata/extras = {
 }
 
 [node name="MapCeiling" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead/MapBasics" unique_id=1154681044]
+visible = false
 mesh = SubResource("ArrayMesh_o3fcs")
 metadata/extras = {
 "vs": {}
@@ -5826,6 +5828,7 @@ shape = SubResource("BoxShape3D_l6pei")
 [node name="Blind" type="Node3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=2123083583]
 
 [node name="BlindCams" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead/Blind" unique_id=870727587]
+visible = false
 mesh = SubResource("ArrayMesh_pichx")
 
 [node name="BlindPlanes_Doors" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead/Blind" unique_id=1867764548]
@@ -6527,10 +6530,11 @@ transform = Transform3D(0.9999993, 0, -2.1316282e-14, 0, 0.9999993, 0, 2.1316282
 transform = Transform3D(2.45499, -0.0066666706, 0.0018450984, 0.0064921672, 2.4466596, 0.20208941, -0.0023876016, -0.20208375, 2.4466672, -0.5922962, -15.37259, -8.532038)
 
 [node name="Freddy" parent="animatronics" unique_id=165911997 node_paths=PackedStringArray("cam_markers_root") instance=ExtResource("58_8a25g")]
-transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 126.37204, 0.12593842, 159.69717)
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, -112.83848, 0.12593842, -10.082371)
 cam_markers_root = NodePath("../animatronic_positions/freddy_position")
 
 [node name="Rena" parent="animatronics" unique_id=833359854 node_paths=PackedStringArray("cam11_route", "window_route", "right_door_route") instance=ExtResource("61_u5e0s")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 96.92777, 0.12593842, 161.5405)
 cam11_route = NodePath("../animatronic_positions/rena_position/cam_11_poses")
 window_route = NodePath("../animatronic_positions/rena_position/window_path")
 right_door_route = NodePath("../animatronic_positions/rena_position/right_door_path")
@@ -6612,10 +6616,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -245.339, 0, 169.337)
 [node name="cam_11_poses" type="Node" parent="animatronics/animatronic_positions/rena_position" unique_id=357381922]
 
 [node name="cam_11" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/cam_11_poses" unique_id=5141206]
-transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 126.37204, 0.12593842, 159.69717)
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 132.46031, 0, 158.31055)
 
 [node name="cam_12" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/cam_11_poses" unique_id=1691452201]
-transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 64.62189, 0.12593842, 189.1893)
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 132.46031, 0, 158.31055)
 
 [node name="cam_13" type="Marker3D" parent="animatronics/animatronic_positions/rena_position/cam_11_poses" unique_id=250427492]
 transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 101.405624, 0.12593842, 164.52747)
@@ -6767,5 +6771,34 @@ font = ExtResource("60_348ac")
 font_size = 237
 
 [node name="clock_timer" type="Timer" parent="clock" unique_id=670197237]
+
+[node name="debugger" type="Control" parent="." unique_id=413559894 node_paths=PackedStringArray("dave_node", "frednic_node", "rena_node")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("70_7shje")
+dave_node = NodePath("../animatronics/Dave")
+frednic_node = NodePath("../animatronics/Freddy")
+rena_node = NodePath("../animatronics/Rena")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="debugger" unique_id=337989708]
+layout_mode = 0
+offset_right = 463.0
+offset_bottom = 650.0
+
+[node name="rena" type="Label" parent="debugger/HBoxContainer" unique_id=58516361]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="dave" type="Label" parent="debugger/HBoxContainer" unique_id=1674287949]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="fredenic" type="Label" parent="debugger/HBoxContainer" unique_id=957971076]
+unique_name_in_owner = true
+layout_mode = 2
 
 [editable path="animatronics/Dave"]

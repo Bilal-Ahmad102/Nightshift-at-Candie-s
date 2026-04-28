@@ -49,4 +49,7 @@ func get_all_states() -> Dictionary:
 
 
 func is_window_open() -> bool:
+	return  not _doors.get("window", false)
+	
+func is_window_closed() -> bool:
 	return _doors.get("window", false)

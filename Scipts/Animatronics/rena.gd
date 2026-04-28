@@ -5,6 +5,7 @@ extends Node3D
 @export var right_door_route : Node  # CAM_11 → CAM_02 → CAM_03 → CAM_04
 
 @onready var _move_timer: Timer = %move_timer
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 enum State { IDLE, ESCALATING, MOVING, ATTACKING, RETURNING }
 
@@ -51,6 +52,11 @@ func _fill_cam_positions() -> void:
 		cam_positions[ROUTE_RIGHT_DOOR[i]] = door_markers[i]
 
 func move_to_cam(cam_id: String) -> void:
+	match cam_id:
+		"cam11_state1": anim_player.play("pose_1")
+		"cam11_state2": anim_player.play("pose_2")
+		"cam11_state3": anim_player.play("pose_3")
+
 	var marker = cam_positions.get(cam_id)
 	if marker:
 		global_position = marker.global_position

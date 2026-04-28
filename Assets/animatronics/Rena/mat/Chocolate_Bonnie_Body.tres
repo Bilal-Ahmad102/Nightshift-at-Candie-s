@@ -5,5 +5,6 @@
 [resource]
 resource_name = "Chocolate_Bonnie_Body"
 vertex_color_use_as_albedo = true
+albedo_color = Color(1.006071, 0.6437919, 0.5169821, 1)
 albedo_texture = ExtResource("1_ln1tw")
 emission_enabled = true
