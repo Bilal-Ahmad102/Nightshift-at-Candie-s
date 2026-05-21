@@ -67,8 +67,10 @@
 [ext_resource type="FontFile" uid="uid://bdkitcedm3aqw" path="res://Assets/Digital Dismay.otf" id="60_348ac"]
 [ext_resource type="PackedScene" uid="uid://ir5e7ldp02vr" path="res://Scenes/Animatronics/rena.tscn" id="61_u5e0s"]
 [ext_resource type="AudioStream" uid="uid://b5h6hyu5mb046" path="res://Assets/Audio/Monologues/night_1_monologue.mp3" id="61_wh5hq"]
+[ext_resource type="PackedScene" uid="uid://kg57au6urhp5" path="res://Scenes/Animatronics/Ambassador.tscn" id="62_ln8i8"]
 [ext_resource type="AudioStream" uid="uid://cwlo8smxqk0v" path="res://Assets/Audio/soundtracks/hotel2.mp3" id="62_r3cnf"]
 [ext_resource type="AudioStream" uid="uid://2gecosghd6fv" path="res://Assets/Audio/Monologues/night_2_monologue.mp3" id="63_0almc"]
+[ext_resource type="PackedScene" uid="uid://2ys6kurpwkb7" path="res://Scenes/Animatronics/the_real_fredbear.tscn" id="63_2gtna"]
 [ext_resource type="Script" uid="uid://flkpuugwodo0" path="res://Scipts/debugger.gd" id="70_7shje"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_earqg"]
@@ -6539,6 +6541,14 @@ cam11_route = NodePath("../animatronic_positions/rena_position/cam_11_poses")
 window_route = NodePath("../animatronic_positions/rena_position/window_path")
 right_door_route = NodePath("../animatronic_positions/rena_position/right_door_path")
 
+[node name="Ambassador" parent="animatronics" unique_id=447275397 node_paths=PackedStringArray("cam_markers_root") instance=ExtResource("62_ln8i8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.58496, 0, -373.63068)
+cam_markers_root = NodePath("../animatronic_positions/ambassador_position")
+
+[node name="TheRealFredbear" parent="animatronics" unique_id=664428780 node_paths=PackedStringArray("movement_positions") instance=ExtResource("63_2gtna")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -189.98045)
+movement_positions = NodePath("../animatronic_positions/TheRealFredbear_positions")
+
 [node name="animatronic_positions" type="Node" parent="animatronics" unique_id=1221736323]
 
 [node name="dave_position" type="Node" parent="animatronics/animatronic_positions" unique_id=1042529195]
@@ -6658,6 +6668,61 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.832092, -4.9454994, 218.5
 [node name="cam_6" type="Marker3D" parent="animatronics/animatronic_positions/freddy_position" unique_id=1947096909]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -305.0928, -0.87390137, 72.34389)
 
+[node name="ambassador_position" type="Node" parent="animatronics/animatronic_positions" unique_id=945804594]
+
+[node name="cam_1" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=784444995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.49152, 9.322042, 449.0996)
+
+[node name="cam_2" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=300651637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.832092, -4.9454994, 218.55048)
+
+[node name="cam_3" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=989705764]
+transform = Transform3D(-0.061187927, 0, -0.99812627, 0, 1, 0, 0.99812627, 0, -0.061187927, -148.97475, -0.67178154, 266.01465)
+
+[node name="cam_4" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=609301469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.031, 0.1701355, 257.37488)
+
+[node name="cam_5" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=972723835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169.39093, 0.17014313, 148.91)
+
+[node name="cam_6" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=837887066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -305.0928, -0.87390137, 72.34389)
+
+[node name="cam_7" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=185693791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -191.11731, 6.7581253, 46.200787)
+
+[node name="cam_8" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=648272343]
+transform = Transform3D(-0.28804588, 0, -0.9576166, 0, 1, 0, 0.9576166, 0, -0.28804588, -109.28439, -1.4934921, -6.9660225)
+
+[node name="cam_9" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=1138961487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0254517, 10.41647, -40.12684)
+
+[node name="cam_11" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=1024946181]
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 132.46031, 0, 158.31055)
+
+[node name="cam_12" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=423267646]
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 132.46031, 0, 158.31055)
+
+[node name="cam_13" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=1335818758]
+transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, 101.405624, 0.12593842, 164.52747)
+
+[node name="TheRealFredbear_positions" type="Node" parent="animatronics/animatronic_positions" unique_id=715334045]
+
+[node name="Marker3D" type="Marker3D" parent="animatronics/animatronic_positions/TheRealFredbear_positions" unique_id=1456323674]
+transform = Transform3D(-0.0002374614, 0.068014875, -0.9976843, -0.003482568, 0.9976782, 0.068015285, 0.9999939, 0.0034906545, -4.365548e-08, 0, 0, -200)
+
+[node name="Marker3D5" type="Marker3D" parent="animatronics/animatronic_positions/TheRealFredbear_positions" unique_id=553378382]
+transform = Transform3D(-0.0002374614, 0.068014875, -0.9976843, -0.003482568, 0.9976782, 0.068015285, 0.9999939, 0.0034906545, -4.365548e-08, -331.95663, -0.94600296, 109.952515)
+
+[node name="Marker3D2" type="Marker3D" parent="animatronics/animatronic_positions/TheRealFredbear_positions" unique_id=189868187]
+transform = Transform3D(-0.8666515, 0.068014875, -0.49425635, 0.05734835, 0.9976782, 0.036733836, 0.4956072, 0.0034906527, -0.8685398, -316.02902, -2.1118813, 132.83423)
+
+[node name="Marker3D3" type="Marker3D" parent="animatronics/animatronic_positions/TheRealFredbear_positions" unique_id=1306979389]
+transform = Transform3D(-0.9879662, 0.06801488, 0.13891359, 0.06783909, 0.9976782, -0.0060053947, -0.13899957, 0.0034906575, -0.99028635, -316.7173, -2.1883087, 168.08609)
+
+[node name="Marker3D4" type="Marker3D" parent="animatronics/animatronic_positions/TheRealFredbear_positions" unique_id=1280496338]
+transform = Transform3D(-0.9879662, 0.06801488, 0.13891359, 0.06783909, 0.9976782, -0.0060053947, -0.13899957, 0.0034906575, -0.99028635, -331.25928, -1.188015, 165.53429)
+
 [node name="night_board" type="Node" parent="." unique_id=1551676200]
 
 [node name="Night" type="ColorRect" parent="night_board" unique_id=1810257315]
@@ -6773,6 +6838,7 @@ font_size = 237
 [node name="clock_timer" type="Timer" parent="clock" unique_id=670197237]
 
 [node name="debugger" type="Control" parent="." unique_id=413559894 node_paths=PackedStringArray("dave_node", "frednic_node", "rena_node")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

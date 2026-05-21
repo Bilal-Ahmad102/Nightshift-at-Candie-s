@@ -2,6 +2,7 @@ extends Control
 
 @onready var cam_btns: Control = $cam_btns
 @onready var cam_noise: Control = $Cam_Noise
+@onready var cam_dark_overlay: ColorRect = $Cam_Dark  # add this ColorRect to your scene
 
 var cam_error_delay_min: int = 1
 var cam_error_delay_max: int = 5
@@ -34,15 +35,21 @@ func _ready() -> void:
 		blip.color.a = 0.0
 		light_blips.append(blip)
 	_start_blip(0)
-	CamGlobal.cam_switched.connect(_on_cam_switched)
+	cam_dark_overlay.visible = false
+	connect_signals()
 	cam_noise.visible = false
 
+func connect_signals():
+	CamGlobal.cam_switched.connect(_on_cam_switched)
+	CamGlobal.night3_cams_updated.connect(_on_night3_cams_updated)
+	CamGlobal.add_cam_error.connect(_add_dead_error)
 func _on_cam_switched(prev_cam: int, next_cam: int) -> void:
 	if prev_cam > 0 and prev_cam - 1 < light_blips.size():
 		light_blips[prev_cam - 1].color.a = 0.0
 	current_cam = next_cam
 	_start_blip(next_cam - 1)
 	_update_noise_visibility()
+	_update_dark_overlay()  # add this line
 
 func _start_blip(idx: int) -> void:
 	if idx < 0 or idx >= light_blips.size():
@@ -143,12 +150,25 @@ func make_random_error() -> void:
 	for i in range(count):
 		_add_error(available[i])
 
+func _add_dead_error(cam_idx: int) -> void:
+	if cam_idx in error_cams:
+		return
+	error_cams.append(cam_idx)
+	error_timers[cam_idx] = 0.0
+	get_node("cam_btns/cam_" + str(cam_idx) + "/ColorRect/error_anim").show()
+	get_node("cam_btns/cam_" + str(cam_idx) + "/ColorRect/error_anim/dead_error").show()
+	get_node("cam_btns/cam_" + str(cam_idx) + "/ColorRect/error_anim/AnimatedSprite2D").hide()
+	get_node("cam_btns/cam_" + str(cam_idx) + "/ColorRect/error_anim/ProgressBar2").hide()
+
+	_update_noise_visibility()
+
 func _add_error(cam_idx: int) -> void:
 	if cam_idx in error_cams:
 		return
 	error_cams.append(cam_idx)
 	error_timers[cam_idx] = 0.0
 	get_node("cam_btns/cam_" + str(cam_idx) + "/ColorRect/error_anim").show()
+
 	_update_noise_visibility()
 
 func _clear_error(cam_idx: int) -> void:
@@ -170,3 +190,19 @@ func solve_cam_error(delta: float) -> void:
 			_clear_error(current_cam)
 	else:
 		progress_bar.value = max(0.0, progress_bar.value - 30.0 * delta)
+
+
+
+
+func _on_night3_cams_updated(cams: Array) -> void:
+	_update_dark_overlay()
+
+
+func _update_dark_overlay() -> void:
+	# show dark overlay if current cam is bricked by Ambassador
+	var is_bricked: bool = current_cam in get_tree().get_first_node_in_group("Ambassador").bricked_cams
+	cam_dark_overlay.visible = is_bricked
+	
+	# hide noise on bricked cams — dark is more fitting than static
+	if is_bricked:
+		cam_noise.visible = false

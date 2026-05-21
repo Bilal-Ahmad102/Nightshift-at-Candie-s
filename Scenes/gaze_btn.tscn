@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://co1w5awowukk7"]
+
+[ext_resource type="Texture2D" uid="uid://b2vbdnodxgwes" path="res://addons/kenney_input_prompts/Keyboard & Mouse/Default/keyboard_space_outline.png" id="1_1mvpf"]
+[ext_resource type="Script" uid="uid://cbrj8m7nst6ik" path="res://Scipts/gaze_btn.gd" id="1_5p0qg"]
+
+[node name="Gaze_btn" type="Control" unique_id=1023233352]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5p0qg")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1766562519]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -13.5
+offset_right = 53.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false
+
+[node name="space_btn_hint" type="TextureRect" parent="." unique_id=768364081]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -69.0
+offset_right = 32.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1mvpf")

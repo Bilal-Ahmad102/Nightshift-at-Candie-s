@@ -26,6 +26,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_set_interface_open(!interface_open)
 		if interface_open:
 			cams.activate_camera_monitor()
+			CamGlobal.cam_interface_up.emit()
 		else:
 			CamGlobal.cam_interface_back.emit()
 			

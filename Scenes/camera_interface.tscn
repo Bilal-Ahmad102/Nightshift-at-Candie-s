@@ -58,6 +58,15 @@ texture = ExtResource("1_d58tn")
 visible = false
 layout_mode = 1
 
+[node name="Cam_Dark" type="ColorRect" parent="." unique_id=580798751]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0142752165, 0.014275219, 0.014275211, 1)
+
 [node name="map_outline" type="TextureRect" parent="." unique_id=851360109]
 layout_mode = 1
 anchors_preset = 3

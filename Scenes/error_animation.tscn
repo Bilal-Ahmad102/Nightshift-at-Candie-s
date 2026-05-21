@@ -131,6 +131,9 @@ animations = [{
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svkth"]
 bg_color = Color(0.15675357, 0.33576977, 0.16810694, 1)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_djff0"]
+load_path = "res://.godot/imported/Skull.png-594bffe512948325bf9202bafcf5e035.ctex"
+
 [node name="error_anim" type="Control" unique_id=449469996]
 layout_mode = 3
 anchors_preset = 0
@@ -159,3 +162,13 @@ grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxEmpty_djff0")
 theme_override_styles/fill = SubResource("StyleBoxFlat_svkth")
 show_percentage = false
+
+[node name="dead_error" type="TextureRect" parent="." unique_id=653499260]
+visible = false
+layout_mode = 0
+offset_left = -22.0
+offset_top = -21.0
+offset_right = 18.0
+offset_bottom = 19.0
+texture = SubResource("CompressedTexture2D_djff0")
+expand_mode = 1

@@ -33,6 +33,10 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/godot_3d_cursor/plugin.cfg")
 
+[global_group]
+
+Ambassador=""
+
 [input]
 
 solve_error={
