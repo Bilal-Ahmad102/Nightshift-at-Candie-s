@@ -3,7 +3,7 @@ extends Control
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var space_btn_hint: TextureRect = $space_btn_hint
 
-const FILL_RATE := 40.0
+const FILL_RATE := 80.0
 const DECAY_RATE := 15.0
 const MAX_VALUE := 100.0
 

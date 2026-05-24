@@ -1,0 +1,128 @@
+{
+  "_comment": "Edit any value here and reload the game. No script changes needed. Keys starting with '_comment' are documentation only — the game ignores them.",
+
+  "Frednic": {
+	"_comment": [
+	  "Frednic uses a gaze meter that drains when ignored and fills when watched.",
+	  "  roam_interval       — seconds between teleports to a new cam while idle",
+	  "  meter_drain_rate    — meter falls this much per second when NOT watched",
+	  "  meter_fill_rate     — meter rises this much per second when watched",
+	  "  meter_min/max       — bounds of the meter (usually 0.0 and 1.0)",
+	  "  meter_start         — starting value; 0.5 is the safe middle",
+	  "  danger_low          — meter at/below this → he enters the office (player ignored him)",
+	  "  danger_high         — meter at/above this → he enters the office (player stared too long)",
+      "  start_cam           — cam he resets to after being repelled"
+	],
+	"roam_interval": 10.0,
+	"meter_drain_rate": 0.04,
+	"meter_fill_rate": 0.05,
+	"meter_min": 0.0,
+	"meter_max": 1.0,
+	"meter_start": 0.5,
+	"danger_low": 0.15,
+	"danger_high": 0.85,
+	"start_cam": "cam_1"
+  },
+
+  "Bronnie": {
+	"_comment": [
+	  "Bronnie walks a fixed left/right door route and forces the door open at the end.",
+	  "  move_interval         — flat seconds between route steps (used when AI scaling is off)",
+	  "  move_interval_base    — base seconds when AI scaling is on",
+	  "  move_interval_min     — lower clamp on the scaled interval",
+	  "  ai_level_multiplier   — seconds shaved off per AI level: final = base - ai_level * mult",
+	  "  return_delay          — seconds before turning around after the mask is equipped",
+      "  start_cam             — cam she starts and resets to"
+	],
+	"move_interval": 3.0,
+	"move_interval_base": 8.0,
+	"move_interval_min": 2.0,
+	"ai_level_multiplier": 1.2,
+	"return_delay": 3.0,
+	"start_cam": "CAM_09"
+  },
+
+  "Dave": {
+	"_comment": [
+	  "Dave picks one of three routes at the start of each run and is blocked by closed doors.",
+	  "  move_interval / base / min / ai_level_multiplier — same scaling rules as Bronnie",
+	  "  return_delay         — seconds he pauses at the door before retreating when blocked",
+	  "  start_cam            — cam he starts and resets to",
+	  "  route_chances        — probabilities for each route, must sum to 1.0",
+	  "    left_door          — via CAM_05",
+	  "    left_door_alt      — via CAM_09",
+      "    right_door         — right side approach"
+	],
+	"move_interval": 3.0,
+	"move_interval_base": 8.0,
+	"move_interval_min": 2.0,
+	"ai_level_multiplier": 1.2,
+	"return_delay": 3.0,
+	"start_cam": "CAM_01",
+	"route_chances": {
+	  "left_door": 0.33,
+	  "left_door_alt": 0.33,
+	  "right_door": 0.34
+	}
+  },
+
+  "Rena": {
+	"_comment": [
+	  "Rena escalates through three CAM_11 poses, then picks the window or right-door route.",
+	  "  move_interval / base / min / ai_level_multiplier — same scaling rules as the others",
+	  "  return_delay         — seconds before she heads back to CAM_11 after being blocked",
+	  "  start_cam            — cam she starts and resets to",
+      "  window_route_chance  — probability of the window route; right-door route is the remainder"
+	],
+	"move_interval": 10.0,
+	"move_interval_base": 8.0,
+	"move_interval_min": 2.0,
+	"ai_level_multiplier": 1.2,
+	"return_delay": 3.0,
+	"start_cam": "CAM_11",
+	"window_route_chance": 0.5
+  },
+
+  "Ambassador": {
+	"_comment": [
+	  "Ambassador occupies multiple cams at once and jumpscares if the player lowers the monitor while she is visible too many times.",
+	  "  move_time_min/max     — random seconds she stays on a single cam before moving",
+	  "  max_spawn_count       — max simultaneous cams she can occupy (actual = randi 1..this)",
+      "  strikes_to_jumpscare  — strikes below this brick the current cam; reaching this triggers jumpscare"
+	],
+	"move_time_min": 5.0,
+	"move_time_max": 8.0,
+	"max_spawn_count": 3,
+	"strikes_to_jumpscare": 3
+  },
+
+  "TheRealFredbear": {
+	"_comment": [
+	  "Fredbear plays a trumpet warning, then walks into the office. The player must hit the gaze button enough times before the deadline.",
+	  "  warning_interval                  — flat seconds between trumpet warnings (used when AI scaling is off)",
+	  "  warning_interval_base/min         — base and lower clamp when AI scaling is on",
+	  "  warning_interval_ai_multiplier    — seconds shaved off per AI level for warning interval",
+	  "  warning_gaze_time                 — seconds after the trumpet before he enters the office",
+	  "  gaze_deadline                     — flat seconds to complete the gaze button (used when AI scaling is off)",
+	  "  gaze_deadline_base/min            — base and lower clamp when AI scaling is on",
+	  "  gaze_deadline_ai_multiplier       — seconds shaved off per AI level for gaze deadline",
+	  "  gaze_required_base                — base button presses needed to repel him",
+	  "  gaze_required_per_ai_level        — extra presses per AI level; total = base + ai_level * this",
+	  "  marker_step_time                  — seconds at each forward marker as he walks into the office",
+      "  walk_back_step_time               — seconds at each marker as he retreats after being repelled"
+	],
+	"warning_interval": 2.0,
+	"warning_interval_base": 45.0,
+	"warning_interval_min": 5.0,
+	"warning_interval_ai_multiplier": 3.0,
+	"warning_gaze_time": 3.0,
+	"gaze_deadline": 10.0,
+	"gaze_deadline_base": 10.0,
+	"gaze_deadline_min": 4.0,
+	"gaze_deadline_ai_multiplier": 0.6,
+	"gaze_required_base": 8,
+	"gaze_required_per_ai_level": 1,
+	"marker_step_time": 2.0,
+	"walk_back_step_time": 0.3
+  }
+}

@@ -1,5 +1,9 @@
 extends Node3D
 
+signal jumpscare_requested(animatronic_id: String)
+
+const ANIMATRONIC_ID := "TheRealFredbear"
+
 @export var movement_positions: Node 
 @onready var _gaze_timer: Timer = %gaze_timer
 @onready var _warning_timer: Timer = %warning_timer
@@ -47,12 +51,12 @@ func _trigger_jumpscare() -> void:
 	gaze_btn.visible = false
 	_gaze_timer.stop()
 	_marker_timer.stop()
-	print("TheRealFredbear jumpscare!")
+	jumpscare_requested.emit(ANIMATRONIC_ID)
 	
 	
 func _on_night_started(night: int) -> void:
-	#if NightManager.is_animatronic_active("TheRealFredbear"):
-	_schedule_next_warning()
+	if NightManager.is_animatronic_active("TheRealFredbear"):
+		_schedule_next_warning()
 
 func _on_night_ended(night: int, success: bool) -> void:
 	_reset()
@@ -151,16 +155,12 @@ func _reset() -> void:
 	_marker_timer.stop()
 
 func get_warning_interval() -> float:
-	var ai_level := NightManager.get_ai_level("TheRealFredbear")
-	return 2
-	
-	#return max(5.0, 45.0 - (ai_level * 3.0))
+	return AnimatronicConfig.get_value("TheRealFredbear", "warning_interval", 2.0)
 
 func get_gaze_deadline() -> float:
-	var ai_level := NightManager.get_ai_level("TheRealFredbear")
-	return 10
-	return max(4.0, 10.0 - (ai_level * 0.6))
+	return AnimatronicConfig.get_value("TheRealFredbear", "gaze_deadline", 10.0)
 
 func _get_gaze_required() -> int:
-	var ai_level := NightManager.get_ai_level("TheRealFredbear")
-	return 8 + ai_level
+	var base = AnimatronicConfig.get_value("TheRealFredbear", "gaze_required_base", 8)
+	var per_lvl = AnimatronicConfig.get_value("TheRealFredbear", "gaze_required_per_ai_level", 1)
+	return base + NightManager.get_ai_level("TheRealFredbear") * per_lvl

@@ -1,5 +1,10 @@
 extends Node3D
 
+
+signal jumpscare_requested(animatronic_id: String)
+
+const ANIMATRONIC_ID := "Bronnie"
+
 @export var left_door_route : Node
 @export var right_door_route : Node
 
@@ -53,10 +58,12 @@ func move_to_cam(cam_id: String) -> void:
 		current_cam = cam_id
 
 func get_move_interval() -> float:
-	return 3.0
-	var base = 8.0
+	var base = AnimatronicConfig.get_value("Bronnie", "move_interval_base", 8.0)
+	var min_v = AnimatronicConfig.get_value("Bronnie", "move_interval_min", 2.0)
+	var mult = AnimatronicConfig.get_value("Bronnie", "ai_level_multiplier", 1.2)
 	var ai_level = NightManager.get_ai_level("Bronnie")
-	return max(2.0, base - (ai_level * 1.2))
+	return max(min_v, base - (ai_level * mult))
+
 
 func begin_route() -> void:
 	var is_right: bool = randf() < 0.5
@@ -97,7 +104,7 @@ func on_mask_equipped() -> void:
 		return
 	bronnie_left.emit()
 	current_state = State.RETURNING
-	_move_timer.start(3.0)
+	_move_timer.start(AnimatronicConfig.get_value("Bronnie", "return_delay", 3.0))
 
 func _reset_position() -> void:
 	move_to_cam("CAM_09")
@@ -109,5 +116,4 @@ func _return_to_start() -> void:
 	_move_timer.start(get_move_interval())
 
 func _trigger_jumpscare() -> void:
-	print("Bronnie jumpscare!")
-	# TODO: signal to GameManager
+	jumpscare_requested.emit(ANIMATRONIC_ID)

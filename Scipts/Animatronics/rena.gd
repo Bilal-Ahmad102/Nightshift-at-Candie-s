@@ -1,5 +1,9 @@
 extends Node3D
 
+signal jumpscare_requested(animatronic_id: String)
+
+const ANIMATRONIC_ID := "Rena"
+
 @export var cam11_route : Node       # Marker3D children: state1, state2, state3
 @export var window_route : Node      # CAM_11 → CAM_05 → window
 @export var right_door_route : Node  # CAM_11 → CAM_02 → CAM_03 → CAM_04
@@ -64,11 +68,12 @@ func move_to_cam(cam_id: String) -> void:
 		current_cam = cam_id
 
 func get_move_interval() -> float:
-	return 10.0
-	# TODO: replace with AI level logic
-	#var base = 8.0
-	#var ai_level = NightManager.get_ai_level("Rena")
-	#return max(2.0, base - (ai_level * 1.2))
+	var base = AnimatronicConfig.get_value("Rena", "move_interval_base", 8.0)
+	var min_v = AnimatronicConfig.get_value("Rena", "move_interval_min", 2.0)
+	var mult = AnimatronicConfig.get_value("Rena", "ai_level_multiplier", 1.2)
+	var ai_level = NightManager.get_ai_level("Rena")
+	return max(min_v, base - (ai_level * mult))
+	# Or, for a flat value: return AnimatronicConfig.get_value("Bronnie", "move_interval", 3.0)
 
 func _on_move_timer() -> void:
 	match current_state:
@@ -91,11 +96,12 @@ func _escalate_cam11() -> void:
 		_begin_route()
 
 func _begin_route() -> void:
-	var roll = randf()
-	if roll < 0.5:
+	var window_chance = AnimatronicConfig.get_value("Rena", "window_route_chance", 0.5)
+	if randf() < window_chance:
 		current_route = ROUTE_WINDOW
 	else:
 		current_route = ROUTE_RIGHT_DOOR
+
 
 	route_index = 0
 	current_state = State.MOVING
@@ -138,5 +144,4 @@ func _return_to_cam11() -> void:
 	_move_timer.start(get_move_interval())
 
 func _trigger_jumpscare() -> void:
-	print("Rena jumpscare!")
-	# TODO: signal to GameManager
+	jumpscare_requested.emit(ANIMATRONIC_ID)

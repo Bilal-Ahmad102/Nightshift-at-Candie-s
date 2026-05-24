@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://feajjepdk1y4"
+path="res://.godot/imported/Crumbling Dreams v3.wav-3a8b9f40e5af07f4210b494ff5a0f05a.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Crumbling Dreams v3.wav"
+dest_files=["res://.godot/imported/Crumbling Dreams v3.wav-3a8b9f40e5af07f4210b494ff5a0f05a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

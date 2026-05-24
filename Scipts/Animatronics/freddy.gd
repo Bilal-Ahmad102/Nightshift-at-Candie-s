@@ -1,6 +1,9 @@
 extends Node3D
 
-signal jumpscare_triggered
+
+signal jumpscare_requested(animatronic_id: String)
+
+const ANIMATRONIC_ID := "Frednic"
 
 @export var cam_markers_root: Node   # parent node holding Marker3D children keyed by cam name
 
@@ -27,7 +30,7 @@ var all_cams: Array[String] = [
 	"cam_2","cam_1","cam_6","cam_7","cam_8","cam_9"
 ]
 
-var current_cam: String = "cam_11"
+var current_cam: String = "cam_8"
 var cam_positions: Dictionary = {}
 var cam_watching: String 
 
@@ -38,10 +41,20 @@ var mask_on: bool = false
 # ─────────────────────────────────────────────────────────────
 
 func _ready() -> void:
+	# Load tunables from the central config
+	meter_drain_rate = AnimatronicConfig.get_value("Frednic", "meter_drain_rate", 0.04)
+	meter_fill_rate  = AnimatronicConfig.get_value("Frednic", "meter_fill_rate", 0.05)
+	meter_min        = AnimatronicConfig.get_value("Frednic", "meter_min", 0.0)
+	meter_max        = AnimatronicConfig.get_value("Frednic", "meter_max", 1.0)
+	danger_low       = AnimatronicConfig.get_value("Frednic", "danger_low", 0.15)
+	danger_high      = AnimatronicConfig.get_value("Frednic", "danger_high", 0.85)
+	meter            = AnimatronicConfig.get_value("Frednic", "meter_start", 0.5)
+
 	_build_cam_dict()
 	connect_signals()
 	create_meter()
 	set_process(false)
+
 
 func create_meter():
 	_style_watch_meter()
@@ -65,10 +78,9 @@ func _on_night_ended(night: int, success: bool) -> void:
 	reset_position()
 	
 func _on_night_started(night: int) -> void:
-	if NightManager.is_animatronic_active("Frednic"):
-		print("Frednic Active")
-		set_process(true)  # add this
-		_roam_timer.start(_roam_interval())
+	#if NightManager.is_animatronic_active("Frednic"):
+	set_process(true)  
+	_roam_timer.start(_roam_interval())
 
 func reset_position():
 	var start_cam = cam_positions[all_cams[0]]
@@ -90,6 +102,8 @@ func _build_cam_dict() -> void:
 func _process(delta: float) -> void:
 	if current_state != State.IDLE:
 		return
+	
+	$Label.text = str(current_cam) + " : "+ str(cam_watching)
 
 	# Update meter
 	if is_being_watched:
@@ -124,6 +138,7 @@ func notify_watched(prev_id:int, current_id:int) -> void:
 	cam_watching = "cam_" + str(current_id)
 	is_being_watched = (cam_watching == current_cam)
 	show_meter()
+	
 func _check_being_watched():
 	if !cam_watching:return
 	is_being_watched = (cam_watching == current_cam)
@@ -149,9 +164,7 @@ func _move_to_random_cam() -> void:
 	print("Frednic moved to: ", current_cam)
 
 func _roam_interval() -> float:
-	return 10.0
-	# var ai_level = NightManager.get_ai_level("Frednic")
-	# return max(2.0, 8.0 - ai_level * 1.0)
+	return AnimatronicConfig.get_value("Frednic", "roam_interval", 10.0)
 
 # ─────────────────────────────────────────────────────────────
 # Office
@@ -160,6 +173,7 @@ func _enter_office() -> void:
 	current_state = State.IN_OFFICE
 	is_being_watched = false
 	print("Frednic entered the office!")
+	_trigger_jumpscare()
 	# TODO: move to office position / play animation
 
 func notify_mask_put_on() -> void:
@@ -187,9 +201,7 @@ func _leave_office() -> void:
 # ─────────────────────────────────────────────────────────────
 func _trigger_jumpscare() -> void:
 	current_state = State.JUMPSCARING
-	print("Frednic jumpscare!")
-	emit_signal("jumpscare_triggered")
-	
+	jumpscare_requested.emit(ANIMATRONIC_ID)
 
 # ── Visibility ───────────────────────────────────────────────
 func show_meter() -> void:

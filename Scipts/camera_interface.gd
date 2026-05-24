@@ -68,6 +68,7 @@ func _update_noise_visibility() -> void:
 	cam_noise.visible = current_cam in error_cams
 
 func _process(delta: float) -> void:
+	return
 	# gate everything behind Dave active + visible
 	if not NightManager.is_animatronic_active("Dave") or not self.visible:
 		return

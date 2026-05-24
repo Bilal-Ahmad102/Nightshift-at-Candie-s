@@ -1,5 +1,8 @@
 extends Node3D
 
+signal jumpscare_requested(animatronic_id: String)
+
+const ANIMATRONIC_ID := "Ambassador"
 
 @export var cam_markers_root: Node   # parent node holding Marker3D children keyed by cam name
 
@@ -22,9 +25,8 @@ var _cam_timers: Dictionary = {}
 const ALL_CAMS: Array[int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
 
 func _ready() -> void:
-	CamGlobal.cam_switched.connect(_on_cam_switched)
-	CamGlobal.cam_interface_up.connect(_on_monitor_opened)
-	CamGlobal.cam_interface_back.connect(_on_monitor_closed)
+	move_time_min = AnimatronicConfig.get_value("Ambassador", "move_time_min", 5.0)
+	move_time_max = AnimatronicConfig.get_value("Ambassador", "move_time_max", 8.0)
 	NightManager.night_started.connect(_on_night_started)
 	NightManager.night_ended.connect(_on_night_ended)
 
@@ -35,25 +37,31 @@ func _on_night_ended(night: int, success: bool) -> void:
 	
 func _on_night_started(night: int) -> void:
 	if NightManager.is_animatronic_active("Ambassador"):
-		pass
-	activate()  # add this
-	print("amba Activated")
-
+		activate()  
 
 func activate() -> void:
+
+	CamGlobal.cam_switched.connect(_on_cam_switched)
+	CamGlobal.cam_interface_up.connect(_on_monitor_opened)
+	CamGlobal.cam_interface_back.connect(_on_monitor_closed)
+
 	_is_active = true
 	occupied_cams.clear()
 	_cam_timers.clear()
 	self.show()
 
 func deactivate() -> void:
+
+	CamGlobal.cam_switched.disconnect(_on_cam_switched)
+	CamGlobal.cam_interface_up.disconnect(_on_monitor_opened)
+	CamGlobal.cam_interface_back.disconnect(_on_monitor_closed)
+
 	_is_active = false
 	occupied_cams.clear()
 	_cam_timers.clear()
 	self.hide()
 
 func _process(delta: float) -> void:
-	$Label.text = str(bricked_cams)
 	if not _is_active:
 		return
 	_tick_cam_timers(delta)
@@ -101,12 +109,14 @@ func _move_from_cam(from_cam: int) -> void:
 	_notify_ui()
 
 func _spawn_on_random_cams() -> void:
-
+	var max_spawn = AnimatronicConfig.get_value("Ambassador", "max_spawn_count", 3)
 	var available := ALL_CAMS.filter(func(c): return c not in bricked_cams)
 	if available.is_empty():
 		return
+
+	var count: int = randi_range(1, min(max_spawn, available.size()))
+
 	available.shuffle()
-	var count: int = randi_range(1, min(3, available.size()))
 	occupied_cams.clear()
 	_cam_timers.clear()
 	for i in range(count):
@@ -143,12 +153,12 @@ func _move_model_to_cam(cam_idx: int) -> void:
 
 # --- strike system ---
 func _handle_strike() -> void:
-	strikes += 1
-	if strikes <= 2:
+	var max_strikes = AnimatronicConfig.get_value("Ambassador", "strikes_to_jumpscare", 3)
+	if strikes >= max_strikes:
+		jumpscare_requested.emit(ANIMATRONIC_ID)
+	elif strikes < max_strikes:
 		_brick_cam(CamGlobal.get_current_open_cam())
-	elif strikes >= 3:
-		#NightManager.trigger_jumpscare("Night3")
-		pass
+
 func _brick_cam(cam: int) -> void:
 	
 	if cam in bricked_cams:

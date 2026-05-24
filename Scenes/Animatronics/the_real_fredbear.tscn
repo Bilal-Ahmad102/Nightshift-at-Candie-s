@@ -7,12 +7,14 @@
 [ext_resource type="Material" uid="uid://bpajr0nwyaaf1" path="res://Assets/animatronics/freddy/mat/FF_endoTXT.tres" id="4_hjxuj"]
 [ext_resource type="AudioStream" uid="uid://cew8uf3w6u8bb" path="res://Assets/Audio/realfreddy_warning.mp3" id="6_qjqp4"]
 [ext_resource type="PackedScene" uid="uid://co1w5awowukk7" path="res://Scenes/gaze_btn.tscn" id="7_hjxuj"]
+[ext_resource type="Texture2D" uid="uid://b6x70tvrbdrig" path="res://Assets/animatronics/Real_fredbear/fredbear.png" id="8_p81w0"]
 
 [node name="TheRealFredbear" type="Node3D" unique_id=664428780]
 script = ExtResource("1_ixy24")
 
 [node name="freddy" parent="." unique_id=1672416089 instance=ExtResource("1_j86hn")]
 transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, 0, 0, 0)
+visible = false
 
 [node name="Skeleton3D" parent="freddy" index="0" unique_id=1369240355]
 bones/0/position = Vector3(-0.10629157, 7.6096673, -0.32118097)
@@ -60,5 +62,11 @@ unique_name_in_owner = true
 stream = ExtResource("6_qjqp4")
 
 [node name="Gaze_btn" parent="." unique_id=1023233352 instance=ExtResource("7_hjxuj")]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2131864835]
+transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0, 28.012478, 0)
+billboard = 2
+shaded = true
+texture = ExtResource("8_p81w0")
 
 [editable path="freddy"]

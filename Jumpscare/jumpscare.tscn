@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://dc60polf4cnia"]
+
+[ext_resource type="Script" uid="uid://dq31bsbd8fi5i" path="res://Jumpscare/jumpscare.gd" id="1_dvjs"]
+[ext_resource type="Texture2D" uid="uid://d1ocgwubg23ol" path="res://Jumpscare/animatronic_image/kamen_rider.png" id="2_kgwyf"]
+[ext_resource type="Shader" uid="uid://dfg4ff7tkds6s" path="res://Jumpscare/red_flash.gdshader" id="2_redfx"]
+[ext_resource type="AudioStream" uid="uid://do4ndffjnko27" path="res://Assets/Audio/EENE_crunch_01.wav" id="4_rxst3"]
+[ext_resource type="AudioStream" uid="uid://feajjepdk1y4" path="res://Assets/Audio/Crumbling Dreams v3.wav" id="5_kgwyf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_redflash"]
+shader = ExtResource("2_redfx")
+shader_parameter/intensity = 0.0
+shader_parameter/time_offset = 0.0
+shader_parameter/blood_color = Color(0.3, 0, 0, 1)
+shader_parameter/bright_red = Color(1, 0.1, 0.05, 1)
+shader_parameter/dark_edge = Color(0.18, 0, 0, 1)
+shader_parameter/vignette_strength = 1.2
+shader_parameter/vignette_softness = 0.6
+shader_parameter/splatter_amount = 1.2
+shader_parameter/splatter_count = 12
+shader_parameter/splatter_min_radius = 0.06
+shader_parameter/splatter_max_radius = 0.18
+shader_parameter/drip_amount = 1.0
+shader_parameter/drip_progress = 0.0
+shader_parameter/drip_count = 14
+shader_parameter/grain_strength = 0.1
+
+[node name="DaveJumpscare" type="CanvasLayer" unique_id=668640143]
+layer = 100
+script = ExtResource("1_dvjs")
+flash_hold_duration = 1.0
+flash_out_duration = 1.0
+
+[node name="Background" type="ColorRect" parent="." unique_id=1233572562]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimatronicImage" type="TextureRect" parent="." unique_id=1458577349]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -133.0
+offset_bottom = 635.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kgwyf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoPanel" type="PanelContainer" parent="." unique_id=1556640927]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -220.0
+offset_right = 360.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoPanel" unique_id=1770498670]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="InfoPanel/MarginContainer" unique_id=1676927298]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="InfoPanel/MarginContainer/VBox" unique_id=639280689]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 36
+text = "DAVE GOT YOU"
+horizontal_alignment = 1
+
+[node name="HowToAvoid" type="Label" parent="InfoPanel/MarginContainer/VBox" unique_id=526545406]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "How to avoid Dave:
+- Watch the cameras and track his path from CAM_01.
+- He moves toward either the LEFT door (via CAM_06) or RIGHT door (via CAM_04).
+- Close the correct door BEFORE he reaches it.
+- He also causes camera errors — fix them by clicking and holding on the affected camera."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinueHint" type="Label" parent="InfoPanel/MarginContainer/VBox" unique_id=1406467030]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "[ Click or press any key to continue ]"
+horizontal_alignment = 1
+
+[node name="RedFlash" type="ColorRect" parent="." unique_id=911223344]
+material = SubResource("ShaderMaterial_redflash")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="." unique_id=911223345]
+stream = ExtResource("4_rxst3")
+
+[node name="CrumblingDreamsV3" type="AudioStreamPlayer" parent="." unique_id=456234128]
+stream = ExtResource("5_kgwyf")
