@@ -6880,6 +6880,7 @@ font_size = 237
 [node name="clock_timer" type="Timer" parent="clock" unique_id=670197237]
 
 [node name="debugger" type="Control" parent="." unique_id=413559894]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
