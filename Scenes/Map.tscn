@@ -78,6 +78,9 @@
 [ext_resource type="Script" uid="uid://flkpuugwodo0" path="res://Scipts/debugger.gd" id="70_7shje"]
 [ext_resource type="AudioStream" uid="uid://2rw76i4a6dl0" path="res://Assets/Audio/Monologues/night_5_monologue.mp3" id="70_71s36"]
 [ext_resource type="PackedScene" uid="uid://dc60polf4cnia" path="res://Jumpscare/jumpscare.tscn" id="73_rwrj0"]
+[ext_resource type="Texture2D" uid="uid://bu1c8uwd34lrq" path="res://Assets/danger.png" id="79_ihu8p"]
+[ext_resource type="Script" uid="uid://ckqe72dol0i3r" path="res://Scipts/mask.gd" id="80_hdaqt"]
+[ext_resource type="Texture2D" uid="uid://b573coijjhkaq" path="res://addons/kenney_input_prompts/Keyboard & Mouse/Default/keyboard_w_outline.png" id="81_sa8uj"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_earqg"]
 
@@ -6526,9 +6529,10 @@ transform = Transform3D(0.9999993, 0, -2.1316282e-14, 0, 0.9999993, 0, 2.1316282
 [node name="t_l_lower_leg" parent="animatronics/Dave/targets/left_leg" parent_id_path=PackedInt32Array(1725311437, 732834530) index="0" unique_id=1409398771]
 transform = Transform3D(2.45499, -0.0066666706, 0.0018450984, 0.0064921672, 2.4466596, 0.20208941, -0.0023876016, -0.20208375, 2.4466672, -0.5922962, -15.37259, -8.532038)
 
-[node name="Freddy" parent="animatronics" unique_id=165911997 node_paths=PackedStringArray("cam_markers_root") instance=ExtResource("58_8a25g")]
+[node name="Freddy" parent="animatronics" unique_id=165911997 node_paths=PackedStringArray("cam_markers_root", "mask") instance=ExtResource("58_8a25g")]
 transform = Transform3D(-0.97748226, 0, 0.21101764, 0, 1, 0, -0.21101764, 0, -0.97748226, -112.83848, 0.12593842, -10.082371)
 cam_markers_root = NodePath("../animatronic_positions/freddy_position")
+mask = NodePath("../../mask")
 
 [node name="Rena" parent="animatronics" unique_id=833359854 node_paths=PackedStringArray("cam11_route", "window_route", "right_door_route") instance=ExtResource("61_u5e0s")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 96.92777, 0.12593842, 161.5405)
@@ -6544,10 +6548,11 @@ cam_markers_root = NodePath("../animatronic_positions/ambassador_position")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -189.98045)
 movement_positions = NodePath("../animatronic_positions/TheRealFredbear_positions")
 
-[node name="Bronnie" parent="animatronics" unique_id=235087929 node_paths=PackedStringArray("left_door_route", "right_door_route") instance=ExtResource("64_mkus8")]
+[node name="Bronnie" parent="animatronics" unique_id=235087929 node_paths=PackedStringArray("left_door_route", "right_door_route", "mask") instance=ExtResource("64_mkus8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.996394, 10.41647, -48.85901)
 left_door_route = NodePath("../animatronic_positions/bronnie_position/path_2")
 right_door_route = NodePath("../animatronic_positions/bronnie_position/path_3")
+mask = NodePath("../../mask")
 
 [node name="animatronic_positions" type="Node" parent="animatronics" unique_id=1221736323]
 script = ExtResource("64_ae458")
@@ -6900,5 +6905,34 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="DaveJumpscare" parent="." unique_id=668640143 instance=ExtResource("73_rwrj0")]
+visible = false
+
+[node name="mask" type="TextureRect" parent="." unique_id=77228430]
+modulate = Color(0.6872149, 0.68721503, 0.6872149, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -114.0
+offset_right = 114.0
+offset_bottom = -50.0
+grow_vertical = 0
+texture = ExtResource("79_ihu8p")
+expand_mode = 1
+script = ExtResource("80_hdaqt")
+
+[node name="TextureRect" type="TextureRect" parent="mask" unique_id=844206646]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("81_sa8uj")
+expand_mode = 1
 
 [editable path="animatronics/Dave"]

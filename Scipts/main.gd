@@ -27,6 +27,7 @@ func _ready() -> void:
 func connect_signals():
 	NightManager.night_ended.connect( _on_night_ended)
 func _on_night_ended(night: int , success: bool):
+		
 	current_night = night + 1
 	if success:
 		SaveManager.save_night_progress(current_night)

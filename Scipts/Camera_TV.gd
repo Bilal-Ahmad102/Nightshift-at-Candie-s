@@ -31,7 +31,7 @@ func _on_night_started(night:int):
 	hint_label.show()
 	night_started = true
 
-func _on_night_ended(night:int):
+func _on_night_ended(night:int,success:bool):
 	hint_label.hide()
 	night_started = false
 

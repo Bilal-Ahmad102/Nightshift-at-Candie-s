@@ -19,7 +19,7 @@ enum State { IDLE, IN_OFFICE, JUMPSCARING }
 @export var meter_max: float        = 1.0
 @export var danger_low: float       = 0.15   # below this → enters office
 @export var danger_high: float      = 0.85   # above this → enters office
-
+@export var mask: TextureRect
 
 var meter: float = 0.5             # start in the safe middle
 var is_being_watched: bool = false
@@ -36,8 +36,7 @@ var cam_watching: String
 
 
 # ── Mask ─────────────────────────────────────────────────────
-var mask_on: bool = false
-
+var is_mask_up: bool  = false
 # ─────────────────────────────────────────────────────────────
 
 func _ready() -> void:
@@ -71,7 +70,10 @@ func connect_signals():
 	NightManager.night_started.connect(_on_night_started)
 	NightManager.night_ended.connect(_on_night_ended)
 	_roam_timer.timeout.connect(_on_roam_timer)
+	mask.mask_state_changed.connect(_on_mask_state_changed)
 
+func _on_mask_state_changed(up: bool) -> void:
+	is_mask_up = up
 
 
 func _on_night_ended(night: int, success: bool) -> void:
@@ -115,7 +117,7 @@ func _process(delta: float) -> void:
 	watch_meter.value = meter * 100.0
 	_update_meter_color()
 	# Check danger thresholds
-	if meter <= danger_low or meter >= danger_high:
+	if meter <= danger_low or meter >= danger_high and !is_mask_up:
 		_enter_office()
 		
 # ─────────────────────────────────────────────────────────────
@@ -177,13 +179,6 @@ func _enter_office() -> void:
 	_trigger_jumpscare()
 	# TODO: move to office position / play animation
 
-func notify_mask_put_on() -> void:
-	if current_state == State.IN_OFFICE:
-		mask_on = true
-		_leave_office()
-
-func notify_mask_removed() -> void:
-	mask_on = false
 
 func _leave_office() -> void:
 	# Reset meter to safe middle and return to roaming

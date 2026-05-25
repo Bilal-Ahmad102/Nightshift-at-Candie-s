@@ -2,12 +2,14 @@ extends Node3D
 
 
 signal jumpscare_requested(animatronic_id: String)
+signal bronnie_appeared
+signal bronnie_left
 
 const ANIMATRONIC_ID := "Bronnie"
 
 @export var left_door_route : Node
 @export var right_door_route : Node
-
+@export var mask: TextureRect
 @onready var _move_timer: Timer = %move_timer
 
 enum State { IDLE, MOVING, IN_OFFICE, RETURNING }
@@ -20,20 +22,25 @@ var current_state: State = State.IDLE
 var current_cam: String = "CAM_09"
 var current_route: Array = []
 var route_index: int = 0
-
-signal bronnie_appeared
-signal bronnie_left
+var is_mask_up: bool  = false
 
 func _ready() -> void:
 	_move_timer.timeout.connect(_on_move_timer)
 	NightManager.night_started.connect(_on_night_started)
 	NightManager.night_ended.connect(_on_night_ended)
+
 	GameManger.register_animatronic(self)
-	
+
+	mask.mask_state_changed.connect(_on_mask_state_changed)
+func _on_mask_state_changed(up: bool) -> void:
+	is_mask_up = up
+	print(is_mask_up)
 	
 func _on_night_ended(night: int, success: bool) -> void:
 	_reset_position()
 
+	
+	
 func _on_night_started(night: int) -> void:
 	if NightManager.is_animatronic_active("Bronnie"):
 		_move_timer.start(get_move_interval())
@@ -97,10 +104,16 @@ func _advance_route() -> void:
 	_move_timer.start(get_move_interval())
 
 func _attempt_attack() -> void:
-	# Bronnie forces the door open, no door check
-	current_state = State.IN_OFFICE
-	bronnie_appeared.emit()
-
+	if !is_mask_up:
+		_trigger_jumpscare()
+		# Bronnie forces the door open, no door check
+		current_state = State.IN_OFFICE
+		bronnie_appeared.emit()
+		print("MASK DOWN < ATTACK ")
+	else:
+		print("MASK UP < BACK ")
+		_return_to_start()
+		
 func on_mask_equipped() -> void:
 	if current_state != State.IN_OFFICE:
 		return
