@@ -28,6 +28,7 @@ func _ready() -> void:
 	_create_timer()
 	NightManager.night_started.connect(start_night)
 
+
 func _create_timer():
 	_timer = Timer.new()
 	_timer.one_shot = false

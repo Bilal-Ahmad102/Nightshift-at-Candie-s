@@ -75,6 +75,20 @@ func unlock_night(night: int) -> void:
 		_data["unlocked_nights"].append(night)
 		save()
 
+# Call this when a night is completed. Only advances current_night
+# if `night` is higher than what's already saved, so replaying earlier
+# nights doesn't undo progress. Also unlocks the night.
+func save_night_progress(night: int) -> void:
+	var changed := false
+	if night > _data["current_night"]:
+		_data["current_night"] = night
+		changed = true
+	if night not in _data["unlocked_nights"]:
+		_data["unlocked_nights"].append(night)
+		changed = true
+	if changed:
+		save()
+
 func is_night_unlocked(night: int) -> bool:
 	return night in _data["unlocked_nights"]
 

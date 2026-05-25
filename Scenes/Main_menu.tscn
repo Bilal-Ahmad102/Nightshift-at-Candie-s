@@ -3,6 +3,7 @@
 [ext_resource type="VideoStream" uid="uid://upw0k2y8ipjr" path="res://Assets/Main_menu_background/main_menu_background.ogv" id="1_7sp8y"]
 [ext_resource type="Script" uid="uid://ekio52blom7s" path="res://Scipts/main_menu.gd" id="1_pc006"]
 [ext_resource type="AudioStream" uid="uid://m5vcn2vel2dg" path="res://Assets/Audio/soundtracks/flipside1.mp3" id="3_f7j37"]
+[ext_resource type="Script" uid="uid://ikrqtd0hy1qc" path="res://Scipts/main_menu_styler.gd" id="4_787fc"]
 
 [sub_resource type="Animation" id="Animation_pc006"]
 length = 0.001
@@ -79,16 +80,30 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0
-offset_top = -198.0
-offset_right = 120.0
+offset_top = -298.0
+offset_right = 250.0
 offset_bottom = -97.0
 grow_vertical = 0
 
-[node name="play" type="Button" parent="main_menu" unique_id=1604896250]
+[node name="continue_btn" type="Button" parent="main_menu" unique_id=1604896251]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Play"
+text = "Continue"
+flat = true
+
+[node name="new_game" type="Button" parent="main_menu" unique_id=1604896250]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "New Game"
+flat = true
+
+[node name="load_night" type="Button" parent="main_menu" unique_id=1604896252]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Load Night"
 flat = true
 
 [node name="options" type="Button" parent="main_menu" unique_id=398301019]
@@ -105,6 +120,30 @@ theme_override_font_sizes/font_size = 32
 text = "Quit"
 flat = true
 
+[node name="load_night_menu" type="VBoxContainer" parent="." unique_id=193363750]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -398.0
+offset_right = 250.0
+offset_bottom = -97.0
+grow_vertical = 0
+
+[node name="night_buttons" type="VBoxContainer" parent="load_night_menu" unique_id=193363752]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="load_back" type="Button" parent="load_night_menu" unique_id=193363753]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Back"
+flat = true
+
 [node name="options_menu" type="VBoxContainer" parent="." unique_id=193363749]
 unique_name_in_owner = true
 visible = false
@@ -113,21 +152,52 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0
-offset_top = -198.0
-offset_right = 120.0
+offset_top = -248.0
+offset_right = 450.0
 offset_bottom = -97.0
 grow_vertical = 0
 
-[node name="play" type="Button" parent="options_menu" unique_id=1203513034]
+[node name="sound_row" type="HBoxContainer" parent="options_menu" unique_id=1203513034]
+layout_mode = 2
+
+[node name="sound_label" type="Label" parent="options_menu/sound_row" unique_id=843681251]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "sound"
+text = "Sound Volume"
+
+[node name="sound_minus" type="Button" parent="options_menu/sound_row" unique_id=843681252]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = " - "
 flat = true
 
-[node name="options" type="Button" parent="options_menu" unique_id=843681251]
+[node name="sound_value" type="Label" parent="options_menu/sound_row" unique_id=843681253]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "music"
+text = "100"
+
+[node name="sound_plus" type="Button" parent="options_menu/sound_row" unique_id=843681254]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = " + "
+flat = true
+
+[node name="fullscreen_row" type="HBoxContainer" parent="options_menu" unique_id=843681255]
+layout_mode = 2
+
+[node name="fullscreen_label" type="Label" parent="options_menu/fullscreen_row" unique_id=843681256]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Fullscreen"
+
+[node name="fullscreen_toggle" type="Button" parent="options_menu/fullscreen_row" unique_id=843681257]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = " Off "
 flat = true
 
 [node name="back" type="Button" parent="options_menu" unique_id=1152769442]
@@ -171,3 +241,6 @@ libraries/ = SubResource("AnimationLibrary_787fc")
 [node name="Flipside1" type="AudioStreamPlayer" parent="." unique_id=1772805005]
 stream = ExtResource("3_f7j37")
 autoplay = true
+
+[node name="styler" type="Node" parent="." unique_id=1400858429]
+script = ExtResource("4_787fc")

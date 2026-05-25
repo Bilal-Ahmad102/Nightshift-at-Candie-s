@@ -1295,7 +1295,7 @@ bind/54/name = &"つま先ＩＫ.R"
 bind/54/bone = -1
 bind/54/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.013252573, 0.0069393325, 0.013573489)
 
-[node name="Dave" type="Node3D" unique_id=1725311437]
+[node name="Bronnie" type="Node3D" unique_id=1725311437]
 script = ExtResource("1_xqphe")
 
 [node name="targets" type="Node3D" parent="." unique_id=963197038]

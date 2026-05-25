@@ -40,7 +40,8 @@ func _ready() -> void:
 
 	gaze_btn.visible = false
 	gaze_btn.on_completed = _repel
-
+	GameManger.register_animatronic(self)
+	
 func _on_fredbear_appeared() -> void:
 	gaze_btn.visible = true
 

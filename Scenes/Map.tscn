@@ -72,7 +72,11 @@
 [ext_resource type="AudioStream" uid="uid://2gecosghd6fv" path="res://Assets/Audio/Monologues/night_2_monologue.mp3" id="63_0almc"]
 [ext_resource type="PackedScene" uid="uid://2ys6kurpwkb7" path="res://Scenes/Animatronics/the_real_fredbear.tscn" id="63_2gtna"]
 [ext_resource type="Script" uid="uid://b3mfruedkjxuh" path="res://Scipts/animatronic_positions.gd" id="64_ae458"]
+[ext_resource type="PackedScene" uid="uid://lwxbmqxymtwm" path="res://Scenes/Animatronics/Bronnie.tscn" id="64_mkus8"]
+[ext_resource type="AudioStream" uid="uid://dy6a7fvfbxo5q" path="res://Assets/Audio/Monologues/night_3_monologue.mp3" id="68_p670d"]
+[ext_resource type="AudioStream" uid="uid://pk3ys7dmao1i" path="res://Assets/Audio/Monologues/night_4_monologue.mp3" id="69_mkus8"]
 [ext_resource type="Script" uid="uid://flkpuugwodo0" path="res://Scipts/debugger.gd" id="70_7shje"]
+[ext_resource type="AudioStream" uid="uid://2rw76i4a6dl0" path="res://Assets/Audio/Monologues/night_5_monologue.mp3" id="70_71s36"]
 [ext_resource type="PackedScene" uid="uid://dc60polf4cnia" path="res://Jumpscare/jumpscare.tscn" id="73_rwrj0"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_earqg"]
@@ -4417,9 +4421,6 @@ size = Vector2(14.905, 10.84)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5mar"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_x5akl"]
-size = Vector3(15.74, 1.9891357, 10.94)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pl0j6"]
 resource_name = "EndoBurg"
 cull_mode = 2
@@ -5927,13 +5928,6 @@ visible = false
 mesh = SubResource("PlaneMesh_x5akl")
 surface_material_override/0 = SubResource("StandardMaterial3D_t5mar")
 
-[node name="Area3D" type="Area3D" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D" unique_id=1162107337]
-transform = Transform3D(1, 0, -4.440892e-16, 0, 1, -7.771561e-16, 0, -7.771561e-16, 1, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D/Area3D" unique_id=1085960826]
-transform = Transform3D(1, 0, 0, 0, 1, -7.771561e-16, 0, -7.771561e-16, 1, -1.5258789e-05, 1.4196777, 0)
-shape = SubResource("BoxShape3D_x5akl")
-
 [node name="Label3D" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/CamMonitor/Node3D" unique_id=1383121766]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3544721e-14, -7.0407047)
 billboard = 1
@@ -6550,6 +6544,11 @@ cam_markers_root = NodePath("../animatronic_positions/ambassador_position")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -189.98045)
 movement_positions = NodePath("../animatronic_positions/TheRealFredbear_positions")
 
+[node name="Bronnie" parent="animatronics" unique_id=235087929 node_paths=PackedStringArray("left_door_route", "right_door_route") instance=ExtResource("64_mkus8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.996394, 10.41647, -48.85901)
+left_door_route = NodePath("../animatronic_positions/bronnie_position/path_2")
+right_door_route = NodePath("../animatronic_positions/bronnie_position/path_3")
+
 [node name="animatronic_positions" type="Node" parent="animatronics" unique_id=1221736323]
 script = ExtResource("64_ae458")
 
@@ -6610,6 +6609,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169.39093, 0.17014313, 148.9
 transform = Transform3D(-0.061187927, 0, -0.99812627, 0, 1, 0, 0.99812627, 0, -0.061187927, -148.97475, -0.67178154, 266.01465)
 
 [node name="cam_4" type="Marker3D" parent="animatronics/animatronic_positions/dave_position/path_3" unique_id=528423097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.031, 0.1701355, 257.37488)
+
+[node name="bronnie_position" type="Node" parent="animatronics/animatronic_positions" unique_id=1285206552]
+
+[node name="path_2" type="Node" parent="animatronics/animatronic_positions/bronnie_position" unique_id=1067157526]
+
+[node name="cam_8" type="Marker3D" parent="animatronics/animatronic_positions/bronnie_position/path_2" unique_id=6686719]
+transform = Transform3D(-0.28804588, 0, -0.9576166, 0, 1, 0, 0.9576166, 0, -0.28804588, -109.28439, -1.4934921, -6.9660225)
+
+[node name="cam_7" type="Marker3D" parent="animatronics/animatronic_positions/bronnie_position/path_2" unique_id=368403467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -191.11731, 6.7581253, 46.200787)
+
+[node name="cam_6" type="Marker3D" parent="animatronics/animatronic_positions/bronnie_position/path_2" unique_id=2105827808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -305.0928, -0.87390137, 72.34389)
+
+[node name="path_3" type="Node" parent="animatronics/animatronic_positions/bronnie_position" unique_id=863234795]
+
+[node name="cam_2" type="Marker3D" parent="animatronics/animatronic_positions/bronnie_position/path_3" unique_id=1528907611]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.832092, -4.9454994, 218.55048)
+
+[node name="cam_3" type="Marker3D" parent="animatronics/animatronic_positions/bronnie_position/path_3" unique_id=1798546260]
+transform = Transform3D(-0.061187927, 0, -0.99812627, 0, 1, 0, 0.99812627, 0, -0.061187927, -148.97475, -0.67178154, 266.01465)
+
+[node name="cam_4" type="Marker3D" parent="animatronics/animatronic_positions/bronnie_position/path_3" unique_id=502262247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.031, 0.1701355, 257.37488)
 
 [node name="rena_position" type="Node" parent="animatronics/animatronic_positions" unique_id=1795131940]
@@ -6673,7 +6696,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -305.0928, -0.87390137, 72.34
 [node name="ambassador_position" type="Node" parent="animatronics/animatronic_positions" unique_id=945804594]
 
 [node name="cam_1" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=784444995]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.49152, 9.322042, 449.0996)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 37.646145, 9.322042, 449.0996)
 
 [node name="cam_2" type="Marker3D" parent="animatronics/animatronic_positions/ambassador_position" unique_id=300651637]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.832092, -4.9454994, 218.55048)
@@ -6764,6 +6787,18 @@ stream = ExtResource("61_wh5hq")
 unique_name_in_owner = true
 stream = ExtResource("63_0almc")
 
+[node name="Night3Monologue" type="AudioStreamPlayer" parent="Audios" unique_id=1713223359]
+unique_name_in_owner = true
+stream = ExtResource("68_p670d")
+
+[node name="Night4Monologue" type="AudioStreamPlayer" parent="Audios" unique_id=1871149673]
+unique_name_in_owner = true
+stream = ExtResource("69_mkus8")
+
+[node name="Night5Monologue" type="AudioStreamPlayer" parent="Audios" unique_id=530346397]
+unique_name_in_owner = true
+stream = ExtResource("70_71s36")
+
 [node name="Hotel2" type="AudioStreamPlayer" parent="Audios" unique_id=1757742397]
 unique_name_in_owner = true
 stream = ExtResource("62_r3cnf")
@@ -6839,8 +6874,7 @@ font_size = 237
 
 [node name="clock_timer" type="Timer" parent="clock" unique_id=670197237]
 
-[node name="debugger" type="Control" parent="." unique_id=413559894 node_paths=PackedStringArray("dave_node", "frednic_node", "rena_node")]
-visible = false
+[node name="debugger" type="Control" parent="." unique_id=413559894]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -6848,25 +6882,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("70_7shje")
-dave_node = NodePath("../animatronics/Dave")
-frednic_node = NodePath("../animatronics/Freddy")
-rena_node = NodePath("../animatronics/Rena")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="debugger" unique_id=337989708]
-layout_mode = 0
-offset_right = 463.0
-offset_bottom = 650.0
+[node name="HBoxContainer" type="HBoxContainer" parent="debugger" unique_id=863950896]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
 
-[node name="rena" type="Label" parent="debugger/HBoxContainer" unique_id=58516361]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="debugger/HBoxContainer" unique_id=1505056413]
 layout_mode = 2
 
-[node name="dave" type="Label" parent="debugger/HBoxContainer" unique_id=1674287949]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="fredenic" type="Label" parent="debugger/HBoxContainer" unique_id=957971076]
-unique_name_in_owner = true
+[node name="Label2" type="Label" parent="debugger/HBoxContainer" unique_id=1767126899]
 layout_mode = 2
 
 [node name="DaveJumpscare" parent="." unique_id=668640143 instance=ExtResource("73_rwrj0")]

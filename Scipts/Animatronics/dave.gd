@@ -37,10 +37,9 @@ func _on_night_ended(night: int, success: bool):
 
 
 func _on_night_started(night: int) -> void:
-	#if NightManager.is_animatronic_active(ANIMATRONIC_ID):
-		#_move_timer.start(get_move_interval())
+	if NightManager.is_animatronic_active(ANIMATRONIC_ID):
+		_move_timer.start(get_move_interval())
 
-	pass
 	
 func _fill_cam_positions(is_path_3: bool, _nine: bool):
 	var markers: Array

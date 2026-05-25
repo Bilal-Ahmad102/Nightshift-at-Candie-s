@@ -30,7 +30,7 @@ func _ready() -> void:
 	NightManager.night_started.connect(_on_night_started)
 	NightManager.night_ended.connect(_on_night_ended)
 
-
+	GameManger.register_animatronic(self)
 
 func _on_night_ended(night: int, success: bool) -> void:
 	deactivate()
@@ -154,11 +154,13 @@ func _move_model_to_cam(cam_idx: int) -> void:
 # --- strike system ---
 func _handle_strike() -> void:
 	var max_strikes = AnimatronicConfig.get_value("Ambassador", "strikes_to_jumpscare", 3)
+	$Label.text = "strike: " + str(strikes)
+	
 	if strikes >= max_strikes:
 		jumpscare_requested.emit(ANIMATRONIC_ID)
 	elif strikes < max_strikes:
 		_brick_cam(CamGlobal.get_current_open_cam())
-
+	strikes += 1
 func _brick_cam(cam: int) -> void:
 	
 	if cam in bricked_cams:

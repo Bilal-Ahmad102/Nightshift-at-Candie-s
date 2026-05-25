@@ -54,7 +54,8 @@ func _ready() -> void:
 	connect_signals()
 	create_meter()
 	set_process(false)
-
+	
+	GameManger.register_animatronic(self)
 
 func create_meter():
 	_style_watch_meter()
@@ -78,9 +79,9 @@ func _on_night_ended(night: int, success: bool) -> void:
 	reset_position()
 	
 func _on_night_started(night: int) -> void:
-	#if NightManager.is_animatronic_active("Frednic"):
-	set_process(true)  
-	_roam_timer.start(_roam_interval())
+	if NightManager.is_animatronic_active("Frednic"):
+		set_process(true)  
+		_roam_timer.start(_roam_interval())
 
 func reset_position():
 	var start_cam = cam_positions[all_cams[0]]

@@ -12,8 +12,8 @@ const ANIMATRONIC_ID := "Bronnie"
 
 enum State { IDLE, MOVING, IN_OFFICE, RETURNING }
 
-const ROUTE_LEFT_DOOR = ["CAM_09", "CAM_08", "CAM_07", "CAM_06"]
-const ROUTE_RIGHT_DOOR = ["CAM_09", "CAM_02", "CAM_03", "CAM_04"]
+const ROUTE_LEFT_DOOR = ["CAM_08",  "CAM_07", "CAM_06"]
+const ROUTE_RIGHT_DOOR = ["CAM_02", "CAM_03", "CAM_04"]
 
 var cam_positions: Dictionary = {}
 var current_state: State = State.IDLE
@@ -28,7 +28,9 @@ func _ready() -> void:
 	_move_timer.timeout.connect(_on_move_timer)
 	NightManager.night_started.connect(_on_night_started)
 	NightManager.night_ended.connect(_on_night_ended)
-
+	GameManger.register_animatronic(self)
+	
+	
 func _on_night_ended(night: int, success: bool) -> void:
 	_reset_position()
 

@@ -33,7 +33,8 @@ func _ready() -> void:
 
 	# Place her at CAM_11 state 1 immediately
 	move_to_cam("cam11_state1")
-
+	GameManger.register_animatronic(self)
+	
 func _on_night_started(night: int) -> void:
 	if NightManager.is_animatronic_active("Rena"):
 		current_state = State.ESCALATING
