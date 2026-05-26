@@ -42,7 +42,9 @@
 [ext_resource type="Texture2D" uid="uid://lq0rbbsubfs" path="res://Assets/MAP/textures/249.png" id="36_n8xla"]
 [ext_resource type="Texture2D" uid="uid://cl0gxjyx6fmvj" path="res://Assets/MAP/textures/193.png" id="37_p670d"]
 [ext_resource type="Script" uid="uid://chdv2lfihlwwi" path="res://Scipts/Door/button_window_door.gd" id="37_t5mar"]
+[ext_resource type="AudioStream" uid="uid://by3xigektyc7c" path="res://Assets/Audio/Doorslam.wav" id="38_hdaqt"]
 [ext_resource type="Texture2D" uid="uid://ctw06co54ci1f" path="res://Assets/MAP/textures/226.png" id="38_mkus8"]
+[ext_resource type="Texture2D" uid="uid://84c08d27uwon" path="res://addons/kenney_input_prompts/Keyboard & Mouse/Default/keyboard_e_outline.png" id="38_mtfgr"]
 [ext_resource type="Texture2D" uid="uid://bnuyy3ty6mikb" path="res://Assets/MAP/textures/228.png" id="39_71s36"]
 [ext_resource type="Texture2D" uid="uid://doi0d8p530p4s" path="res://Assets/MAP/textures/230.png" id="40_sbqat"]
 [ext_resource type="Texture2D" uid="uid://b08b6qrnpeux5" path="res://Assets/MAP/textures/232.png" id="41_ihu8p"]
@@ -81,6 +83,7 @@
 [ext_resource type="Texture2D" uid="uid://bu1c8uwd34lrq" path="res://Assets/danger.png" id="79_ihu8p"]
 [ext_resource type="Script" uid="uid://ckqe72dol0i3r" path="res://Scipts/mask.gd" id="80_hdaqt"]
 [ext_resource type="Texture2D" uid="uid://b573coijjhkaq" path="res://addons/kenney_input_prompts/Keyboard & Mouse/Default/keyboard_w_outline.png" id="81_sa8uj"]
+[ext_resource type="PackedScene" uid="uid://m1q6qe83cvlw" path="res://Pause_Menu/pause_menu.tscn" id="83_sa8uj"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_earqg"]
 
@@ -5260,6 +5263,8 @@ shadow_mesh = SubResource("ArrayMesh_pne24")
 [node name="Main" type="Node3D" unique_id=687069439]
 script = ExtResource("1_mq7vl")
 
+[node name="Pause_menu" parent="." unique_id=1312595927 instance=ExtResource("83_sa8uj")]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1249790741]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
@@ -5779,11 +5784,16 @@ metadata/extras = {
 }
 
 [node name="hint_label" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/WindowDoor" unique_id=1416963844]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6638489, 5.384388, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2.6638489, 1.8196526, 0)
 billboard = 1
-text = "Press E to open"
+text = "Press       to open"
 font_size = 164
 outline_size = 80
+
+[node name="Sprite3D" type="Sprite3D" parent="FNaC Semi-Accurate Map By DiscoHead/WindowDoor/hint_label" unique_id=1844524527]
+transform = Transform3D(2.245, 0, 0, 0, 2.245, 0, 0, 0, 2.245, -0.029418945, -0.036956787, -0.45014954)
+billboard = 1
+texture = ExtResource("38_mtfgr")
 
 [node name="OfficeDoorLeft" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=899409987]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -335, 50, 97.5)
@@ -5800,12 +5810,19 @@ script = ExtResource("36_f3mid")
 door = NodePath("../OfficeDoorLeft")
 door_id = "left"
 
-[node name="hint_label" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorLeft" unique_id=237096437]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.893463, 0.9813614)
-billboard = 1
-text = "Press E to open"
+[node name="hint_label" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorLeft" unique_id=1804439324]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 4.893463, 0.9813614)
+text = "Press        to open"
 font_size = 164
 outline_size = 80
+
+[node name="Sprite3D" type="Sprite3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorLeft/hint_label" unique_id=1406459587]
+transform = Transform3D(2.245, 0, 0, 0, 2.245, 0, 0, 0, 2.245, -0.5013225, -0.036956787, -0.45014954)
+texture = ExtResource("38_mtfgr")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorLeft" unique_id=343523966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.492401, -9.206173, 0)
+stream = ExtResource("38_hdaqt")
 
 [node name="ButtonDoorRight" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=403537269 node_paths=PackedStringArray("door")]
 unique_name_in_owner = true
@@ -5815,12 +5832,19 @@ script = ExtResource("36_f3mid")
 door = NodePath("../OfficeDoorRight")
 door_id = "right"
 
-[node name="hint_label" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorRight" unique_id=1288612272]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.893463, -1.0320892)
-billboard = 1
-text = "Press E to open"
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorRight" unique_id=1149626306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.614899, -13.909573, 0)
+stream = ExtResource("38_hdaqt")
+
+[node name="hint_label" type="Label3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorRight" unique_id=392550620]
+transform = Transform3D(-1.5, 0, -1.3113416e-07, 0, 1.5, 0, 1.3113416e-07, 0, -1.5, 0, 4.893463, -1.0320892)
+text = "Press       to open"
 font_size = 164
 outline_size = 80
+
+[node name="Sprite3D" type="Sprite3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonDoorRight/hint_label" unique_id=861225625]
+transform = Transform3D(2.245, 0, 0, 0, 2.245, 0, 0, 0, 2.245, -0.44508874, -0.036956787, -0.45014954)
+texture = ExtResource("38_mtfgr")
 
 [node name="ButtonWindowDoor" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=1906918744]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -301.5, 23.5, 165)

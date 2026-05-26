@@ -6,6 +6,7 @@ extends MeshInstance3D
 @export var door_id : String
 
 @onready var hint_label: Label3D = $hint_label
+@onready var door_slam: AudioStreamPlayer3D = $"../ButtonDoorLeft/AudioStreamPlayer3D"
 
 var is_closed: bool = false
 var is_player_looking : bool = false
@@ -26,17 +27,14 @@ func _input(event: InputEvent) -> void:
 			close_door()
 			DoorManager.close_door(door_id)
 
-
-
-
-
 func looking(val):
 	hint_label.visible = val
 	is_player_looking = val
 
 func close_door() -> void:
 	is_closed = true
-	hint_label.text = "Press E to open"  # closed = offer to open ✓
+	hint_label.text = "Press        to open"  # closed = offer to open ✓
+	door_slam.play()
 	var tween = door.create_tween()
 	if !is_window:
 		tween.tween_property(door, "position:y", 1.0, 0.3)\
@@ -49,7 +47,7 @@ func close_door() -> void:
 			
 func open_door() -> void:
 	is_closed = false
-	hint_label.text = "Press E to close"  # open = offer to close ✓
+	hint_label.text = "Press        to open"  # open = offer to close ✓
 	var tween = door.create_tween()
 	if !is_window:
 		tween.tween_property(door, "position:y", 50.0, 0.5)\
