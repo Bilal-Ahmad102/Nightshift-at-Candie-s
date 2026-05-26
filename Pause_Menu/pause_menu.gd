@@ -13,7 +13,6 @@ extends Control
 @onready var sound_plus: Button = %sound_plus
 @onready var sound_value: Label = %sound_value
 @onready var fullscreen_toggle: Button = %fullscreen_toggle
-@onready var anim_player: AnimationPlayer = $loading/AnimationPlayer
 @onready var styler: Node = $styler
 
 var _load_progress: Array = []

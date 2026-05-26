@@ -141,13 +141,19 @@ func _tick_cam_timers(delta: float) -> void:
 		if _cam_timers[cam] >= randf_range(move_time_min, move_time_max):
 			_move_from_cam(cam)
 
+var _last_model_cam: int = -1
+
 func _move_model_to_cam(cam_idx: int) -> void:
 	if cam_markers_root == null:
 		return
-	var marker = cam_markers_root.get_child(cam_idx-1)
+	var marker = cam_markers_root.get_child(cam_idx - 1)
 	if marker == null:
-		push_error("Ambassador: no marker found for " + marker)
+		push_error("Ambassador: no marker found for cam " + str(cam_idx))
 		return
+
+	GameManger.animatronic_moved.emit(str(_last_model_cam), str(cam_idx))
+	_last_model_cam = cam_idx
+
 	global_position = marker.global_position
 	global_rotation = marker.global_rotation
 

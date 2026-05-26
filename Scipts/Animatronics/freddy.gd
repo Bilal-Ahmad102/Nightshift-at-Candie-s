@@ -50,10 +50,11 @@ func _ready() -> void:
 	meter            = AnimatronicConfig.get_value("Frednic", "meter_start", 0.5)
 
 	_build_cam_dict()
-	connect_signals()
 	create_meter()
 	set_process(false)
 	
+	NightManager.night_started.connect(_on_night_started)
+	NightManager.night_ended.connect(_on_night_ended)
 	GameManger.register_animatronic(self)
 
 func create_meter():
@@ -63,14 +64,22 @@ func create_meter():
 	watch_meter.value     = 50.0
 	hide_meter()
 
-	watch_meter.hide()
 
 func connect_signals():
 	CamGlobal.cam_switched.connect(notify_watched)
-	NightManager.night_started.connect(_on_night_started)
-	NightManager.night_ended.connect(_on_night_ended)
 	_roam_timer.timeout.connect(_on_roam_timer)
 	mask.mask_state_changed.connect(_on_mask_state_changed)
+func disconnect_signals():
+	if CamGlobal.cam_switched.is_connected(notify_watched):
+		CamGlobal.cam_switched.disconnect(notify_watched)
+	if NightManager.night_started.is_connected(_on_night_started):
+		NightManager.night_started.disconnect(_on_night_started)
+	if NightManager.night_ended.is_connected(_on_night_ended):
+		NightManager.night_ended.disconnect(_on_night_ended)
+	if _roam_timer.timeout.is_connected(_on_roam_timer):
+		_roam_timer.timeout.disconnect(_on_roam_timer)
+	if mask.mask_state_changed.is_connected(_on_mask_state_changed):
+		mask.mask_state_changed.disconnect(_on_mask_state_changed)
 
 func _on_mask_state_changed(up: bool) -> void:
 	is_mask_up = up
@@ -79,11 +88,14 @@ func _on_mask_state_changed(up: bool) -> void:
 func _on_night_ended(night: int, success: bool) -> void:
 	set_process(false)  # add this
 	reset_position()
+	hide_meter()
+	disconnect_signals()
 	
 func _on_night_started(night: int) -> void:
 	if NightManager.is_animatronic_active("Frednic"):
 		set_process(true)  
 		_roam_timer.start(_roam_interval())
+		connect_signals()
 
 func reset_position():
 	var start_cam = cam_positions[all_cams[0]]
@@ -159,11 +171,13 @@ func _on_roam_timer() -> void:
 	_check_being_watched()
 func _move_to_random_cam() -> void:
 	var options = all_cams.filter(func(c): return c != current_cam)
+	var previous_cam := current_cam
 	current_cam = options[randi() % options.size()]
 	var marker = cam_positions.get(current_cam)
 	if marker:
 		global_position = marker.global_position
 		global_rotation = marker.global_rotation
+		GameManger.animatronic_moved.emit(previous_cam, current_cam)
 	print("Frednic moved to: ", current_cam)
 
 func _roam_interval() -> float:

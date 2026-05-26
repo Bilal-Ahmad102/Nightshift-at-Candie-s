@@ -9,12 +9,13 @@ var cam_error_delay_max: int = 5
 var spread_time: float = 8.0
 
 var light_blips: Array[ColorRect] = []
-var current_cam: int = 0
+var current_cam: int = 1
 var _blink_tween: Tween
 var _error_loop_running: bool = false
 
 var error_cams: Array[int] = []
 var error_timers: Dictionary = {}
+var monitor_up : bool = false
 
 const CAM_NEIGHBORS: Dictionary = {
 	1: [2],
@@ -30,6 +31,14 @@ const CAM_NEIGHBORS: Dictionary = {
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	GameManger.animatronic_moved.connect(_on_animatronic_moved)
+	CamGlobal.cam_interface_up.connect(func():
+		monitor_up = true
+		print("UP"))
+	CamGlobal.cam_interface_back.connect(func():
+		monitor_up = false
+		print("down"))
+
 	for cam_btn in cam_btns.get_children():
 		var blip: ColorRect = cam_btn.get_child(0)
 		blip.color.a = 0.0
@@ -68,7 +77,6 @@ func _update_noise_visibility() -> void:
 	cam_noise.visible = current_cam in error_cams
 
 func _process(delta: float) -> void:
-	return
 	# gate everything behind Dave active + visible
 	if not NightManager.is_animatronic_active("Dave") or not self.visible:
 		return
@@ -193,8 +201,6 @@ func solve_cam_error(delta: float) -> void:
 		progress_bar.value = max(0.0, progress_bar.value - 30.0 * delta)
 
 
-
-
 func _on_night3_cams_updated(cams: Array) -> void:
 	_update_dark_overlay()
 
@@ -207,3 +213,16 @@ func _update_dark_overlay() -> void:
 	# hide noise on bricked cams — dark is more fitting than static
 	if is_bricked:
 		cam_noise.visible = false
+@onready var transition_error: AnimatedSprite2D = $transition_error
+
+
+func _on_animatronic_moved(from: String, to: String):
+	var from_id := int(from.right(2))
+	var to_id := int(to.right(2))
+	print(from_id," : ", to_id)
+
+	if (current_cam == from_id or current_cam == to_id) and monitor_up: 
+		transition_error.show()
+
+		await get_tree().create_timer(1).timeout
+		transition_error.hide()

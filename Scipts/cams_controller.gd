@@ -19,7 +19,8 @@ func _ready() -> void:
 	# Filter by type instead of reference comparison — more robust
 	cameras = get_children().filter(func(c): return c is Camera3D)
 	shared_cam.current = true
-	
+	CamGlobal.cam_interface_up.connect(func():
+		switch_to(camera_interface.current_cam - 1))
 	switch_to(0)
 func _on_cam_texture_clicked(cam_num:int):
 	switch_to(cam_num)

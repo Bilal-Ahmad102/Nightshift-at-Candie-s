@@ -63,6 +63,10 @@ func _fill_cam_positions(is_path_3: bool, _nine: bool):
 func move_to_cam(cam_id: String) -> void:
 	var marker = cam_positions.get(cam_id)
 	if marker:
+		var previous_cam := current_cam
+		GameManger.animatronic_moved.emit(previous_cam, cam_id)
+		await  get_tree().create_timer(1).timeout
+		
 		global_position = marker.global_position
 		global_rotation = marker.global_rotation
 		current_cam = cam_id

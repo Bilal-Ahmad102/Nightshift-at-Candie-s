@@ -8,7 +8,7 @@ signal jumpscare_finished(animatronic_id: String)
 signal game_over
 signal night_won(night: int)
 signal skip_monologue
-
+signal animatronic_moved(from: String, to: String)
 ## The Jumpscare node lives in the main scene. Assign it in the inspector,
 ## OR have the main scene call GameManger.set_jumpscare(node) on ready.
 @export var jumpscare: Jumpscare

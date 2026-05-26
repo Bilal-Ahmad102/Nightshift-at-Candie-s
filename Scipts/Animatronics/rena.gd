@@ -57,6 +57,12 @@ func _fill_cam_positions() -> void:
 		cam_positions[ROUTE_RIGHT_DOOR[i]] = door_markers[i]
 
 func move_to_cam(cam_id: String) -> void:
+
+	if cam_id in ["cam11_state1",'cam11_state2','cam11_state3']:
+		var previous_cam := "Cam_11"
+		GameManger.animatronic_moved.emit(previous_cam, "Cam_11")
+		await  get_tree().create_timer(1).timeout
+
 	match cam_id:
 		"cam11_state1": anim_player.play("pose_1")
 		"cam11_state2": anim_player.play("pose_2")
@@ -64,9 +70,15 @@ func move_to_cam(cam_id: String) -> void:
 
 	var marker = cam_positions.get(cam_id)
 	if marker:
+		var previous_cam := current_cam
+		GameManger.animatronic_moved.emit(previous_cam, cam_id)
+		await  get_tree().create_timer(1).timeout
+		
 		global_position = marker.global_position
 		global_rotation = marker.global_rotation
 		current_cam = cam_id
+
+
 
 func get_move_interval() -> float:
 	var base = AnimatronicConfig.get_value("Rena", "move_interval_base", 8.0)

@@ -62,9 +62,11 @@ func _fill_cam_positions(is_right: bool) -> void:
 func move_to_cam(cam_id: String) -> void:
 	var marker = cam_positions.get(cam_id)
 	if marker:
+		var previous_cam := current_cam
 		global_position = marker.global_position
 		global_rotation = marker.global_rotation
 		current_cam = cam_id
+		GameManger.animatronic_moved.emit(previous_cam, cam_id)
 
 func get_move_interval() -> float:
 	var base = AnimatronicConfig.get_value("Bronnie", "move_interval_base", 8.0)

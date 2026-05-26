@@ -5,7 +5,7 @@ signal night_ended(night: int, success: bool)
 signal animatronics_updated(active_list: Array)
 
 const NIGHT_ANIMATRONICS: Dictionary = {
-	1: ["Dave"],
+	1: ["Rena"],
 	2: ["Dave", "Frednic", "Rena"],
 	3: ["Dave", "Rena", "Ambassador"],
 	4: ["Dave", "Frednic", "Rena", "Ambassador"],
