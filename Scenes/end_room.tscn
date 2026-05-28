@@ -13,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://gi2ujso7bsrb" path="res://Scenes/haru urara Room/t014.png" id="10_l314h"]
 [ext_resource type="Texture2D" uid="uid://baw1311cd1fey" path="res://Scenes/haru urara Room/t015.png" id="11_1kfrv"]
 [ext_resource type="Texture2D" uid="uid://cmj755w2ukg35" path="res://Scenes/haru urara Room/t016.png" id="12_cbb1w"]
+[ext_resource type="FontFile" uid="uid://chtg2sjwoh3mk" path="res://Assets/bloodcrowc.ttf" id="14_xjqqb"]
 [ext_resource type="Texture2D" uid="uid://b7ulg0r0gxm7" path="res://Assets/animatronics/Real_fredbear/bear_body.png" id="15_nf4ax"]
+[ext_resource type="AudioStream" uid="uid://bnsfkni0ticgc" path="res://Assets/Audio/Dark amb v4.wav" id="16_nf4ax"]
 [ext_resource type="Texture2D" uid="uid://bp5vg2v68qb6r" path="res://Assets/animatronics/Real_fredbear/bear_head.png" id="16_xjqqb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aivyc"]
@@ -496,6 +498,7 @@ lock_target = NodePath("bear/head")
 lock_offset = Vector3(0, 0, 0)
 lock_speed = 1.0
 lock_threshold_deg = 0.3
+eye_open_recover_speed = 1.0
 
 [node name="haru urara Room" type="Node3D" parent="." unique_id=999978227]
 
@@ -527,6 +530,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5809538, 0.78079075, 1.153
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1823408974]
 
 [node name="EyelidOverlay" type="ColorRect" parent="CanvasLayer" unique_id=830753929]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -547,6 +551,35 @@ offset_bottom = -49.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="night_board" type="Node" parent="CanvasLayer" unique_id=740635294]
+
+[node name="End" type="ColorRect" parent="CanvasLayer/night_board" unique_id=241584237]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="end_label" type="Label" parent="CanvasLayer/night_board/End" unique_id=1852399245]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_xjqqb")
+theme_override_font_sizes/font_size = 128
+text = "The END"
+
 [node name="bear" type="Node3D" parent="." unique_id=1693859608]
 
 [node name="body" type="Sprite3D" parent="bear" unique_id=2096576794]
@@ -558,3 +591,8 @@ texture = ExtResource("15_nf4ax")
 transform = Transform3D(0.28145823, 0, -0.1625, 0, 0.325, 0, 0.1625, 0, 0.28145823, -0.149, 0.635, 2.223)
 sorting_offset = 1.0
 texture = ExtResource("16_xjqqb")
+
+[node name="DarkAmbV4" type="AudioStreamPlayer" parent="." unique_id=431038969]
+stream = ExtResource("16_nf4ax")
+volume_db = -10.0
+autoplay = true

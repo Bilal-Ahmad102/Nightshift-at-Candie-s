@@ -36,6 +36,8 @@ func _ready() -> void:
 	sound_minus.pressed.connect(_on_sound_minus_pressed)
 	sound_plus.pressed.connect(_on_sound_plus_pressed)
 	fullscreen_toggle.pressed.connect(_on_fullscreen_toggle_pressed)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 	_refresh_sound_value()
 	_refresh_fullscreen_value()
 	_refresh_save_state_buttons()

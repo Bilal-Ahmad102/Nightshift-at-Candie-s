@@ -50,6 +50,7 @@ enum State { IDLE, EYE_OPEN, WANDERING, LOCKING, LOCKED, SPEAKING, DONE }
 @onready var eyelid: ColorRect = $CanvasLayer/EyelidOverlay
 @onready var text: Label = $CanvasLayer/Text
 @onready var head: Sprite3D = $bear/head
+@onready var the_end_panel: ColorRect = %End
 
 const VOICE_LINE := "Do you really need to remind me when you test me,\nto see if i can fullfill our promise?"
 
@@ -77,6 +78,7 @@ var _head_base_y: float = 0.0
 
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_base_basis = camera_3d.global_basis
 	eyelid.color = Color(0, 0, 0, 1)
 	eyelid.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -216,10 +218,13 @@ func _process_speaking(delta: float) -> void:
 			_visible_chars += 1
 			text.visible_characters = _visible_chars
 
-	# Head bob only while text is still printing
-	if _visible_chars > full_len:
+	if _visible_chars >= full_len:
 		_state = State.DONE
 		cutscene_done.emit()
+		await get_tree().create_timer(4).timeout
+		the_end_panel.show()
+		await get_tree().create_timer(10).timeout
+		get_tree().change_scene_to_file("res://Scenes/Main_menu.tscn")
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────

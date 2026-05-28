@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bnsfkni0ticgc"
+path="res://.godot/imported/Dark amb v4.wav-ba38dbdad0abf7dcd41f5e1566ed5656.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Dark amb v4.wav"
+dest_files=["res://.godot/imported/Dark amb v4.wav-ba38dbdad0abf7dcd41f5e1566ed5656.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

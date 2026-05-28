@@ -41,7 +41,6 @@
 [ext_resource type="Script" uid="uid://bt5rvrt38hmvw" path="res://Scipts/Door/button_door.gd" id="36_f3mid"]
 [ext_resource type="Texture2D" uid="uid://lq0rbbsubfs" path="res://Assets/MAP/textures/249.png" id="36_n8xla"]
 [ext_resource type="Texture2D" uid="uid://cl0gxjyx6fmvj" path="res://Assets/MAP/textures/193.png" id="37_p670d"]
-[ext_resource type="Script" uid="uid://chdv2lfihlwwi" path="res://Scipts/Door/button_window_door.gd" id="37_t5mar"]
 [ext_resource type="AudioStream" uid="uid://by3xigektyc7c" path="res://Assets/Audio/Doorslam.wav" id="38_hdaqt"]
 [ext_resource type="Texture2D" uid="uid://ctw06co54ci1f" path="res://Assets/MAP/textures/226.png" id="38_mkus8"]
 [ext_resource type="Texture2D" uid="uid://84c08d27uwon" path="res://addons/kenney_input_prompts/Keyboard & Mouse/Default/keyboard_e_outline.png" id="38_mtfgr"]
@@ -3623,9 +3622,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_y3y6e")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_l6pei"]
-size = Vector3(1, 5, 5)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rsyj"]
 resource_name = "Blind"
 transparency = 4
@@ -5849,12 +5845,6 @@ texture = ExtResource("38_mtfgr")
 [node name="ButtonWindowDoor" type="MeshInstance3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=1906918744]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -301.5, 23.5, 165)
 mesh = SubResource("ArrayMesh_jjpl5")
-script = ExtResource("37_t5mar")
-
-[node name="Area3D" type="Area3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonWindowDoor" unique_id=268743478]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FNaC Semi-Accurate Map By DiscoHead/ButtonWindowDoor/Area3D" unique_id=2019030450]
-shape = SubResource("BoxShape3D_l6pei")
 
 [node name="Blind" type="Node3D" parent="FNaC Semi-Accurate Map By DiscoHead" unique_id=2123083583]
 
