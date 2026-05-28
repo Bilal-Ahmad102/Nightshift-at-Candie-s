@@ -223,6 +223,5 @@ func _on_animatronic_moved(from: String, to: String):
 
 	if (current_cam == from_id or current_cam == to_id) and monitor_up: 
 		transition_error.show()
-
 		await get_tree().create_timer(1).timeout
 		transition_error.hide()

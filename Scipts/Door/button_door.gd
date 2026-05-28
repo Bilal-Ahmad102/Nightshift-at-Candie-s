@@ -15,8 +15,13 @@ var is_player_looking : bool = false
 
 
 func _ready() -> void:
+	hint_label.hide()
 	if !door:
 		door = self
+	NightManager.night_started.connect(func(n:int):
+		hint_label.show())
+	NightManager.night_ended.connect(func(n:int,s:bool):
+		hint_label.hide())
 func _input(event: InputEvent) -> void:
 	if !is_player_looking: return
 	if event.is_action_pressed("E") :
@@ -47,7 +52,7 @@ func close_door() -> void:
 			
 func open_door() -> void:
 	is_closed = false
-	hint_label.text = "Press        to open"  # open = offer to close ✓
+	hint_label.text = "Press        to close"  # open = offer to close ✓
 	var tween = door.create_tween()
 	if !is_window:
 		tween.tween_property(door, "position:y", 50.0, 0.5)\

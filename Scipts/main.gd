@@ -27,7 +27,9 @@ func _ready() -> void:
 func connect_signals():
 	NightManager.night_ended.connect( _on_night_ended)
 func _on_night_ended(night: int , success: bool):
-		
+	if night == 5:
+		get_tree().change_scene_to_file("res://Scenes/end_room.tscn")
+		return
 	current_night = night + 1
 	if success:
 		SaveManager.save_night_progress(current_night)

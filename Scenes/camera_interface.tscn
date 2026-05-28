@@ -146,7 +146,7 @@ scale = Vector2(1.765, 1.765)
 sprite_frames = SubResource("SpriteFrames_rkkl2")
 animation = &"error"
 autoplay = "error"
-frame_progress = 0.78494275
+frame_progress = 0.70985436
 
 [node name="map_outline" type="TextureRect" parent="." unique_id=851360109]
 layout_mode = 1
